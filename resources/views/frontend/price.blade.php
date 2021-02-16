@@ -30,25 +30,24 @@
                     @endforeach
                 </ul>
             </din>
-            @foreach($services as $item)
-
-
-                    <table class="price-table" id="tabs-{{$loop->iteration}}">
-                        <tr class="price-table-first-column">
-                            <th  class="price-header price-table-second-header">Наименование работ</th>
-                            <th class="price-header price-table-third-header"><div> Стоимость</div>грн.</th>
-                            <th class="price-header price-table-forth-header">Ед.изм.</th>
-                        </tr>
-                        @foreach($item->prices as $elem)
-                        <tr>
-                            <td class="price-table-second " >{{$elem->translate()->title}}</td>
-                            <td class="price-table-third">{{$elem->translate()->cost}}</td>
-                            <td class="price-table-forth">{{$elem->translate()->units}}</td>
-                        </tr>
-                        @endforeach
-                    </table>
-
-            @endforeach
+            <div class="tabs-second">
+                @foreach($services as $item)
+                <table class="price-table" id="tabs-{{$loop->iteration}}">
+                    <tr class="price-table-first-column">
+                        <th  class="price-header price-table-second-header">Наименование работ</th>
+                        <th class="price-header price-table-third-header"><div> Стоимость</div>грн.</th>
+                        <th class="price-header price-table-forth-header">Ед.изм.</th>
+                    </tr>
+                    @foreach($item->prices as $elem)
+                    <tr>
+                        <td class="price-table-second " >{{$elem->translate()->title}}</td>
+                        <td class="price-table-third">{{$elem->translate()->cost}}</td>
+                        <td class="price-table-forth">{{$elem->translate()->units}}</td>
+                    </tr>
+                    @endforeach
+                </table>
+                @endforeach
+            </div>
         </div>
 
         <div class="about-us__footer">
@@ -66,7 +65,11 @@
     <script>
         $( function() {
             $( "#tabs" ).tabs();
-            $('#tabs').css('max-height', $('.tabs-first').css('height'));
+            let firstList = $('.price-table-service').css('height');
+            let firstHeader = $('.price-table-main-header').css('height');
+            let heightFirstColumn = +firstHeader.slice(0, -2) + +firstList.slice(0, -2);
+            $('.tabs-second').css('max-height', heightFirstColumn + "px");
+
         } );
     </script>
 @endsection
