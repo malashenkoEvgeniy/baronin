@@ -1,0 +1,66 @@
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.logo img {
+    max-height: 70px;
+    display: block;
+    margin: 0 auto;
+}
+
+.tox .tox-notification--warn,
+.tox .tox-notification--warning {
+    display: none !important;
+}
+
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+
+.new-request {
+    color: red;
+}
+
+.hidden {
+    display: none;
+}
+
+
+svg {
+    max-width: 100%;
+    height: auto;
+}
+
+.price-table-link {
+    color: #000;
+    font-size: 18px;
+    padding: 15px 25px;
+    margin: 10px;
+    position: fixed;
+    z-index: 99999;
+    background-color: cornflowerblue;
+    top: 10px;
+    right: 10px;
+}
+
+.price-table-link:hover {
+    opacity: 0.5;
+}
+
+.add-price-table-column {
+    display: block;
+    width: 200px;
+    color: #000;
+    font-size: 18px;
+    padding: 15px 25px;
+    margin: 10px;
+    background-color: cornflowerblue;
+}
+
+.add-price-table-column:hover {
+    opacity: 0.5;
+}
