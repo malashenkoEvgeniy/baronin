@@ -1,0 +1,19 @@
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+    margin: 40px auto;
+    width: 89.58%;
+}
+
+.breadcrumbs__home svg {
+    max-height: 22px;
+    width: auto;
+}
+
+.breadcrumbs__separator {
+    margin: 0 5px;
+    font-size: 12px;
+}

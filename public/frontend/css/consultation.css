@@ -1,0 +1,62 @@
+
+.consultation__block {
+    width: 100%;
+    margin: 0 0 0 auto;
+}
+
+.consultation__form {
+    display: flex;
+    background-image: url('../images/home/form_background.jpg');
+    background-size: cover;
+    padding: 5.2%;
+    border-radius: 2px 0px 0px 2px;
+}
+
+.consultation__block .form__title {
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 40px;
+    color: #FFFFFF;
+    margin: 0 64px 25px 0;
+}
+
+.consultation__block .input {
+    padding: 16px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #8A8A8A;
+    background-color: #ffffff;
+    border-radius: 2px;
+    outline: none;
+    border: none;
+    width: calc(100% - 40px);
+}
+
+.consultation__block .input-group_2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 10px - 168px);
+    margin-right: 10px;
+}
+
+.consultation__block .input-group_2 .input {
+    width: calc(50% - 5px - 40px);
+}
+
+.consultation__block button {
+    height: 47px;
+    align-self: center;
+}
+
+@media all and (max-width: 1024px) {
+    .consultation__form {
+        flex-wrap: wrap;
+    }
+
+    .consultation__block .form__title {
+        white-space: normal;
+    }
+}
+
