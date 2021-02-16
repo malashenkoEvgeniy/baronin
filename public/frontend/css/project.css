@@ -1,0 +1,285 @@
+.site__content {
+    padding-top: 93px;
+}
+
+.header {
+    padding: 15px 2.6%;
+    background-color: var(--main-color);
+    transition: background-color .6s ease .4s, padding .6s;
+}
+
+.project__header {
+    width: 64%;
+    margin: 0 auto;
+}
+
+.project {
+    max-width: 1220px;
+    width: 64%;
+    margin: 5.2% auto;
+    padding: 0 90px;
+}
+
+.project__body {
+    font-family: 'Arial', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.project__body iframe {
+    width: 100vw;
+    max-width: 100%;
+    height: 36.45vw;
+}
+
+.project__body p+p {
+    margin-top: 16px;
+}
+
+.project__body ul {
+    list-style-type: initial;
+    padding-left: 40px;
+    margin-bottom: 16px;
+}
+
+.gallery {
+    margin: 32px 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.project__gallery {}
+
+.gallery__item {
+    width: calc(50% - 17.5px);
+    margin-bottom: 35px;
+}
+
+.project__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+
+
+.project__arrow {
+    background-color: transparent;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    border-radius: 100%;
+    border: 3px solid #000000;
+    transition: all .4s;
+}
+
+.project__arrow svg {
+    fill: #ffffff;
+    width: auto;
+    height: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    transition: fill .4s;
+}
+
+
+.prev svg {
+    top: 0px;
+    left: 1px;
+    transform: rotate(180deg);
+}
+
+.prev .project__arrow {
+    margin: 0 10px 0 0;
+}
+
+.next {
+    margin: 0 0 0 auto;
+}
+
+.prev {
+    margin: 0 auto 0 0;
+}
+
+.next,
+.prev {
+    display: flex;
+    align-items: center;
+}
+
+.project__nav a:hover .project__arrow {
+    background-color: #ffffff;
+    transition: all .4s;
+}
+
+.project__nav a:hover svg {
+   opacity: 0.25;
+    transition: fill .4s;
+}
+
+.project__form {
+    max-width: calc(775px - (90px * 2));
+    padding: 60px 90px;
+    margin: 0 auto;
+    color: #ffffff;
+    background-color: #000000;
+}
+
+.project__form_title {
+    font-size: 28px;
+    text-align: center;
+    max-width: 498px;
+    margin: 0 auto 36px auto;
+}
+
+.input {
+    width: calc(100% - (19px * 2));
+    padding: 14px 19px;
+    margin-bottom: 9px;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.button_submit {
+    border: 3px solid #FFFFFF;
+    background-color: transparent;
+    color: #ffffff;
+    margin: 24px auto 0 auto;
+    max-width: 276px;
+    font-size: 18px;
+
+}
+
+.button_submit:hover {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+}
+
+
+@media all and (max-width: 1700px) {
+    .project {
+        max-width: 1220px;
+        width: calc(100% - 180px);
+    }
+
+
+}
+
+
+@media all and (max-width: 1024px) {
+    .project__nav {
+        font-size: 16px;
+    }
+
+    .project__arrow {
+        width: 30px;
+        height: 30px;
+    }
+
+    .project__form {
+        max-width: calc(614px - (70px * 2));
+        padding: 50px 70px;
+    }
+
+    .project__form_title {
+        font-size: 24px;
+        max-width: 447px;
+        margin-bottom: 30px;
+    }
+
+    .input {
+        width: calc(100% - (16px * 2));
+        padding: 9px 16px;
+    }
+
+    .button_submit {
+        max-width: 224px;
+        padding: 7px 0;
+    }
+
+}
+
+@media all and (max-width: 768px) {
+    .project {
+        padding: 0 70px;
+        width: calc(100% - 140px);
+    }
+
+    .project__body {
+        font-size: 16px;
+    }
+
+    .project__body h1 {
+        font-size: 24px;
+    }
+
+    .gallery__item {
+        width: calc(50% - 9px);
+        margin-bottom: 18px;
+    }
+
+    .project__arrow {
+        width: 26px;
+        height: 26px;
+    }
+
+    .project__form {
+        max-width: calc(582px - (70px * 2));
+        padding: 50px 70px;
+    }
+}
+
+
+
+@media all and (max-width: 568px) {
+    .project {
+        padding: 0 20px;
+        width: calc(100% - 40px);
+    }
+
+    .project__body h1 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .gallery__item {
+        width: 100%;
+    }
+
+    .project__nav {
+        font-size: 14px;
+    }
+
+    .project__arrow {
+        width: 23px;
+        height: 23px;
+    }
+
+    .project__form {
+        padding: 43px 27px;
+    }
+
+    .project__form_title {
+        font-size: 20px;
+    }
+
+    .input {
+        width: calc(100% - (8px * 2));
+        padding: 6px 8px;
+    }
+
+    .button_submit {
+        max-width: 100%;
+        padding: 6px 0;
+        font-size: 16px;
+    }
+}
