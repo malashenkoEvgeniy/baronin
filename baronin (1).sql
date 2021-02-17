@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Фев 17 2021 г., 08:19
--- Версия сервера: 8.0.19
--- Версия PHP: 7.4.5
+-- Время создания: Фев 17 2021 г., 18:41
+-- Версия сервера: 5.7.16
+-- Версия PHP: 7.1.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -28,18 +27,18 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `contact` (
-  `id` bigint UNSIGNED NOT NULL,
-  `phone_1` char(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone_2` char(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone_3` char(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `viber` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `telegram` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` char(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `banner` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `phone_1` char(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_2` char(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_3` char(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `viber` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `telegram` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` char(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `banner` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `facebook` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `instagram` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `facebook` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `instagram` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -56,14 +55,14 @@ INSERT INTO `contact` (`id`, `phone_1`, `phone_2`, `phone_3`, `viber`, `telegram
 --
 
 CREATE TABLE `contact_translation` (
-  `id` bigint UNSIGNED NOT NULL,
-  `title` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `address` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `language` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `seo_title` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `seo_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `seo_keywords` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `contact_id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` text COLLATE utf8mb4_unicode_ci,
+  `address` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `language` char(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `seo_title` char(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `seo_description` text COLLATE utf8mb4_unicode_ci,
+  `seo_keywords` text COLLATE utf8mb4_unicode_ci,
+  `contact_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -83,9 +82,9 @@ INSERT INTO `contact_translation` (`id`, `title`, `address`, `language`, `seo_ti
 --
 
 CREATE TABLE `design_images` (
-  `id` int UNSIGNED NOT NULL,
-  `url` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `page_id` int NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
+  `url` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `page_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -115,7 +114,8 @@ INSERT INTO `design_images` (`id`, `url`, `page_id`, `created_at`, `updated_at`)
 (18, '/uploads/disign/img16.jpg', 14, '2021-02-14 15:07:43', '2021-02-14 15:07:43'),
 (19, '/uploads/disign/img17.jpg', 14, '2021-02-14 15:07:43', '2021-02-14 15:07:43'),
 (20, '/uploads/disign/img18.jpg', 14, '2021-02-14 15:07:43', '2021-02-14 15:07:43'),
-(21, '/uploads/disign/img19.jpg', 14, '2021-02-14 15:07:43', '2021-02-14 15:07:43');
+(21, '/uploads/disign/img19.jpg', 14, '2021-02-14 15:07:43', '2021-02-14 15:07:43'),
+(22, '/uploads/image/1613574246infograf.png', 3, '2021-02-17 13:04:06', '2021-02-17 13:04:06');
 
 -- --------------------------------------------------------
 
@@ -124,11 +124,11 @@ INSERT INTO `design_images` (`id`, `url`, `page_id`, `created_at`, `updated_at`)
 --
 
 CREATE TABLE `form_request` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` char(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` char(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `page` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `body` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` char(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` char(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `page` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `body` text COLLATE utf8mb4_unicode_ci,
   `is_new` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -141,7 +141,8 @@ CREATE TABLE `form_request` (
 INSERT INTO `form_request` (`id`, `name`, `phone`, `page`, `body`, `is_new`, `created_at`, `updated_at`) VALUES
 (1, 'jkhkj', '09888888888', 'http://baronin/o-nas', NULL, 1, '2021-02-11 10:59:42', '2021-02-11 10:59:42'),
 (2, 'test', '+38098777777', 'http://baronin/landscape_design', NULL, 1, '2021-02-15 07:02:10', '2021-02-15 07:02:10'),
-(3, 'test', '+38098777777', 'http://baronin/landscape_design', NULL, 1, '2021-02-15 07:02:23', '2021-02-15 07:02:23');
+(3, 'test', '+38098777777', 'http://baronin/landscape_design', NULL, 1, '2021-02-15 07:02:23', '2021-02-15 07:02:23'),
+(4, 'teww', '+388888888', 'http://baronin/price', NULL, 1, '2021-02-17 12:18:17', '2021-02-17 12:18:17');
 
 -- --------------------------------------------------------
 
@@ -150,8 +151,8 @@ INSERT INTO `form_request` (`id`, `name`, `phone`, `page`, `body`, `is_new`, `cr
 --
 
 CREATE TABLE `main_page` (
-  `id` bigint UNSIGNED NOT NULL,
-  `image` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `image` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -170,15 +171,15 @@ INSERT INTO `main_page` (`id`, `image`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `main_page_translation` (
-  `id` bigint UNSIGNED NOT NULL,
-  `title` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `body` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `about_us` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `language` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `seo_title` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `seo_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `seo_keywords` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `main_page_id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` text COLLATE utf8mb4_unicode_ci,
+  `body` text COLLATE utf8mb4_unicode_ci,
+  `about_us` text COLLATE utf8mb4_unicode_ci,
+  `language` char(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `seo_title` char(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `seo_description` text COLLATE utf8mb4_unicode_ci,
+  `seo_keywords` text COLLATE utf8mb4_unicode_ci,
+  `main_page_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -197,9 +198,9 @@ INSERT INTO `main_page_translation` (`id`, `title`, `body`, `about_us`, `languag
 --
 
 CREATE TABLE `migrations` (
-  `id` int UNSIGNED NOT NULL,
-  `migration` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -232,7 +233,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (47, '2021_02_15_133725_create_table_services_table', 13),
 (48, '2021_02_15_133750_create_table_services_translations_table', 13),
 (49, '2021_02_14_190101_create_table_prices_table', 14),
-(50, '2021_02_15_131412_create_table_price_translations_table', 14);
+(50, '2021_02_15_131412_create_table_price_translations_table', 14),
+(51, '2021_02_17_150917_create_slider_images_table', 15);
 
 -- --------------------------------------------------------
 
@@ -241,13 +243,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `page` (
-  `id` bigint UNSIGNED NOT NULL,
-  `parent_id` int UNSIGNED DEFAULT NULL,
-  `url` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `banner` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `image` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `parent_id` int(10) UNSIGNED DEFAULT NULL,
+  `url` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `banner` text COLLATE utf8mb4_unicode_ci,
+  `image` text COLLATE utf8mb4_unicode_ci,
   `on_main_page` tinyint(1) NOT NULL DEFAULT '0',
-  `sort_order` tinyint NOT NULL DEFAULT '0',
+  `sort_order` tinyint(4) NOT NULL DEFAULT '0',
   `live` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -278,18 +280,18 @@ INSERT INTO `page` (`id`, `parent_id`, `url`, `banner`, `image`, `on_main_page`,
 --
 
 CREATE TABLE `page_translation` (
-  `id` bigint UNSIGNED NOT NULL,
-  `title` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `body` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `seo_title` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `seo_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `seo_keywords` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `language` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `page_id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `body` text COLLATE utf8mb4_unicode_ci,
+  `seo_title` char(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `seo_description` text COLLATE utf8mb4_unicode_ci,
+  `seo_keywords` text COLLATE utf8mb4_unicode_ci,
+  `language` char(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `page_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `additional_title` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `additional_body` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
+  `additional_title` char(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `additional_body` text COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -319,8 +321,8 @@ INSERT INTO `page_translation` (`id`, `title`, `body`, `seo_title`, `seo_descrip
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -331,8 +333,8 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `portfolio` (
-  `id` bigint UNSIGNED NOT NULL,
-  `image` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `image` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -356,15 +358,15 @@ INSERT INTO `portfolio` (`id`, `image`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `portfolio_translation` (
-  `id` bigint UNSIGNED NOT NULL,
-  `title` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `body` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `body_bottom` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `language` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `seo_title` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `seo_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `seo_keywords` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `portfolio_id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` char(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `body` text COLLATE utf8mb4_unicode_ci,
+  `body_bottom` text COLLATE utf8mb4_unicode_ci,
+  `language` char(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `seo_title` char(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `seo_description` text COLLATE utf8mb4_unicode_ci,
+  `seo_keywords` text COLLATE utf8mb4_unicode_ci,
+  `portfolio_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -383,9 +385,9 @@ INSERT INTO `portfolio_translation` (`id`, `title`, `body`, `body_bottom`, `lang
 --
 
 CREATE TABLE `price` (
-  `id` bigint UNSIGNED NOT NULL,
-  `file` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `page_id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `file` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `page_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -404,10 +406,10 @@ INSERT INTO `price` (`id`, `file`, `page_id`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `price_translation` (
-  `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `language` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `price_id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `language` char(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -426,11 +428,11 @@ INSERT INTO `price_translation` (`id`, `title`, `language`, `price_id`, `created
 --
 
 CREATE TABLE `project` (
-  `id` bigint UNSIGNED NOT NULL,
-  `image` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `url` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `position` int NOT NULL,
-  `portfolio_id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `image` text COLLATE utf8mb4_unicode_ci,
+  `url` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `position` int(11) NOT NULL,
+  `portfolio_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -462,9 +464,9 @@ INSERT INTO `project` (`id`, `image`, `url`, `position`, `portfolio_id`, `create
 --
 
 CREATE TABLE `project_image` (
-  `id` bigint UNSIGNED NOT NULL,
-  `image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `project_id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `project_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -488,15 +490,15 @@ INSERT INTO `project_image` (`id`, `image`, `project_id`, `created_at`, `updated
 --
 
 CREATE TABLE `project_translation` (
-  `id` bigint UNSIGNED NOT NULL,
-  `title` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `body` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `body_bottom` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `language` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `seo_title` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `seo_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `seo_keywords` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `project_id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` char(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `body` text COLLATE utf8mb4_unicode_ci,
+  `body_bottom` text COLLATE utf8mb4_unicode_ci,
+  `language` char(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `seo_title` char(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `seo_description` text COLLATE utf8mb4_unicode_ci,
+  `seo_keywords` text COLLATE utf8mb4_unicode_ci,
+  `project_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -525,15 +527,37 @@ INSERT INTO `project_translation` (`id`, `title`, `body`, `body_bottom`, `langua
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `slider_images`
+--
+
+CREATE TABLE `slider_images` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `url` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_video` int(11) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `slider_images`
+--
+
+INSERT INTO `slider_images` (`id`, `url`, `is_video`, `created_at`, `updated_at`) VALUES
+(1, '/uploads/slider/1613576332infograf.png', 0, '2021-02-17 13:38:52', '2021-02-17 13:38:52'),
+(2, '/uploads/slider/16135763381603834202video.mp4', 1, '2021-02-17 13:38:58', '2021-02-17 13:38:58');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `table_prices`
 --
 
 CREATE TABLE `table_prices` (
-  `id` bigint UNSIGNED NOT NULL,
-  `table_services_id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `table_services_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `order_by` int NOT NULL DEFAULT '10'
+  `order_by` int(11) NOT NULL DEFAULT '10'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -541,8 +565,6 @@ CREATE TABLE `table_prices` (
 --
 
 INSERT INTO `table_prices` (`id`, `table_services_id`, `created_at`, `updated_at`, `order_by`) VALUES
-(1, 1, NULL, NULL, 10),
-(2, 1, NULL, NULL, 10),
 (3, 1, NULL, NULL, 10),
 (4, 2, NULL, NULL, 10),
 (5, 2, NULL, NULL, 10),
@@ -605,12 +627,12 @@ INSERT INTO `table_prices` (`id`, `table_services_id`, `created_at`, `updated_at
 --
 
 CREATE TABLE `table_price_translations` (
-  `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cost` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `units` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `language` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `table_price_id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cost` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `units` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `language` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `table_price_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -620,8 +642,6 @@ CREATE TABLE `table_price_translations` (
 --
 
 INSERT INTO `table_price_translations` (`id`, `title`, `cost`, `units`, `language`, `table_price_id`, `created_at`, `updated_at`) VALUES
-(1, 'ewrw', 'ewr', 'ewr', 'ru', 1, NULL, NULL),
-(2, 'werwreweerw', 'werwerwre', 'werwerwr', 'ru', 2, NULL, NULL),
 (3, 'ewrqrerqre', 'zxdc\\zd', 'adsad', 'ru', 3, NULL, NULL),
 (4, 'dsdasfgsagfsda', 'sdgfadsf', 'asgddf', 'ru', 4, NULL, NULL),
 (5, 'sdfsdsdf', 'dsfsfsdf', 'sfafsddfs', 'ru', 5, NULL, NULL),
@@ -684,10 +704,10 @@ INSERT INTO `table_price_translations` (`id`, `title`, `cost`, `units`, `languag
 --
 
 CREATE TABLE `table_services` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `order_by` int NOT NULL DEFAULT '100'
+  `order_by` int(11) NOT NULL DEFAULT '100'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -695,17 +715,16 @@ CREATE TABLE `table_services` (
 --
 
 INSERT INTO `table_services` (`id`, `created_at`, `updated_at`, `order_by`) VALUES
-(1, NULL, NULL, 100),
+(1, NULL, '2021-02-17 06:56:08', 90),
 (2, NULL, NULL, 100),
 (3, '2021-02-15 13:36:37', '2021-02-15 13:36:37', 100),
-(4, '2021-02-15 22:29:24', '2021-02-17 02:56:46', 97),
-(5, '2021-02-15 22:31:17', '2021-02-15 22:31:17', 100),
-(6, '2021-02-15 22:31:24', '2021-02-15 22:31:24', 100),
-(7, '2021-02-15 22:31:29', '2021-02-15 22:31:29', 100),
-(8, '2021-02-15 22:31:33', '2021-02-15 22:31:33', 100),
-(9, '2021-02-15 22:31:36', '2021-02-15 22:31:36', 100),
+(6, '2021-02-15 22:31:24', '2021-02-17 06:11:18', 98),
+(7, '2021-02-15 22:31:29', '2021-02-17 06:55:47', 100),
+(8, '2021-02-15 22:31:33', '2021-02-17 06:09:18', 99),
+(9, '2021-02-15 22:31:36', '2021-02-17 06:09:14', 99),
 (10, '2021-02-15 22:31:39', '2021-02-15 22:31:39', 100),
-(11, '2021-02-16 10:03:22', '2021-02-17 02:56:41', 97);
+(11, '2021-02-16 10:03:22', '2021-02-17 02:56:41', 97),
+(12, '2021-02-17 07:13:36', '2021-02-17 07:13:36', 100);
 
 -- --------------------------------------------------------
 
@@ -714,12 +733,12 @@ INSERT INTO `table_services` (`id`, `created_at`, `updated_at`, `order_by`) VALU
 --
 
 CREATE TABLE `table_services_translations` (
-  `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `table_services_id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `table_services_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `language` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `language` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -729,15 +748,14 @@ CREATE TABLE `table_services_translations` (
 INSERT INTO `table_services_translations` (`id`, `title`, `table_services_id`, `created_at`, `updated_at`, `language`) VALUES
 (1, 'Test1', 1, NULL, NULL, 'ru'),
 (3, 'Демонтаж, разборка и другое', 3, '2021-02-15 13:36:37', '2021-02-15 13:36:37', 'ru'),
-(4, '222', 4, '2021-02-15 22:29:24', '2021-02-15 22:29:24', 'ru'),
-(5, '222', 5, '2021-02-15 22:31:17', '2021-02-15 22:31:17', 'ru'),
-(6, '333', 6, '2021-02-15 22:31:24', '2021-02-15 22:31:24', 'ru'),
+(6, '333 dsadasasd', 6, '2021-02-15 13:36:37', '2021-02-17 07:43:39', 'ru'),
 (7, '465456', 7, '2021-02-15 22:31:29', '2021-02-15 22:31:29', 'ru'),
 (8, 'dgfdg', 8, '2021-02-15 22:31:33', '2021-02-15 22:31:33', 'ru'),
 (9, 'sdgdsgdsg', 9, '2021-02-15 22:31:36', '2021-02-15 22:31:36', 'ru'),
 (10, 'dfsgdgdgdfg', 10, '2021-02-15 22:31:39', '2021-02-15 22:31:39', 'ru'),
 (11, 'id-2', 2, NULL, NULL, 'ru'),
-(12, 'вася курит пепси', 11, '2021-02-16 10:03:22', '2021-02-16 10:03:22', 'ru');
+(12, 'вася курит пепси', 11, '2021-02-16 10:03:22', '2021-02-16 10:03:22', 'ru'),
+(13, 'tttqqqq', 12, '2021-02-17 07:13:36', '2021-02-17 07:13:36', 'ru');
 
 -- --------------------------------------------------------
 
@@ -746,12 +764,12 @@ INSERT INTO `table_services_translations` (`id`, `title`, `table_services_id`, `
 --
 
 CREATE TABLE `users` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -881,6 +899,12 @@ ALTER TABLE `project_translation`
   ADD KEY `project_translation_project_id_foreign` (`project_id`);
 
 --
+-- Индексы таблицы `slider_images`
+--
+ALTER TABLE `slider_images`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `table_prices`
 --
 ALTER TABLE `table_prices`
@@ -922,128 +946,112 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT для таблицы `contact_translation`
 --
 ALTER TABLE `contact_translation`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT для таблицы `design_images`
 --
 ALTER TABLE `design_images`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT для таблицы `form_request`
 --
 ALTER TABLE `form_request`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT для таблицы `main_page`
 --
 ALTER TABLE `main_page`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT для таблицы `main_page_translation`
 --
 ALTER TABLE `main_page_translation`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT для таблицы `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT для таблицы `page`
 --
 ALTER TABLE `page`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT для таблицы `page_translation`
 --
 ALTER TABLE `page_translation`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT для таблицы `portfolio`
 --
 ALTER TABLE `portfolio`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT для таблицы `portfolio_translation`
 --
 ALTER TABLE `portfolio_translation`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT для таблицы `price`
 --
 ALTER TABLE `price`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT для таблицы `price_translation`
 --
 ALTER TABLE `price_translation`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT для таблицы `project`
 --
 ALTER TABLE `project`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT для таблицы `project_image`
 --
 ALTER TABLE `project_image`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT для таблицы `project_translation`
 --
 ALTER TABLE `project_translation`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT для таблицы `slider_images`
+--
+ALTER TABLE `slider_images`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT для таблицы `table_prices`
 --
 ALTER TABLE `table_prices`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
-
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 --
 -- AUTO_INCREMENT для таблицы `table_price_translations`
 --
 ALTER TABLE `table_price_translations`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
-
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 --
 -- AUTO_INCREMENT для таблицы `table_services`
 --
 ALTER TABLE `table_services`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT для таблицы `table_services_translations`
 --
 ALTER TABLE `table_services_translations`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
@@ -1119,7 +1127,6 @@ ALTER TABLE `table_price_translations`
 --
 ALTER TABLE `table_services_translations`
   ADD CONSTRAINT `table_services_translations_table_service_id_foreign` FOREIGN KEY (`table_services_id`) REFERENCES `table_services` (`id`) ON DELETE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
