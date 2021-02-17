@@ -13,6 +13,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="/admin/adminlte/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/admin/adminlte/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
@@ -94,6 +95,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="/admin/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/admin/adminlte/dist/js/adminlte.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 @yield('scripts')
 
 </body>

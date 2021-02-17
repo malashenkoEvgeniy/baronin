@@ -10,10 +10,9 @@
                 <div class="card-body">
                     @include('admin.includes.alerts')
 
-                    <form action="{{route('price.update',$table->id)}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('price_service.update',$table->id)}}" method="POST" enctype="multipart/form-data">
                         {!! csrf_field() !!}
                         {{ method_field('PUT') }}
-
 
                         <div class="input-group mb-5">
                             <div class="input-group-prepend">
@@ -21,18 +20,7 @@
                             </div>
                             <input type="text" class="form-control" name="title"  value="{{$table->translate()->title}}">
                         </div>
-                        <div class="input-group mb-5">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Стоимость</span>
-                            </div>
-                            <input type="text" class="form-control" name="cost"  value="{{$table->translate()->cost}}">
-                        </div>
-                        <div class="input-group mb-5">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Еденицы измерения</span>
-                            </div>
-                            <input type="text" class="form-control" name="units"  value="{{$table->translate()->units}}">
-                        </div>
+
 
                         <input type="hidden" name="language" value="{{ LaravelLocalization::getCurrentLocale() }}">
                         <button type="submit" class="btn btn-primary mt-4">Обновить</button>

@@ -26,7 +26,7 @@
                 <h3 class="price-table-main-header"><div>Общестроительные (Разные)</div> работы</h3>
                 <ul class="price-table-service">
                     @foreach($services as $item)
-                        <li><a href="#tabs-{{$loop->iteration}}" class="price-table-first ">{{$item->translate()->title}}</a></li>
+                        <li class="tab "><span class="price-table-first " >{{$item->translate()->title}}</span></li>
                     @endforeach
                 </ul>
             </din>
@@ -63,13 +63,41 @@
     <script src="/frontend/js/scroll_up.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
-        $( function() {
-            $( "#tabs" ).tabs();
-            let firstList = $('.price-table-service').css('height');
-            let firstHeader = $('.price-table-main-header').css('height');
-            let heightFirstColumn = +firstHeader.slice(0, -2) + +firstList.slice(0, -2);
-            $('.tabs-second').css('max-height', heightFirstColumn + "px");
 
-        } );
+
+        if ($(window).width() < 770) {
+            $('.tab').click(function(e){
+                $('.price-table.active').removeClass('active');
+                $('.tab').toggleClass('hide');
+                if(!$(this).hasClass('active')){
+                    $('.tab.active').removeClass('active');
+                    $(this).toggleClass('active');
+                    $('.tabs-second .price-table').eq($(this).index()).addClass('active');
+                }
+            })
+        }else{
+
+            $('.price-table-service .tab').eq(0).addClass('active');
+            $('.tabs-second .price-table').eq(0).addClass('active');
+
+
+            $('.tab').click(function(e){
+                $('.price-table.active').removeClass('active');
+                $('.tab.active').removeClass('active');
+                $(this).toggleClass('active');
+                $('.tabs-second .price-table').eq($(this).index()).addClass('active');
+            })
+
+            $( function() {
+                // $( "#tabs" ).tabs();
+                let firstList = $('.price-table-service').css('height');
+                let firstHeader = $('.price-table-main-header').css('height');
+                let heightFirstColumn = +firstHeader.slice(0, -2) + +firstList.slice(0, -2);
+                $('.tabs-second').css('max-height', heightFirstColumn + "px");
+                $('.tabs-second').css('max-height', heightFirstColumn + "px");
+
+            } );
+        }
+
     </script>
 @endsection

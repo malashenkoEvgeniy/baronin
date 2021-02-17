@@ -69,6 +69,15 @@
         </p>
       </a>
     </li>
+      <li class="nav-item">
+          <a href="{{route('slider_images.create')}}" class="nav-link {{Request::segment(2) == 'form_requests'?'active':''}}">
+              <i class="fas fa-envelope nav-icon"></i>
+              <p>
+                  Слайдер
+                  <span class="right badge badge-info">{{$newRequests}}</span>
+              </p>
+          </a>
+      </li>
 
 
     <li class="nav-item has-treeview">

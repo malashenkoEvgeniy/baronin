@@ -54,7 +54,10 @@ class PriceController extends BaseController
      */
     public function store(Request $request)
     {
-        $service = $this->storeWithTranslation(new TableServices(), [], ['title'=> $request['title'], 'language'=> $request['language']]);
+        $service = $this->storeWithTranslation(new TablePrice(), [], [ 'title'=> $request['title'],
+            'language'=> $request['language'],
+            'cost'=> $request['cost'],
+            'units'=> $request['units']]);
 
 
         return redirect()->back()->with('success', 'Запись успешно создана');
@@ -92,20 +95,16 @@ class PriceController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        $price = Price::find($id);
-        $req = $request->only('file');
-        $reqTranslation = $request->except('file');
-
-        if (request()->file('file') !== null) {
-            $file = $this->storeFile(request()->file('file'), $this->storePath);
-            $req['file'] = $file['path'];
-        }
-
-        $price->update($req);
-
-        $price = $this->updateTranslation($price, $reqTranslation, $request);
+        $price = TablePrice::find($id);
+        $price = $this->updateTranslation($price, [
+                                                    'title'=> $request['title'],
+                                                    'language'=> $request['language'],
+                                                    'cost'=> $request['cost'],
+                                                    'units'=> $request['units']
+            ]);
 
         return redirect()->back()->with('success', 'Запись успешно обновлена');
+
     }
 
     /**
@@ -116,14 +115,22 @@ class PriceController extends BaseController
      */
     public function destroy($id)
     {
-        $price = TableServices::destroy($id);
+        $price = TablePrice::destroy($id);
         return redirect(route('price.index'))->with('success', 'Запись успешно удалена');
     }
 
     public function up($id)
     {
-         $table = TableServices::find($id);
+         $table = TablePrice::find($id);
         $table->order_by --;
+        $table->update();
+        return redirect(route('price.index'));
+    }
+
+    public function down($id)
+    {
+        $table = TablePrice::find($id);
+        $table->order_by ++;
         $table->update();
         return redirect(route('price.index'));
     }

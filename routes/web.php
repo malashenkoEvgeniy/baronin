@@ -31,7 +31,11 @@ Route::group(
             Route::resource('pages', 'Admin\PageController');
             Route::resource('price', 'Admin\PriceController');
             Route::get('price/up/{id}', 'Admin\PriceController@up')->name('price_up');
+            Route::get('price/down/{id}', 'Admin\PriceController@down')->name('down_up');
+            Route::resource('price_service', 'Admin\PriceServiceController');
             Route::resource('contacts', 'Admin\ContactController');
+            Route::resource('photo', 'Admin\PhotoController');
+            Route::resource('slider_images', 'Admin\SliderImageController');
             Route::resource('portfolio', 'Admin\PortfolioController');
             Route::resource('projects', 'Admin\ProjectController');
             Route::resource('project_image', 'Admin\ProjectImageController');

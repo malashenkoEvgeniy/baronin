@@ -49,8 +49,13 @@
                           <input type="text" class="form-control" name="title" value="{{$page->translate()->title}}" >
                         </div>
                         <div class="input-group mb-3">
-                            <a href="{{route('photo.create', ['id'=>$page->id])}}">Загрузить изображение</a>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Загрузить изображение </span>
+                            </div>
+                            <input type="file" class="form-control" name="image" >
+                            <a href="{{route('photo.create')}}">Загрузить изображение</a>
                         </div>
+                        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
                         <div class="form-group">
                             <label>Описание</label>
