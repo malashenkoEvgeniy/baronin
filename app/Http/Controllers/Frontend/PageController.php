@@ -146,7 +146,7 @@ class PageController extends BaseController
         ];
 
         $prices = $page->price()->get();
-        $services = TableServices::all();
+        $services = TableServices::orderBy('order_by')->get();
 
         foreach ($services as $service){
             $service->prices = $service->prices()->get();

@@ -26,9 +26,13 @@ class PriceController extends BaseController
     public function index()
     {
 
-        $table =TableServices::all();
+        $table =TableServices::orderBy('order_by')->get();
         $table_price = TablePrice::all();
-        return view('admin.price.index', compact('table', 'table_price'));
+        $max = TableServices::orderBy('order_by')->max('order_by');
+        $min = TableServices::orderBy('order_by')->min('order_by');
+        $min_el = TableServices::where('order_by', $min)->first();
+        $max_el = TableServices::where('order_by', $max)->first();
+        return view('admin.price.index', compact('table', 'table_price', 'min_el', 'max'));
     }
 
     /**
@@ -50,14 +54,6 @@ class PriceController extends BaseController
      */
     public function store(Request $request)
     {
-//        $table = new TableServices();
-//        $table->save();
-//        $table_translation = new TableServicesTranslations();
-//        $table->title = $request->title;
-////        $table->cost = $request->cost;
-////        $table->units = $request->units;
-
-//    dd($request['title']);
         $service = $this->storeWithTranslation(new TableServices(), [], ['title'=> $request['title'], 'language'=> $request['language']]);
 
 
@@ -126,6 +122,9 @@ class PriceController extends BaseController
 
     public function up($id)
     {
-        return 'up';
+         $table = TableServices::find($id);
+        $table->order_by --;
+        $table->update();
+        return redirect(route('price.index'));
     }
 }
