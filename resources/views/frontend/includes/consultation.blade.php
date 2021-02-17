@@ -7,6 +7,6 @@
         </div>
         {!! csrf_field() !!}
         <input type="hidden" name="page" value="{{url()->full()}}">
-        <button type="submit" class="button">@lang('main.form.send')</button>
+        <button type="submit" class="button btn_consultation">@lang('main.form.send')</button>
     </form>
 </div>

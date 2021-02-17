@@ -205,88 +205,57 @@ li:last-child .price-table-first {
 
     #tabs {
         display: flex;
-        width: 80%;
+        width: 100%;
         border: 1px solid #000000;
         overflow: hidden;
     }
 
     .tabs-first {
-        margin-right: 25px;
+        width: 95%;
+        margin: 0 auto;
     }
 
-    .price-table-service {
-        display: flex;
-        flex-direction: column;
-        list-style: none;
-
-    }
 
     .price-table-main-header {
-        font-weight: 600;
-        font-size: 20px;
-        line-height: 148.9%;
-        border: 1px solid #000000;
-        border-left: none;
-        border-top: none;
-        padding: 25px 23px;
-        margin: 0;
-        background-color: #52575D;
-        color: #FFFFFF;
-        white-space: nowrap;
+        border-right: none;
     }
 
-    .price-table {
-        border-collapse: collapse;
-        padding-right: 25px;
-    }
 
-    .price-header {
-        padding-top: 25px;
-        padding-bottom: 25px;
-        border-bottom: 2px solid #000000;
-    }
-
-    .price-table-second-header {
-        font-weight: 600;
-        font-size: 18px;
-        line-height: 137.9%;
-        text-align: left;
-        padding-left: 43px;
-        color: #000000;
-        padding-right: 53px;
-    }
-
-    .price-table-third-header {
-        font-weight: 600;
-        font-size: 18px;
-        line-height: 137.9%;
-        text-align: center;
-        color: #000000;
-        padding-right: 53px;
-    }
-
-    .price-table-forth-header {
-        font-weight: 600;
-        font-size: 18px;
-        line-height: 137.9%;
-        text-align: right;
-        color: #000000;
-        padding-right: 53px;
-
-    }
     .price-table-first {
-        display: block;
-        font-weight: 600;
-        font-size: 20px;
-        line-height: 148.9%;
-        padding: 20px;
-        color: #000000;
-        border-bottom: 1px solid #000000;
-        border-right: 1px solid #000000;
+        border-right: none;
+        position: relative;
     }
 
-    li:last-child .price-table-first {
-        border-bottom: none;
+    .price-table-first::before {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: 5px;
+        right: 1px;
+        background: url("../images/icons/next 4.svg") no-repeat center;
+    }
+
+    .price-table-service li a:active,
+    .price-table-service li a:active {
+        display: none;
+    }
+
+    .price-table-first:active,
+    .price-table-first:focus {
+        background: rgba(82, 87, 93, 0.8);
+        outline: none;
+        color: #FFFFFF;
+        padding-left: 50px;
+    }
+
+    .price-table-first:active::before,
+    .price-table-first:focus::before {
+        transform: rotate( 180deg );
+        right: auto;
+        left: 5px;
+
+        background: url("../images/icons/nextactive.svg") no-repeat center;
     }
 
     .price-table-second {
@@ -322,5 +291,7 @@ li:last-child .price-table-first {
         height: 1px;
         background-color: #D3D3D3;
     }
+/*Скрипт отмены?????*/
+
 
 }

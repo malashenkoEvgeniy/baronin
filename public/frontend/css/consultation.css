@@ -50,6 +50,12 @@
     align-self: center;
 }
 
+@media all and (max-width: 1300px) {
+    .consultation__form {
+        flex-wrap: wrap;
+    }
+}
+
 @media all and (max-width: 1024px) {
     .consultation__form {
         flex-wrap: wrap;
@@ -58,5 +64,29 @@
     .consultation__block .form__title {
         white-space: normal;
     }
+}
+@media all and (max-width: 568px) {
+
+    .form__title {
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .consultation__block .input-group_2 {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .input-group_2 input.input {
+        width: 100%!important;
+        margin-bottom: 10px;
+        min-width: 240px;
+    }
+
+    .btn_consultation {
+        max-width: 280px;
+        margin: 0 auto;
+    }
+
 }
 
