@@ -36,7 +36,7 @@ class PageController extends BaseController
             'keywords' => $page->translate()->seo_keywords,
         ];
 
-        $catalogPages = Page::onMainPage()->get();
+        $catalogPages = Page::onMainPage()->paginate(4);
         $slider = SliderImage::orderby('is_video', 'desc')->get();
 
         return view('frontend.home', compact('page', 'seo', 'catalogPages', 'slider' ));
@@ -73,34 +73,16 @@ class PageController extends BaseController
         if ($page->id == 7) {
             $links = $page->children()->get();
 
-            $catalogPages = Page::onMainPage()->get();
+            $catalogPages = DB::table('design_images')->where(['page_id'=>$page->id])->paginate(6);
             return view('frontend.page', compact('page', 'seo', 'breadcrumbs', 'links', 'catalogPages'));
         }
 
 
-        if ($page->id == 3) {
+        if ($page->id == 3 or $page->parent_id == 3) {
             $links = $page->where(['parent_id'=>3])->get();
-            $images = DB::table('design_images')->paginate(6);
+            $images = DB::table('design_images')->where(['page_id'=>$page->id])->paginate(6);
 
 
-            return view('frontend.page', compact('page', 'seo', 'breadcrumbs', 'links', 'images'));
-        }
-
-        if ($page->id == 12) {
-            $links = $page->where(['parent_id'=>3])->get();
-            $images = DB::table('design_images')->where(['page_id'=>12])->paginate(6);
-            return view('frontend.page', compact('page', 'seo', 'breadcrumbs', 'links', 'images'));
-        }
-
-        if ($page->id == 13) {
-            $links = $page->where(['parent_id'=>3])->get();
-            $images = DB::table('design_images')->where(['page_id'=>13])->paginate(6);
-            return view('frontend.page', compact('page', 'seo', 'breadcrumbs', 'links', 'images'));
-        }
-
-        if ($page->id == 14) {
-            $links = $page->where(['parent_id'=>3])->get();
-            $images = DB::table('design_images')->where(['page_id'=>14])->paginate(6);
             return view('frontend.page', compact('page', 'seo', 'breadcrumbs', 'links', 'images'));
         }
 

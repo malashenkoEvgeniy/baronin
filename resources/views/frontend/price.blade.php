@@ -15,7 +15,7 @@
     <div class="price">
         @include('frontend.includes.breadcrumbs')
         <div class="about-us__header">
-            <h2 class="about-us__title">{{ $page->translate()->title }}</h2>
+            <h2 class="about-us__title page__title ">{{ $page->translate()->title }}</h2>
             <div class="page__body">
                 {!! $page->translate()->body !!}
             </div>
@@ -63,6 +63,13 @@
     <script src="/frontend/js/scroll_up.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
+
+        let page = $('html, body');
+        $('.tab').click(function(){
+            page.animate({
+                scrollTop: 0
+            }, 400);
+        });
 
 
         if ($(window).width() < 770) {

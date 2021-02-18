@@ -118,6 +118,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 32px;
+    padding-left: 15px;
 }
 
 .design__links a {
@@ -211,8 +212,7 @@
 }
 
 .service__banner {
-    /*position: relative;*/
-    /*top: -30px;*/
+    min-height: 160px;
 }
 
 .services-wrapper {

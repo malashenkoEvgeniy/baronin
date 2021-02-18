@@ -6,7 +6,7 @@
             <div class="col-12">
                 <div class="card">
                 <div class="card-header">Таблица видов услуг</div>
-                    <a href="{{route('price.create', ['parent_id'=>$id])}}" class="btn btn-success" style="width: 15%">+ Добавить поле</a>
+                    <a href="{{route('price.create',['header_id'=>$id])}}" class="btn btn-success" style="width: 15%">+ Добавить поле</a>
                     <table>
                         <tr>
                             <th>up</th>
@@ -23,7 +23,7 @@
 
                             <tr>
                                 <td><a href="{{route('price_up', ['id'=>$item->id])}}" class="btn btn-default {{ $item->id == 1 ? "disabled" : "btn-default"}}" disabled="{{ $item->id == 1 ? 'true' : 'false'}}">up</a></td>
-                                <td><a href="{{route('price_up', $item->id)}}" class="btn {{ $item->id == $loop->last ? "disabled" : "btn-default"}}">down</a></td>
+                                <td><a href="{{route('price_down', $item->id)}}" class="btn {{ $item->id == $loop->last ? "disabled" : "btn-default"}}">down</a></td>
                                 <td>{{$item->translate()->title}}</td>
                                 <td>{{$item->translate()->cost}}</td>
                                 <td>{{$item->translate()->units}}</td>

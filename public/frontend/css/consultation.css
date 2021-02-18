@@ -65,6 +65,14 @@
         white-space: normal;
     }
 }
+
+@media all and (max-width: 654px) {
+    .consultation__block .form__title {
+        white-space: normal;
+        text-align: center;
+    }
+}
+
 @media all and (max-width: 568px) {
 
     .form__title {
@@ -86,6 +94,10 @@
     .btn_consultation {
         max-width: 280px;
         margin: 0 auto;
+    }
+
+    .consultation__block .form__title{
+        margin: 6px auto 0 auto;
     }
 
 }

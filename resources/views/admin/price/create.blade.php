@@ -23,7 +23,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Стоимость</span>
                             </div>
-                            <input type="text" class="form-control" name="title">
+                            <input type="text" class="form-control" name="cost">
+                            <input type="hidden" class="form-control" name="table_services_id" value="{{$header_id}}">
                         </div>
                         <div class="input-group mb-5">
                             <div class="input-group-prepend">

@@ -47,6 +47,9 @@
                         <div class="input-group mb-3">
                             <a class="btn btn-success" href="{{route('photo.create', ['id'=>$page->id])}}">Загрузить изображение</a>
                         </div>
+                        <div class="input-group mb-3">
+                            <a class="btn btn-success" href="{{route('photo.show', ['id'=>$page->id])}}">Изображения страницы</a>
+                        </div>
 
                         <div class="form-group">
                             <label>Описание</label>

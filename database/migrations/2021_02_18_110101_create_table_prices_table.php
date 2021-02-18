@@ -16,6 +16,7 @@ class CreateTablePricesTable extends Migration
         Schema::create('table_prices', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('table_services_id')->unsigned();
+            $table->integer('order_by');
             $table->foreign('table_services_id')->references('id')->on('table_services')->onDelete('cascade');
             $table->timestamps();
         });

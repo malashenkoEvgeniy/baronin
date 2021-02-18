@@ -29,8 +29,8 @@
             @foreach($catalogPages as $item)
 
                 <div class="services">
-                    <a href='{{ LaravelLocalization::localizeUrl("$item->url") }}' title="{{$item->translate()->title}}" class="services_link">
-                        <img src="{{$item->image}}" alt="{{$item->translate()->title}}">
+                    <a href='{{ LaravelLocalization::localizeUrl("$item->url") }}'  class="services_link">
+                        <img src="{{$item->url}}" alt="{{$item->url}}">
                     </a>
                 </div>
             @endforeach
@@ -74,7 +74,7 @@
                     <h3 class="page__services-title">@lang('main.services')</h3>
                     <ul class="page__links">
                         @foreach($links as $link)
-                            <li><a data-fancybox="gallery" href='{{ LaravelLocalization::localizeUrl("$link->url") }}'>{{$link->translate()->title}}</a></li>
+                            <li><a data-fancybox="gallery" href='{{$img->url}}'>{{$link->translate()->title}}</a></li>
                         @endforeach
                     </ul>
                 </div>

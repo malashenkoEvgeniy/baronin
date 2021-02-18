@@ -64,6 +64,7 @@
     background-color: #52575D;
     color: #FFFFFF;
     white-space: nowrap;
+    max-width: 408px;
 }
 
 .price-table {
@@ -120,6 +121,7 @@
     color: #000000;
     border-bottom: 1px solid #000000;
     border-right: 1px solid #000000;
+    max-width: 408px;
 }
 
 li:last-child .price-table-first {

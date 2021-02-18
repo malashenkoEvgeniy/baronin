@@ -78,7 +78,7 @@
           </a>
       </li>
       <li class="nav-item">
-          <a href="{{route('price.index')}}" class="nav-link {{Request::segment(2) == 'form_requests'?'active':''}}">
+          <a href="{{route('price_service.index')}}" class="nav-link {{Request::segment(2) == 'form_requests'?'active':''}}">
               <i class="fas fa-money-bill-wave"></i>
               <p>
                  Таблица услуг и цен

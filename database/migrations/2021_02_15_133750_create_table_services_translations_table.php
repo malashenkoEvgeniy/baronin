@@ -16,8 +16,9 @@ class CreateTableServicesTranslationsTable extends Migration
         Schema::create('table_services_translations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->bigInteger('table_service_id')->unsigned();
-            $table->foreign('table_service_id')->references('id')->on('table_services')->onDelete('cascade');
+            $table->string('language', 10);
+            $table->bigInteger('table_services_id')->unsigned();
+            $table->foreign('table_services_id')->references('id')->on('table_services')->onDelete('cascade');
             $table->timestamps();
         });
     }

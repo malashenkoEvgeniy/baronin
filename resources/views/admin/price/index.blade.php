@@ -19,8 +19,8 @@
                             @foreach($table as $item)
 
                             <tr>
-                                <td><a href="{{route('price_up', ['id'=>$item->id])}}" class="btn  {{ $item->id === $min_el->id ? "disabled" : "btn-default"}}">up</a></td>
-                                <td><a href="{{route('down_up', ['id'=>$item->id])}}" class="btn  {{ $item->order_by == $loop->last ? "disabled" : "btn-default"}}">down</a></td>
+                                <td><a href="{{route('price_service_up', ['id'=>$item->id])}}" class="btn  {{ $item->id === $min_el->id ? "disabled" : "btn-default"}}">up</a></td>
+                                <td><a href="{{route('price_service_down', ['id'=>$item->id])}}" class="btn  {{ $item->order_by == $loop->last ? "disabled" : "btn-default"}}">down</a></td>
 
                                 <td><a href="{{route('price_service.show',['id'=>$item->id])}}" class="price-table-link">{{$item->translate()->title}}</a></td>
                                 <td><a class="btn btn-secondary" href="{{route('price_service.edit',['id'=>$item->id])}}">EDIT</a> </td>

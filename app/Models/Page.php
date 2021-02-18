@@ -18,6 +18,7 @@ class Page extends BaseModel
         return $this->hasMany(Page::class, 'parent_id');
     }
 
+
     public function price()
     {
         return $this->hasMany('App\Models\Price');

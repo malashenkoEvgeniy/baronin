@@ -42,8 +42,8 @@ class PriceController extends BaseController
      */
     public function create()
     {
-        dd(request());
-        return view('admin.price.create');
+        $header_id = request()['header_id'];
+        return view('admin.price.create', compact('header_id'));
     }
 
     /**
@@ -54,8 +54,8 @@ class PriceController extends BaseController
      */
     public function store(Request $request)
     {
-        dd($request);
-        $service = $this->storeWithTranslation(new TablePrice(), [], [ 'title'=> $request['title'],
+        $table = Price::all();
+        $service = $this->storeWithTranslation(new TablePrice(), ['table_services_id' =>$request['table_services_id'], 'order_by'=>count($table) ], [ 'title'=> $request['title'],
             'language'=> $request['language'],
             'cost'=> $request['cost'],
             'units'=> $request['units']]);

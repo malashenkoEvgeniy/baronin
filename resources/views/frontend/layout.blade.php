@@ -56,12 +56,7 @@
     @yield('scripts')
 
     <script>
-        let page = $('html, body');
-        $('.footer__button-up').click(function(){
-            page.animate({
-                scrollTop: 0
-            }, 400);
-        });
+
 
         function toggle_social_button() {
             $('.social-items-menu').fadeToggle();

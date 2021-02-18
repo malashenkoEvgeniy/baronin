@@ -14,9 +14,17 @@ class PriceServiceController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+        public function index()
     {
-        //
+
+        $table =TableServices::orderBy('order_by')->get();
+        $table_price = TablePrice::all();
+        $max = TableServices::orderBy('order_by')->max('order_by');
+        $min = TableServices::orderBy('order_by')->min('order_by');
+        $min_el = TableServices::where('order_by', $min)->first();
+        $max_el = TableServices::where('order_by', $max)->first();
+        return view('admin.price_service.index', compact('table', 'table_price', 'min_el', 'max_el'));
     }
 
     /**
@@ -36,8 +44,11 @@ class PriceServiceController extends BaseController
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+
     {
-        $service = $this->storeWithTranslation(new TableServices(), [], ['title'=> $request['title'], 'language'=> $request['language']]);
+
+        $table = TableServices::all();
+        $service = $this->storeWithTranslation(new TableServices(), ['order_by'=>count($table)], ['title'=> $request['title'], 'language'=> $request['language']]);
 
 
         return redirect()->back()->with('success', 'Запись успешно создана');
@@ -51,7 +62,8 @@ class PriceServiceController extends BaseController
      */
     public function show($id)
     {
-        $table = TablePrice::where(['table_services_id'=>$id])->get();
+        $table = TableServices::find($id)->prices()->get();
+
         return view('admin.price_service.show', compact('table', 'id'));
     }
 
@@ -64,6 +76,7 @@ class PriceServiceController extends BaseController
     public function edit($id)
     {
         $table = TableServices::find($id);
+
         return view('admin.price_service.edit', compact('table'));
     }
 
@@ -108,6 +121,6 @@ class PriceServiceController extends BaseController
         $table = TableServices::find($id);
         $table->order_by ++;
         $table->update();
-        return redirect(route('price.index'));
+        return redirect(route('price_service.index'));
     }
 }

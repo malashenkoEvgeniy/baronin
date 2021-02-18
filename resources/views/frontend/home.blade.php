@@ -3,6 +3,7 @@
 
 @section('links')
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" href="/frontend/css/page.css">
     <link rel="stylesheet" href="/frontend/css/home.css">
 
 @endsection
@@ -62,12 +63,13 @@
                     </a>
                     <div class="button_show-more-wrap">
 
-{{--                        @if( $catalogPages->nextPageUrl() !== null)--}}
-{{--                            <button class="button_show-more" data-page="{{$catalogPages->nextPageUrl()}}">@lang('main.show_more')</button>--}}
-{{--                        @endif--}}
+
                     </div>
                 </div>
                 @endforeach
+                @if( $catalogPages->nextPageUrl() !== null)
+                    <button class="button_show-more" data-page="{{$catalogPages->nextPageUrl()}}">@lang('main.show_more')</button>
+                @endif
 
             </div>
         </section>
@@ -160,7 +162,7 @@
                     $('.button_show-more').remove();
                 }
 
-                $('.design-img-list').append(items);
+                $('.categories').append(items);
 
                 let next = $('.page-item.active').next();
                 $('.page-item.active').removeClass('active');

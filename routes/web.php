@@ -31,8 +31,10 @@ Route::group(
             Route::resource('pages', 'Admin\PageController');
             Route::resource('price', 'Admin\PriceController');
             Route::get('price/up/{id}', 'Admin\PriceController@up')->name('price_up');
-            Route::get('price/down/{id}', 'Admin\PriceController@down')->name('down_up');
+            Route::get('price/down/{id}', 'Admin\PriceController@down')->name('price_down');
             Route::resource('price_service', 'Admin\PriceServiceController');
+            Route::get('price_service/up/{id}', 'Admin\PriceServiceController@up')->name('price_service_up');
+            Route::get('price_service/down/{id}', 'Admin\PriceServiceController@down')->name('price_service_down');
             Route::resource('contacts', 'Admin\ContactController');
             Route::resource('photo', 'Admin\PhotoController');
             Route::resource('slider_images', 'Admin\SliderImageController');

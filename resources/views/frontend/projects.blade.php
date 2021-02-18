@@ -15,7 +15,7 @@
 <div class="page">
     @include('frontend.includes.breadcrumbs')
     <div class="project__header">
-        <h2 class="project__header-title">{{ $page->translate()->title }}</h2>
+        <h2 class="project__header-title page__title ">{{ $page->translate()->title }}</h2>
     </div>
 
     <div class="projects">
