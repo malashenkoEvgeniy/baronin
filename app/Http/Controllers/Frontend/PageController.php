@@ -8,6 +8,7 @@ use App\Models\MainPage;
 use App\Models\Page;
 use App\Models\Portfolio;
 use App\Models\Price;
+use App\Models\SliderImage;
 use App\Models\TablePrice;
 use App\Models\TableServices;
 use Illuminate\Support\Facades\App;
@@ -36,8 +37,9 @@ class PageController extends BaseController
         ];
 
         $catalogPages = Page::onMainPage()->get();
+        $slider = SliderImage::orderby('is_video', 'desc')->get();
 
-        return view('frontend.home', compact('page', 'seo', 'catalogPages'));
+        return view('frontend.home', compact('page', 'seo', 'catalogPages', 'slider' ));
 
     }
 

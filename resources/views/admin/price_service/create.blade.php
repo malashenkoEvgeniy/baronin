@@ -22,7 +22,6 @@
 
                         <input type="hidden" name="language" value="{{ LaravelLocalization::getCurrentLocale() }}">
                         <button type="submit" class="btn btn-primary">Создать</button>
-                        <a href="{{route('price.index')}}" class="btn btn-primary">Таблица цен и услуг</a>
                     </form>
 
                 </div>

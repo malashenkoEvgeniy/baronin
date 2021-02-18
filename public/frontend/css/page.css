@@ -220,7 +220,7 @@
     width: 64%;
     margin: 0 auto;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
 }
 
 .service__banner .services-wrapper {
@@ -286,11 +286,21 @@
     .design-img-list img {
         width: 140px;
     }
+
+    .page__header {
+        width: 95%;
+    }
 }
 
 @media all and (max-width: 768px) {
     .page__links {
         display: none;
+    }
+}
+
+@media all and (max-width: 686px) {
+    .design__links a {
+        font-size: 14px;
     }
 }
 
@@ -318,5 +328,32 @@
     .page__body img {
         padding: 0 0 16px 0;
     }
+    .design__links {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0;
+        flex-direction: column;
+        align-items: center;
+    }
 
+    .design__links li {
+        margin-bottom: 25px;
+    }
+
+    .design__links {
+       padding: 25px;
+    }
+
+    .design-img-list img {
+        min-width: 220px;
+        min-height: 208px;
+    }
+
+}
+
+@media all and (max-width: 568px) {
+    .design-img-list {
+        justify-content: center;
+    }
 }

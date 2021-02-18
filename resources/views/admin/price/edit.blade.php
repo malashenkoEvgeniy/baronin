@@ -44,7 +44,6 @@
                         {{ method_field('DELETE') }}
                         <button type="submit" class="btn btn-danger btn-delete">Удалить</button>
                     </form>
-                    <a href="{{route('price.index')}}" class="btn btn-primary mt-5">Таблица цен и услуг</a>
                 </div>
             </div>
         </div>

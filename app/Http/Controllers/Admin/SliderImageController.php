@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\SliderImage;
+use App\Models\SliderImage;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class SliderImageController extends BaseController
 {
@@ -16,7 +15,11 @@ class SliderImageController extends BaseController
      */
     public function index()
     {
-        //
+        $images = SliderImage::where(['is_video'=>0])->get();
+        $videos = SliderImage::where(['is_video'=>1])->get();
+
+        return view('admin.slider_images.index', compact('images', 'videos') );
+
     }
 
     /**
@@ -50,41 +53,8 @@ class SliderImageController extends BaseController
 
         $img = SliderImage::create($req);
 
-        return redirect()->back()->with('success', 'Запись успешно обновлена');
-    }
+        return redirect(route('slider_images.index'))->with('success', 'Запись успешно удалена');
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
@@ -95,6 +65,7 @@ class SliderImageController extends BaseController
      */
     public function destroy($id)
     {
-        //
+        $image = SliderImage::destroy($id);
+        return redirect(route('slider_images.index'))->with('success', 'Запись успешно удалена');
     }
 }

@@ -17,10 +17,6 @@
                     <form action="{{route('pages.update',$page->id)}}" method="POST" enctype="multipart/form-data">
                         {!! csrf_field() !!}
                         {{ method_field('PUT') }}
-
-                        @if($page->id == 6)
-                            <a href="{{route('price.index')}}" class="price-table-link">Таблица цен и услуг</a>
-                        @endif
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Баннер </span>
@@ -49,7 +45,7 @@
                           <input type="text" class="form-control" name="title" value="{{$page->translate()->title}}" >
                         </div>
                         <div class="input-group mb-3">
-                            <a href="{{route('photo.create', ['id'=>$page->id])}}">Загрузить изображение</a>
+                            <a class="btn btn-success" href="{{route('photo.create', ['id'=>$page->id])}}">Загрузить изображение</a>
                         </div>
 
                         <div class="form-group">

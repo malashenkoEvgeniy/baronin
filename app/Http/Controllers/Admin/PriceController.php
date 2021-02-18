@@ -32,7 +32,7 @@ class PriceController extends BaseController
         $min = TableServices::orderBy('order_by')->min('order_by');
         $min_el = TableServices::where('order_by', $min)->first();
         $max_el = TableServices::where('order_by', $max)->first();
-        return view('admin.price.index', compact('table', 'table_price', 'min_el', 'max'));
+        return view('admin.price.index', compact('table', 'table_price', 'min_el', 'max_el'));
     }
 
     /**
@@ -42,7 +42,7 @@ class PriceController extends BaseController
      */
     public function create()
     {
-
+        dd(request());
         return view('admin.price.create');
     }
 
@@ -54,6 +54,7 @@ class PriceController extends BaseController
      */
     public function store(Request $request)
     {
+        dd($request);
         $service = $this->storeWithTranslation(new TablePrice(), [], [ 'title'=> $request['title'],
             'language'=> $request['language'],
             'cost'=> $request['cost'],

@@ -12,18 +12,19 @@
     <main>
         <div class="page-banner">
             <div class="variable slider">
-                <div>
-                    <video loop="loop" autoplay="autoplay" muted="muted" playsinline preload="auto">
-                        <source src="/frontend/images/home/car.mp4" type="video/mp4">
-                    </video>
-                </div>
-{{--                <div>--}}
-{{--                    <img src="/frontend/images/home/img2 .jpg">--}}
-{{--                </div>--}}
-
-                <div>
-                    <img src="/frontend/images/home/slide.jpg">
-                </div>
+                @foreach($slider as $elem)
+                    @if($elem->is_video == 1)
+                        <div>
+                            <video loop="loop" autoplay="autoplay" muted="muted" playsinline preload="auto">
+                                <source src="{{$elem->url}}" type="video/mp4">
+                            </video>
+                        </div>
+                    @else
+                        <div>
+                            <img src="{{$elem->url}}">
+                        </div>
+                    @endif
+                @endforeach
             </div>
             <div class="page-banner__title">{!! $page->translate()->title !!}</div>
             <div class="page-banner__buttons">
@@ -59,6 +60,12 @@
                     <a href='{{ LaravelLocalization::localizeUrl("$item->url") }}' title="{{$item->translate()->title}}" class="category__link">
                         <img src="{{$item->image}}" alt="{{$item->translate()->title}}">
                     </a>
+                    <div class="button_show-more-wrap">
+
+{{--                        @if( $catalogPages->nextPageUrl() !== null)--}}
+{{--                            <button class="button_show-more" data-page="{{$catalogPages->nextPageUrl()}}">@lang('main.show_more')</button>--}}
+{{--                        @endif--}}
+                    </div>
                 </div>
                 @endforeach
 
@@ -132,4 +139,34 @@
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="/frontend/js/slick.js"></script>
     <script src="/frontend/js/scroll_up.js"></script>
+    <script>
+        $('.button_show-more').click(function(){
+
+            let page = $(this).attr('data-page');
+
+            $.ajax({
+                method: 'GET',
+                url: page,
+                data: {
+                    _token: '{{csrf_token()}}',
+                }
+            }).done(function(data){
+                let page = $(data);
+                let items = page.find('.category');
+                if (page.find('.button_show-more').length == 1) {
+                    let nextPage = page.find('.button_show-more').attr('data-page');
+                    $('.button_show-more').attr('data-page', nextPage);
+                }else{
+                    $('.button_show-more').remove();
+                }
+
+                $('.design-img-list').append(items);
+
+                let next = $('.page-item.active').next();
+                $('.page-item.active').removeClass('active');
+                next.addClass("active");
+            });
+        });
+
+    </script>
 @endsection

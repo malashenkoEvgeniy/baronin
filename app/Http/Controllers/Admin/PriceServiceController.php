@@ -3,6 +3,7 @@
 namespace  App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\TablePrice;
 use App\Models\TableServices;
 use Illuminate\Http\Request;
 
@@ -50,7 +51,8 @@ class PriceServiceController extends BaseController
      */
     public function show($id)
     {
-        //
+        $table = TablePrice::where(['table_services_id'=>$id])->get();
+        return view('admin.price_service.show', compact('table', 'id'));
     }
 
     /**
