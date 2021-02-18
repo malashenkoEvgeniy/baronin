@@ -18,7 +18,7 @@ class PhotoController extends BaseController
      */
     public function index($id)
     {
-        //
+        return 'hg';
     }
 
     /**
