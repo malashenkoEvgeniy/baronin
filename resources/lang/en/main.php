@@ -8,6 +8,7 @@ return [
     "portfolio" => "Portfolio",
     "prices" => "Prices",
     "contacts" => "Contacts",
+    "developer" => "Website development",
 
     "copyright" => "All rights reserved",
     "address" => "Address",
@@ -73,6 +74,15 @@ return [
 
         "succsess_title" => "Your form has been submitted!",
         "succsess_subtitle" => "Thank you for your request. We will be sure to get back to you.",
+    ],
+    "price_table" => [
+        "various" => "General construction (Various)",
+        "work" => "work",
+        "name_of_works" => "Name of works",
+        "cost" => "The cost",
+        "uah" => "UAH",
+        "units" => "units",
+
     ],
 
 ];

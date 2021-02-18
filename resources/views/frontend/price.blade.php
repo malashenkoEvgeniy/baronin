@@ -23,7 +23,7 @@
 
         <div id="tabs" >
             <din class="tabs-first">
-                <h3 class="price-table-main-header"><div>Общестроительные (Разные)</div> работы</h3>
+                <h3 class="price-table-main-header"><div>@lang('main.price_table.various')</div> @lang('main.price_table.work')</h3>
                 <ul class="price-table-service">
                     @foreach($services as $item)
                         <li class="tab "><span class="price-table-first " >{{$item->translate()->title}}</span></li>
@@ -34,9 +34,9 @@
                 @foreach($services as $item)
                 <table class="price-table" id="tabs-{{$loop->iteration}}">
                     <tr class="price-table-first-column">
-                        <th  class="price-header price-table-second-header">Наименование работ</th>
-                        <th class="price-header price-table-third-header"><div> Стоимость</div>грн.</th>
-                        <th class="price-header price-table-forth-header">Ед.изм.</th>
+                        <th  class="price-header price-table-second-header">@lang('main.price_table.name_of_works')</th>
+                        <th class="price-header price-table-third-header"><div> @lang('main.price_table.cost')</div>@lang('main.price_table.uah')</th>
+                        <th class="price-header price-table-forth-header">@lang('main.price_table.units')</th>
                     </tr>
                     @foreach($item->prices as $elem)
                     <tr>

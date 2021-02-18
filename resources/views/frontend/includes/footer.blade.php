@@ -32,7 +32,7 @@
             </div>
 
             <div class="spekter">
-                <span class="spekter__title">Разработка сайта</span>
+                <span class="spekter__title">@lang('main.developer')</span>
                 <img src="/frontend/images/icons/spekter.png" alt="Spekter" class="spekter__logo">
             </div>
 
