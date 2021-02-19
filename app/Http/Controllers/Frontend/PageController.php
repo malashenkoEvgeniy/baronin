@@ -29,7 +29,6 @@ class PageController extends BaseController
     public function index()
     {
         $page = MainPage::first();
-
         $seo = (object) [
             'title' => $page->translate()->seo_title,
             'description' => $page->translate()->seo_description,
@@ -37,9 +36,11 @@ class PageController extends BaseController
         ];
 
         $catalogPages = Page::onMainPage()->paginate(4);
+        $other_page = Page::all();
         $slider = SliderImage::orderby('is_video', 'desc')->get();
 
-        return view('frontend.home', compact('page', 'seo', 'catalogPages', 'slider' ));
+
+        return view('frontend.home', compact('page', 'seo', 'catalogPages', 'slider', 'other_page' ));
 
     }
 
@@ -70,11 +71,12 @@ class PageController extends BaseController
             'current' => strip_tags($page->translate()->title),
             'parent' => $this->findParents($page),
         ];
+        $portfolio = DesignImage::all();
         if ($page->id == 7) {
             $links = $page->children()->get();
 
-            $catalogPages = DB::table('design_images')->where(['page_id'=>$page->id])->paginate(6);
-            return view('frontend.page', compact('page', 'seo', 'breadcrumbs', 'links', 'catalogPages'));
+            $catalogPages = Page::onMainPage()->paginate(4);
+            return view('frontend.page', compact('page', 'portfolio', 'seo', 'breadcrumbs', 'links', 'catalogPages'));
         }
 
 
@@ -89,13 +91,13 @@ class PageController extends BaseController
         if ($page->id == 1) {
             $links = $page->where(['parent_id'=>7])->get();
 
-            $portfolio = Portfolio::all();
+
             return view('frontend.page', compact('page', 'seo', 'breadcrumbs', 'links', 'portfolio'));
         }
 
 
 
-        return view('frontend.page', compact('page', 'seo', 'breadcrumbs'));
+        return view('frontend.page', compact('page', 'portfolio', 'seo', 'breadcrumbs'));
     }
 
     public function contacts()

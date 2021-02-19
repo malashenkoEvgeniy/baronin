@@ -14,30 +14,43 @@
 
 <div class="page">
     @if($page->id ===7)
-        <div class="service__banner" style="background:url('{{ $page->banner }}') no-repeat center; background-size: cover; height: auto">
-            <div class="services-wrapper">
-                <h2 class="page__title">{{ $page->translate()->title }}</h2>
-                <ul class="page__links service-links">
-                    @foreach($page->childrens as $link)
-                        <li><a href='{{ LaravelLocalization::localizeUrl("$link->url") }}'>{{$link->translate()->title}}</a></li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
         @include('frontend.includes.breadcrumbs')
         <div class="services-wrapper">
-            @foreach($catalogPages as $item)
+                <div class="categories-wrapper">
+                    <h2 class=" page__title">@lang('main.services')</h2>
+                    <div class="categories">
 
-                <div class="services">
-                    <a href='{{ LaravelLocalization::localizeUrl("$item->url") }}'  class="services_link">
-                        <img src="{{$item->url}}" alt="{{$item->url}}">
-                    </a>
+                        @foreach($catalogPages as $item)
+                            <div class="category">
+                                <a href='{{ LaravelLocalization::localizeUrl("$item->url") }}' class="category__title">{{$item->translate()->title}}</a>
+                                <a href='{{ LaravelLocalization::localizeUrl("$item->url") }}' title="{{$item->translate()->title}}" class="category__link">
+                                    <img src="{{$item->image}}" alt="{{$item->translate()->title}}">
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                    @if( $catalogPages->nextPageUrl() !== null)
+                        <button class="button_show-more" data-page="{{$catalogPages->nextPageUrl()}}">@lang('main.show_more')</button>
+                    @endif
                 </div>
-            @endforeach
-                <div class="page__body">
-                    {!! $page->translate()->body !!}
-                </div>
+
         </div>
+        <div class="portfolio__wrapper">
+            @foreach($portfolio as $item)
+                @if($item->page_id ===7)
+                    <div class="page__img ">
+                        <a data-fancybox="gallery" href="{{$item->url}}">
+                            <img src="{{$item->url}}" alt="{{ $page->translate()->title }}">
+                        </a>
+                    </div>
+                @endif
+            @endforeach
+
+            <div class="page__body">
+                {!! $page->translate()->body !!}
+            </div>
+        </div>
+
 
     @else
         @include('frontend.includes.breadcrumbs')
@@ -45,13 +58,13 @@
             <h2 class="page__title">{{ $page->translate()->title }}</h2>
             @if(!empty($page->childrens))
                 <ul class="design__links">
-
                     @foreach($page->childrens as $link)
+
                         <li><a href='{{ $link->url }}'>{{$link->translate()->title}}</a></li>
                     @endforeach
                 </ul>
             @endif
-            @if($page->id ===3 or $page->id ===12 or $page->id ===13 or $page->id ===14)
+        @if($page->id ===3 or $page->id ===12 or $page->id ===13 or $page->id ===14)
                 <div class="design__body">
                     <ul class="design-img-list">
                         @foreach($images as $img)
@@ -66,6 +79,7 @@
                     </div>
                 </div>
             @endif
+
             <div class="page__body">
                 {!! $page->translate()->body !!}
             </div>
@@ -74,7 +88,7 @@
                     <h3 class="page__services-title">@lang('main.services')</h3>
                     <ul class="page__links">
                         @foreach($links as $link)
-                            <li><a data-fancybox="gallery" href='{{$img->url}}'>{{$link->translate()->title}}</a></li>
+                            <li><a data-fancybox="gallery" href='{{$link->url}}'>{{$link->translate()->title}}</a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -88,11 +102,13 @@
         </div>
         <div class="portfolio__wrapper">
             @foreach($portfolio as $item)
-                <div class="page__img">
-                    <a data-fancybox="gallery" href="{{$item->image}}">
-                        <img src="{{$item->image}}" alt="{{$item->image}}">
+                @if($item->page_id ===1)
+                <div class="page__img ">
+                    <a data-fancybox="gallery" href="{{$item->url}}">
+                        <img src="{{$item->url}}" alt="{{ $page->translate()->title }}">
                     </a>
                 </div>
+                @endif
             @endforeach
         </div>
     @endif

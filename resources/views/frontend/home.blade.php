@@ -35,8 +35,12 @@
         </div>
 
         <section class="about-us section">
+            @foreach($other_page as $about_us)
+                @if($about_us->id ==1)
+
+
             <div class="about-us__img">
-                <img src="/frontend/images/home/about_us.jpg" alt="about us">
+                <img src="{{$about_us->image}}" alt="about us">
             </div>
 
             <div class="about-us__right">
@@ -48,6 +52,8 @@
                     <a href='{{ LaravelLocalization::localizeUrl("/o-nas") }}' class="button" title="О нас"><span class="button__title">@lang('main.details')</span></a>
                 </div>
             </div>
+                @endif
+            @endforeach
         </section>
 
         <section class="section section_categories">
@@ -113,7 +119,7 @@
         <section class="section section_seo">
             <div class="seo">
                 <div class="seo__image">
-                    <img src="/frontend/images/home/seo.jpg" alt="seo image">
+                    <img src="{{$page->image}}" alt="seo image">
                 </div>
                 <div class="seo__form">
                     <form action="{{route('sendForm')}}" method="post" class="form form_consultation">

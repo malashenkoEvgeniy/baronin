@@ -16,7 +16,7 @@ class PhotoController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
         return 'hg';
     }
@@ -59,7 +59,8 @@ class PhotoController extends BaseController
     public function show($id)
     {
         $page = Page::find($id)->images()->get();
-        return view('admin.photo.show' , compact('page'));
+
+        return view('admin.photo.show' , compact('page', 'id'));
     }
 
     /**

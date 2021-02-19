@@ -110,6 +110,7 @@ class PageController extends BaseController
      */
     public function update(Request $request, $id)
     {
+        //dd($request);
         $page = Page::find($id);
         $req = request()->only('url', 'banner', 'image', 'sort_order', 'on_main_page', 'parent_id');
         $reqTranslation = request()->except('url', 'banner', 'image', 'sort_order', 'on_main_page', 'parent_id');

@@ -29,11 +29,28 @@
                                 <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
                             </div>
                         </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Изображение на странице </span>
+                            </div>
+                            <div class="input-group-append">
+                                <div class="btn btn-outline-secondary" data-toggle="collapse" data-target="#page_image" aria-expanded="false" aria-controls="page_image">Посмотреть</div>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" name="image" class="custom-file-input" id="inputGroupFile02" aria-describedby="inputGroupFileAddon02">
+                                <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
+                            </div>
+                        </div>
 
 
                         <div class="collapse mb-3" id="banner">
                             <div class="card card-body">
                                 <div class="col-6"><img src="{{$page->banner}}" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="collapse mb-3" id="page_image">
+                            <div class="card card-body">
+                                <div class="col-6"><img src="{{$page->image}}" alt=""></div>
                             </div>
                         </div>
 

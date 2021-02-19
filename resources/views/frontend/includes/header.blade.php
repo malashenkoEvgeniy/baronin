@@ -16,7 +16,7 @@
             @include('frontend.svg.phone')
             <span>{{$contacts->phone_1}}</span>
         </a>
-{{--            Временно убирает англиский--}}
+{{--            Временно убeрает англиский--}}
         <div class="lang">
             @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                 @if ($localeCode === 'en')

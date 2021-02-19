@@ -198,7 +198,8 @@ p {
     width: 100%;
 }
 
-.lang__link:hover::after {
+.lang__link:hover::after,
+.lang__link:focus::after {
     background-color: #ffffff;
 }
 
