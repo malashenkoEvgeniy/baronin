@@ -50,6 +50,26 @@
     align-self: center;
 }
 
+@media all and (max-width: 1700px) {
+    .consultation__form {
+        align-items: center;
+    }
+
+    .consultation__block .form__title{
+        margin: 0 64px 0 0;
+        font-size: 32px;
+    }
+
+    .consultation__block .input {
+        padding: 11px 20px;
+    }
+
+    .consultation__block button {
+        height: 42px;
+    }
+
+}
+
 @media all and (max-width: 1300px) {
     .consultation__form {
         flex-wrap: wrap;

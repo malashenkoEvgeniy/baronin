@@ -126,6 +126,15 @@
         max-width: calc(420px - 4.35% * 2);
     }
 
+    .contacts__link svg {
+        fill: #ffffff;
+        height: 32px;
+    }
+
+    .contacts__links .contacts__link+.contacts__link {
+        margin-top: 20px;
+    }
+
 }
 
 @media all and (max-width: 1024px) {

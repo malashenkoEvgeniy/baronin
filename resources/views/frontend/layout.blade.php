@@ -36,7 +36,7 @@
   </head>
 
   <body>
-    <div class="site" id="#site">
+    <div class="site" id="site">
 
         @include('frontend.includes.header')
 

@@ -23,7 +23,6 @@
 
         <div id="tabs" >
             <din class="tabs-first">
-                <h3 class="price-table-main-header"><div>@lang('main.price_table.various')</div> @lang('main.price_table.work')</h3>
                 <ul class="price-table-service">
                     @foreach($services as $item)
                         <li class="tab "><span class="price-table-first " >{{$item->translate()->title}}</span></li>
@@ -67,9 +66,14 @@
         let page = $('html, body');
         $('.tab').click(function(){
             page.animate({
-                scrollTop: 0
-            }, 400);
+                scrollTop: 380
+            }, 350);
         });
+
+
+        // $( "#tabs" ).tabs();
+        let firstList = $('.price-table-service').css('height');
+        $('.tabs-second').css('max-height', firstList);
 
 
         if ($(window).width() < 770) {
@@ -95,15 +99,10 @@
                 $('.tabs-second .price-table').eq($(this).index()).addClass('active');
             })
 
-            $( function() {
-                // $( "#tabs" ).tabs();
-                let firstList = $('.price-table-service').css('height');
-                let firstHeader = $('.price-table-main-header').css('height');
-                let heightFirstColumn = +firstHeader.slice(0, -2) + +firstList.slice(0, -2);
-                $('.tabs-second').css('max-height', heightFirstColumn + "px");
-                $('.tabs-second').css('max-height', heightFirstColumn + "px");
 
-            } );
+
+
+
         }
 
     </script>

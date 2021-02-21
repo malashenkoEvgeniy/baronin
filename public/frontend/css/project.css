@@ -182,11 +182,33 @@
     border-color: #ffffff;
 }
 
+.project__header-title {
+    position: relative;
+    font-weight: bold;
+    font-size: 64px;
+    line-height: 65px;
+    color: #242424;
+}
+
+.project__header-title::before {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: -24%;
+    width: 100%;
+    height: 3px;
+    background-color: #52575D;
+}
+
 
 @media all and (max-width: 1700px) {
     .project {
         max-width: 1220px;
         width: calc(100% - 180px);
+    }
+
+    .project__header-title {
+        font-size: 48px;
     }
 
 

@@ -24,7 +24,7 @@
                 @else
 
 
-            <a class="lang__link" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">{{$localeCode}}</a>
+            <a class="lang__link @if(LaravelLocalization::getCurrentLocale() == $localeCode ) active @endif" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">{{$localeCode}}</a>
                 @endif
             @endforeach
         </div>

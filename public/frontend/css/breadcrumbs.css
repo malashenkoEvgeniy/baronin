@@ -17,3 +17,9 @@
     margin: 0 5px;
     font-size: 12px;
 }
+
+@media all and (max-width: 1700px) {
+    .breadcrumbs {
+        margin: 20px auto;
+    }
+}

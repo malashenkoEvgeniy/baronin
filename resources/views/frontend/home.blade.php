@@ -10,7 +10,7 @@
 
 
 @section('content')
-    <main>
+    <main id="home-page" >
         <div class="page-banner">
             <div class="variable slider">
                 @foreach($slider as $elem)

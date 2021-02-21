@@ -91,6 +91,10 @@ p {
     padding-left: 30px
 }
 
+.logo img {
+    max-height: 56px;
+}
+
 .burger {
     width: 24px;
     height: 17px;
@@ -199,9 +203,15 @@ p {
 }
 
 .lang__link:hover::after,
-.lang__link:focus::after {
+.lang__link:focus::after{
     background-color: #ffffff;
 }
+
+.lang__link.active::after{
+    background-color: #ffffff;
+}
+
+
 
 
 .mobile-menu {
@@ -435,7 +445,7 @@ button:hover {
 
 .footer {
     background-color: var(--main-color);
-    padding: 70px 60px 50px 60px;
+    padding: 50px 60px 5px 60px;
     font-size: 14px;
     position: relative;
     box-sizing: border-box;
@@ -448,8 +458,8 @@ button:hover {
 }
 
 .footer__button-up {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     position: fixed;
     right: 20px;
     bottom: 100px;
@@ -460,11 +470,12 @@ button:hover {
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
     border-radius: 50px;
     cursor: pointer;
+    z-index: 20;
 }
 
 
 .footer__button-up svg {
-    width: 20px;
+    width: 13px;
     height: auto;
     fill: #52575D;
 }
@@ -668,10 +679,7 @@ button:hover {
 
 
 @media all and (max-width: 1700px) {
-    .mobile-menu {
-        max-width: 100%;
-        left: -100vw;
-    }
+
 
     .mobile-menu__item {
         justify-content: center;
@@ -686,10 +694,27 @@ button:hover {
         margin-left: 23px;
     }
 
+    .footer__button-up {
+        bottom: 50px;
+    }
+
+    .mobile-menu__items{
+        font-size: 28px;
+    }
+
+    .mobile-menu__item {
+        line-height: 2;
+        text-align: center;
+    }
 
 }
 
 @media all and (max-width: 1024px) {
+
+    .mobile-menu {
+        max-width: 100%;
+        left: -100vw;
+    }
 
     .site__content {
         padding-top: 75px !important;

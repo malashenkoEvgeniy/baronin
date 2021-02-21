@@ -1,5 +1,5 @@
 .site__content {
-    padding-top: 93px;
+    padding-top: 90px;
 }
 
 .header {
@@ -24,6 +24,7 @@
     height: 20%;
     float: left;
     margin-right: 30px;
+    margin-bottom: 22px;
 }
 
 .page__header {
@@ -36,6 +37,7 @@
     font-weight: bold;
     font-size: 64px;
     line-height: 65px;
+    padding-left: 10%;
     color: #242424;
 }
 
@@ -75,7 +77,7 @@
 }
 
 .about-us__footer {
-    width: 58%;
+    width: 100%;
     margin: 0 auto;
     margin-bottom: 90px;
 }
@@ -83,15 +85,28 @@
 .portfolio__wrapper {
     display: flex;
     flex-wrap: wrap;
-    width: 58%;
     margin: 0 auto;
+    max-width: 1200px;
 }
 
 .page__img {
     margin-right: 2%;
     margin-bottom: 1%;
-    width: 30%;
+    width: 32%;
 }
+
+.page__img a{
+    display: block;
+}
+
+.page__img img{
+    width: 100%;
+}
+
+.portfolio__wrapper .page__img:nth-child(3n){
+    margin-right: 0;
+}
+
 
 .page__additional-title {
     font-weight: bold;
@@ -112,6 +127,11 @@
     width: 64%;
     margin: 0 auto;
     margin-bottom: 50px;
+}
+
+.categories-wrapper .categories,
+.categories-wrapper .button_show-more {
+    display: none;
 }
 
 .categories {
@@ -208,9 +228,10 @@
 .design__links {
     list-style: none;
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 32px;
+    justify-content: center;
+    margin: 50px auto 32px auto;
     padding-left: 15px;
+    max-width: 1200px;
 }
 
 .design__links a {
@@ -220,7 +241,13 @@
     color: #000000;
     padding: 15px 40px;
     border: 1px solid #52575D;
+    display: block;
 }
+
+.design__links li+li{
+    margin-left: 66px;
+}
+
 
 .design__links a:hover {
     color: #ffffff;
@@ -321,6 +348,7 @@
     flex-direction: column;
     margin: 0 0 0 auto;
     width: 55%;
+    padding-bottom: 40px;
 }
 
 .service__banner .page__title {
@@ -344,10 +372,6 @@
 
 @media all and (max-width: 1720px) {
 
-    .page__links {
-        font-size: 14px;
-    }
-
     .page__body {
         font-size: 18px;
     }
@@ -357,22 +381,39 @@
         font-size: 24px;
     }
 
+    .service__banner .page__links{
+        width: 90%;
+    }
+
     .design__links a {
         padding: 10px;
     }
 
     .design-img-list img {
-        min-width: 200px;
-        max-width: 300px;
-        min-height: 208px;
+        /*min-width: 200px;*/
+        /*max-width: 270px;*/
+        /*min-height: 208px;*/
         margin: 5px;
+    }
+
+    .page__title {
+        color: rgb(0 0 0);
+        font-size: 48px;
+    }
+
+    div.page__header,
+    .page__footer,
+    .portfolio__wrapper {
+        width: 95%;
+    }
+
+    .services-wrapper {
+        width: 95%
     }
 }
 
 @media all and (max-width: 1024px) {
-    .page__title {
-        color: rgb(0 0 0);
-    }
+
 
     .page__title::before {
         width: 70%;
@@ -388,10 +429,7 @@
         width: 140px;
     }
 
-    div.page__header,
-    .page__footer {
-        width: 95%;
-    }
+
 }
 
 @media all and (max-width: 768px) {
@@ -448,6 +486,10 @@
 
     .design__links li {
         margin-bottom: 25px;
+    }
+
+    .design__links li+li {
+        margin-left: 0;
     }
 
     .design__links a {

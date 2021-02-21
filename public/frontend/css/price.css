@@ -38,12 +38,36 @@
 
 .tabs-first {
     margin-right: 25px;
+    max-width: 408px;
+    width: 100%;
 }
 
 .tabs-second  {
+    overflow-y: scroll;
     overflow: -moz-scrollbars-vertical!important;
     flex-grow: 1;
 }
+
+/* width */
+.tabs-second::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+.tabs-second::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+/* Handle */
+.tabs-second::-webkit-scrollbar-thumb {
+    background: #C4C4C4;
+    border-radius: 16px;
+}
+
+/* Handle on hover */
+/*.tabs-second::-webkit-scrollbar-thumb:hover {*/
+/*    background: #555;*/
+/*}*/
 
 .price-table-service {
     display: flex;
@@ -141,7 +165,7 @@ li:last-child .price-table-first {
     font-size: 18px;
     line-height: 137.9%;
     text-align: center;
-    padding: 20px;
+    padding: 20px 53px 20px 0;
     color: #000000;
 }
 
@@ -150,6 +174,7 @@ li:last-child .price-table-first {
     line-height: 137.9%;
     text-align: center;
     color: #000000;
+    padding-right: 53px;
 }
 
 .price-table_border::before {
@@ -164,6 +189,10 @@ li:last-child .price-table-first {
 
 .tab.active{
     background: rgba(82, 87, 93, 0.8);
+}
+
+.tab.active .price-table-first{
+    color: #ffffff;
 }
 
 
