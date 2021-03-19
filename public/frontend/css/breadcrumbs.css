@@ -23,3 +23,10 @@
         margin: 20px auto;
     }
 }
+
+@media all and (max-width: 768px) {
+    .breadcrumbs  a {
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

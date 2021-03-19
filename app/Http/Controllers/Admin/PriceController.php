@@ -9,6 +9,9 @@ use App\Models\TablePriceBody;
 use App\Models\TableServices;
 use App\Models\TableServicesTranslations;
 use Illuminate\Http\Request;
+use  Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\Validator;
+
 
 class PriceController extends BaseController
 {
@@ -54,11 +57,33 @@ class PriceController extends BaseController
      */
     public function store(Request $request)
     {
+
         $table = Price::all();
-        $service = $this->storeWithTranslation(new TablePrice(), ['table_services_id' =>$request['table_services_id'], 'order_by'=>count($table) ], [ 'title'=> $request['title'],
+        $rules = [
+            'title' => 'string|max:255',
+            'cost' => 'max:100',
+            'units' => 'max:100',
+        ];
+        $messages = [
+            'title.string'=>"Поле 'название услуг' не может быть пустым",
+            'title.max'=>"Поле 'название услуг' не может превышать 255 символов",
+            'cost.max'=>"Поле 'стоимость' не может превышать 100 символов",
+            'units.max'=>"Поле 'единицы измерения' не может превышать 100 символов",
+        ];
+        $validate = Validator::make($request->all(), $rules, $messages)->validate();
+
+
+
+        $request['cost'] ? $cost = $request['cost'] : $cost = ' ';
+        $request['units'] ? $units = $request['units'] : $units = ' ';
+        $service = $this->storeWithTranslation(
+            new TablePrice(),
+            ['table_services_id' =>$request['table_services_id'], 'order_by'=>count($table) ],
+            [ 'title'=> $title,
             'language'=> $request['language'],
-            'cost'=> $request['cost'],
-            'units'=> $request['units']]);
+            'cost'=> $cost,
+            'units'=> $units]
+        );
 
 
         return redirect()->back()->with('success', 'Запись успешно создана');

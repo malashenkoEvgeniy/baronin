@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\TablePrice;
 use App\Models\TableServices;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PriceServiceController extends BaseController
 {
@@ -44,10 +45,21 @@ class PriceServiceController extends BaseController
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-
     {
+        $rules = [
+            'title' => 'string|max:255',
+        ];
+        $messages = [
+            'title.string'=>"Поле 'название услуг' не может быть пустым",
+            'title.max:255'=>'Поле не может превышать 255 символов',
+        ];
+        $validate = Validator::make($request->all(), $rules, $messages)->validate();
 
         $table = TableServices::all();
+        $this->validate($request, [
+            'title' => 'string|max:255',
+        ]);
+
         $service = $this->storeWithTranslation(new TableServices(), ['order_by'=>count($table)], ['title'=> $request['title'], 'language'=> $request['language']]);
 
 

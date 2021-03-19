@@ -34,8 +34,9 @@ class PageController extends BaseController
             'description' => $page->translate()->seo_description,
             'keywords' => $page->translate()->seo_keywords,
         ];
-
+//        dd(Page::onMainPage()->get());
         $catalogPages = Page::onMainPage()->paginate(4);
+
         $other_page = Page::all();
         $slider = SliderImage::orderby('is_video', 'desc')->get();
 
@@ -53,13 +54,14 @@ class PageController extends BaseController
     public function show($url)
     {
         $page = Page::where('url', $url)->first();
+        if ($page === null) {
+            abort(404);
+        }
         $page->images = $page->images()->get();
         $page->childrens= $page->children()->get();
 
 
-        if ($page === null) {
-            abort(404);
-        }
+
 
         $seo = (object) [
             'title' => $page->translate()->seo_title,
@@ -94,6 +96,8 @@ class PageController extends BaseController
 
             return view('frontend.page', compact('page', 'seo', 'breadcrumbs', 'links', 'portfolio'));
         }
+
+
 
 
 

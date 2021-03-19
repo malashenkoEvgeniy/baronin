@@ -14,8 +14,8 @@
     <meta property="og:url" content="{{url('/')}}">
     <meta property="og:type" content="website">
 
-    <meta property="og:image" content="/frontend/images/icons/logo.png">
-    <link rel="icon" type="image/png" href="/frontend/images/icons/logo.png">
+    <meta property="og:image" content="/frontend/images/icons/favicon.ico.png">
+    <link rel="icon" type="image/png" href="/frontend/images/icons/favicon.ico.png">
 
     <link rel="alternate" hreflang="ru" href="{{ LaravelLocalization::getLocalizedURL('ru') }}">
     <link rel="alternate" hreflang="uk" href="{{ LaravelLocalization::getLocalizedURL('uk') }}">

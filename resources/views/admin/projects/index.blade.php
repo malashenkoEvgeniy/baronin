@@ -6,6 +6,11 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">Проекты</div>
+                <div class="col-12 mt-4">
+                    <div class="row">
+                        <a href="{{route('projects.create')}}" class="btn btn-primary"><i class="fa fa-fw fa-plus"></i>Создать</a>
+                    </div>
+                </div>
 
                 <div class="card-body">
                 @include('admin.includes.alerts')
@@ -44,11 +49,7 @@
                         </tbody>
                     </table>
 
-                    <div class="col-12 mt-4">
-                        <div class="row">
-                            <a href="{{route('projects.create')}}" class="btn btn-primary"><i class="fa fa-fw fa-plus"></i>Создать</a>
-                        </div>
-                    </div>
+
 
                 </div>
             </div>

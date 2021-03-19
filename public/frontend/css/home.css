@@ -100,6 +100,7 @@
     text-transform: uppercase;
     padding: 27px 0;
     display: block;
+    text-shadow: 0 0 5px black;
 }
 
 .page-banner__button+.page-banner__button {
@@ -325,6 +326,8 @@
 .category__link img {
     width: 100%;
     height: auto;
+    min-height: 400px;
+    max-height: 410px;
 }
 
 .category__link::after {
@@ -366,8 +369,8 @@
 }
 
 .advantage__icon {
-    width: calc(169px - 3px);
-    height: calc(169px - 3px);
+    width: calc(120px - 3px);
+    height: calc(120px - 3px);
     margin: 0 auto;
     border: 3px solid var(--main-color);
     background-position: center center;
@@ -544,7 +547,7 @@
 @media all and (max-width: 1024px) {
 
     #home-page {
-        padding-top: 77px;
+        padding-top: 63px;
     }
 
     .site__content {
@@ -730,6 +733,11 @@
         width: 83.87%;
     }
 
+    .category__link img {
+        min-height: 300px;
+        max-height: 310px;
+    }
+
     .category__title {
         left: 15px;
         top: 15px;
@@ -801,7 +809,7 @@
 @media all and (max-width: 568px) {
 
     .page-banner__title {
-        font-size: 32px;
+        font-size: 26px;
     }
 
     .page-banner__button {
@@ -846,17 +854,32 @@
     }
 
     .categories {
-        width: calc(100% - 40px);
+        width: 95%;
         align-items: flex-start;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .category {
-        width: calc(50% - 3px);
-        margin-bottom: 11.42%;
+        width: 100%;
+        margin-bottom: 5%;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
+        justify-content: center;
     }
+
+    .category__link {
+        width: 95%;
+    }
+
+    .category__link img {
+        min-height: 250px;
+        max-height: 260px;
+        min-width: 90%;
+    }
+
 
     .category__link:hover::after {
         display: none;
@@ -873,6 +896,7 @@
     .seo__text h1,
     .seo__text h2 {
         font-size: 20px;
+        margin-bottom: 20px;
     }
 
     .advantages {
@@ -947,11 +971,11 @@
     }
 
     .slick-dots {
-        display: none;
+        z-index: -100;
     }
 
     .slick-arrow {
-        display: none;
+        z-index: -100;
     }
 
 

@@ -3,7 +3,7 @@
 }
 
 .header {
-    padding: 15px 2.6%;
+    padding: 0 2.6%;
     background-color: var(--main-color);
     transition: background-color .6s ease .4s, padding .6s;
 }
@@ -239,10 +239,29 @@
         margin-bottom: 30px;
     }
 
+    .info__item {
+        position: relative;
+        background-color: transparent;
+    }
+
+    .info__item::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 110%;
+        top: 0;
+        left: 0;
+        background-image: url('../images/contacts/bg-address.jpg');
+        background-position-x: 40%;
+        box-sizing: border-box;
+        z-index: -1;
+    }
+
     .info__item_address,
     .info__item_phone {
-        background-size: 54px 54px;
-        background-position: 90% center;
+        background-size: 100px 90px;
+        background-position: 105% -35%;
+
     }
 
 

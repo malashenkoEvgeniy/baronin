@@ -74,6 +74,8 @@
 .gallery__item {
     width: calc(50% - 17.5px);
     margin-bottom: 35px;
+    max-height: 390px;
+    overflow: hidden;
 }
 
 .project__nav {
@@ -208,7 +210,7 @@
     }
 
     .project__header-title {
-        font-size: 48px;
+        font-size: 36px;
     }
 
 
@@ -289,6 +291,16 @@
     .project__body h1 {
         font-size: 20px;
         text-align: center;
+    }
+
+    .project__header {
+        width: 80%;
+    }
+
+    .project__header-title {
+        font-size: 24px;
+        padding-bottom: 15px;
+        line-height: 25px;
     }
 
     .gallery__item {

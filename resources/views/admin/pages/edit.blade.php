@@ -119,26 +119,26 @@
                             <span class="input-group-text"><input type="checkbox" name="on_main_page" class="on-main-page" @if($page->on_main_page) checked @endif></span>
                         </div>
 
-                        <div class="on-main-page-image @if(!$page->on_main_page) hidden @endif">
-                            <div class=" input-group mb-3 ">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Изображение страницы</span>
-                                <div class="btn btn-outline-secondary" data-toggle="collapse" data-target="#image" aria-expanded="false" aria-controls="banner">Посмотреть</div>
-                                </div>
+{{--                        <div class="on-main-page-image @if(!$page->on_main_page) hidden @endif">--}}
+{{--                            <div class=" input-group mb-3 ">--}}
+{{--                            <div class="input-group-prepend">--}}
+{{--                                <span class="input-group-text">Изображение страницы</span>--}}
+{{--                                <div class="btn btn-outline-secondary" data-toggle="collapse" data-target="#image" aria-expanded="false" aria-controls="banner">Посмотреть</div>--}}
+{{--                                </div>--}}
 
-                                <div class="custom-file">
-                                    <input type="file" name="image" class="custom-file-input " id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                                    <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
-                                </div>
-                            </div>
-                        </div>
+{{--                                <div class="custom-file">--}}
+{{--                                    <input type="file" name="image" class="custom-file-input " id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">--}}
+{{--                                    <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
 
-                        <div class="collapse mb-3" id="image">
-                            <div class="card card-body">
-                                <div class="col-6"><img src="{{$page->image}}" alt=""></div>
-                            </div>
-                        </div>
+{{--                        <div class="collapse mb-3" id="image">--}}
+{{--                            <div class="card card-body">--}}
+{{--                                <div class="col-6"><img src="{{$page->image}}" alt=""></div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
 
 

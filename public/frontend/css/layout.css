@@ -76,7 +76,7 @@ p {
 }
 
 .header.active-bg {
-    padding: 15px 2.6%;
+    padding: 0 2.6%;
     background-color: var(--main-color);
     transition: background-color .6s ease .4s, padding .6s;
 
@@ -92,7 +92,7 @@ p {
 }
 
 .logo img {
-    max-height: 56px;
+    max-height: 70px;
 }
 
 .burger {
@@ -729,7 +729,7 @@ button:hover {
     }
 
     .header__logo img {
-        max-height: 41px;
+        max-height: 55px;
     }
 
     .header__phone svg {
@@ -839,6 +839,10 @@ button:hover {
 
 @media all and (max-width: 568px) {
 
+    .site__content {
+        padding-top: 90px !important;
+    }
+
     .header {
         padding: 20px !important;
         width: calc(100% - 40px);
@@ -853,7 +857,7 @@ button:hover {
     }
 
     .header__logo img {
-        max-height: 33px;
+        max-height: 55px;
     }
 
     .header>.burger {

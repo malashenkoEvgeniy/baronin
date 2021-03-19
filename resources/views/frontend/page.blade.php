@@ -95,7 +95,7 @@
                 {!! $page->translate()->body !!}
             </div>
             @if($page->id ===1)
-                <div class="page__services">
+                <div class="page__services about_us__services-links">
                     <h3 class="page__services-title">@lang('main.services')</h3>
                     <ul class="page__links">
                         @foreach($links as $link)

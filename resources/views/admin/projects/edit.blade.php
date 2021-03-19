@@ -22,7 +22,7 @@
                                 <div class="btn btn-outline-secondary" data-toggle="collapse" data-target="#banner" aria-expanded="false" aria-controls="banner">Посмотреть</div>
                             </div>
                             <div class="custom-file">
-                                <input type="file" name="banner" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                <input type="file" name="image" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                 <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
                             </div>
                         </div>

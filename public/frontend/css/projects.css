@@ -48,16 +48,20 @@
     align-items: center;
     position: relative;
     z-index: 2;
+    min-height: 310px;
+    height: 270px;
+    overflow: hidden;
 }
 
 .project__image img{
     width: 100%;
+    max-height: 400px;
 }
 
 .project__image::before {
     content: '';
     z-index: 3;
-    background-color: rgba(0, 0, 0, 0.3);
+    /*background-color: rgba(0, 0, 0, 0.3);*/
     width: 100%;
     height: 100%;
     position: absolute;
@@ -66,14 +70,18 @@
     transition: background-color .6s;
 }
 
+
+
 .project:hover .project__image::before {
-    background-color: transparent;
     transition: background-color .6s;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 
+
+
 .project__title {
-    width: calc(90.68% - 70px);
+
     display: flex;
     align-items: center;
     font-weight: 600;
@@ -81,6 +89,7 @@
     background-color: rgb(0, 0, 0);
     padding: 7px 35px;
     transition: background-color 0.6s ease 0s;
+
 }
 
 
@@ -111,6 +120,7 @@
 .project:hover .project__title {
     background-color: var(--main-color);
     transition: background-color .6s;
+    width: 90.7%;
 }
 
 
@@ -155,6 +165,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    margin-bottom: 30px;
 }
 
 .pagination {
@@ -210,6 +221,7 @@
     .project__header-title {
         font-size: 48px;
     }
+
 }
 
 @media all and (max-width: 1024px) {
@@ -228,7 +240,6 @@
 
     .project__title {
         font-size: 16px;
-        width: calc(90.68% - (25px * 2));
         padding: 7px 25px;
     }
 
@@ -254,8 +265,15 @@
     }
 
     .project__title {
-        width: calc(90.68% - (18px * 2));
         padding: 5px 18px;
+    }
+
+    .project__header-title {
+        font-size: 20px;
+    }
+
+    .project__header-title::before {
+        bottom: 0;
     }
 
     .project__title_text {
@@ -267,7 +285,8 @@
         max-width: 226px;
     }
 
-    .pagination a {
+    .pagination a,
+    .pagination span {
         font-size: 16px;
         width: 32px;
         height: 32px;
@@ -277,10 +296,7 @@
     .page__body h2 {
         font-size: 22px;
     }
-
-
 }
-
 
 
 @media all and (max-width: 568px) {
@@ -292,6 +308,7 @@
         margin: 0 0 19px 0;
         font-size: 20px;
     }
+
 
     .page__body h1,
     .page__body h2 {
@@ -308,9 +325,12 @@
         max-width: 184px;
     }
 
-    .pagination a {
+    .pagination a,
+    .pagination span {
         font-size: 13px;
         width: 26px;
         height: 26px;
     }
 }
+
+

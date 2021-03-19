@@ -12,6 +12,7 @@
  */
 
 use App\Http\Controllers\Admin\PriceController;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Auth::routes();
 
