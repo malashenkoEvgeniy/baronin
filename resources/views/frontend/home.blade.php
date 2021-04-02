@@ -3,8 +3,8 @@
 
 @section('links')
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" href="/frontend/css/page.css">
-    <link rel="stylesheet" href="/frontend/css/home.css">
+    <link rel="stylesheet" href="{{asset('/frontend/css/page.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/frontend/css/home.min.css')}}">
 
 @endsection
 
@@ -22,7 +22,7 @@
                         </div>
                     @else
                         <div>
-                            <img src="{{$elem->url}}">
+                            <img src="{{$elem->url}}" alt="slider">
                         </div>
                     @endif
                 @endforeach
@@ -144,9 +144,9 @@
     </main>
 @endsection
 @section('scripts')
-    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="/frontend/js/slick.js"></script>
-    <script src="/frontend/js/scroll_up.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="/frontend/js/slick.min.js"></script>
+    <script src="/frontend/js/scroll_up.min.js"></script>
     <script>
         $('.button_show-more').click(function(){
 
@@ -175,6 +175,5 @@
                 next.addClass("active");
             });
         });
-
     </script>
 @endsection

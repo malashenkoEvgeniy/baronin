@@ -2,14 +2,12 @@
 
 
 @section('links')
-    <link rel="stylesheet" href="/frontend/css/page.css">
-    <link rel="stylesheet" href="/frontend/css/breadcrumbs.css">
-    <link rel="stylesheet" href="/frontend/css/consultation.css">
-    <link rel="stylesheet" href="/frontend/css/price.css">
+    <link rel="stylesheet" href="{{asset('/frontend/css/page.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/frontend/css/breadcrumbs.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/frontend/css/consultation.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/frontend/css/price.min.css')}}">
 {{--    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">--}}
 @endsection
-
-
 @section('content')
 
     <div class="price">
@@ -59,22 +57,18 @@
 @endsection
 
 @section('scripts')
-    <script src="/frontend/js/scroll_up.js"></script>
+    <script src="{{asset('/frontend/js/scroll_up.min.js')}}"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
-
         let page = $('html, body');
         $('.tab').click(function(){
             page.animate({
                 scrollTop: 380
             }, 350);
         });
-
-
         // $( "#tabs" ).tabs();
         let firstList = $('.price-table-service').css('height');
         $('.tabs-second').css('max-height', firstList);
-
 
         if ($(window).width() < 770) {
             $('.tab').click(function(e){
@@ -98,11 +92,6 @@
                 $(this).toggleClass('active');
                 $('.tabs-second .price-table').eq($(this).index()).addClass('active');
             })
-
-
-
-
-
         }
 
     </script>

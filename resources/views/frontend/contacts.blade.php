@@ -2,9 +2,9 @@
 
 
 @section('links')
-    <link rel="stylesheet" href="/frontend/css/contacts.css">
-	<link rel="stylesheet" href="/frontend/css/breadcrumbs.css">
-    <link rel="stylesheet" href="/frontend/css/consultation.css">
+    <link rel="stylesheet" href="{{asset('/frontend/css/contacts.min.css')}}">
+	<link rel="stylesheet" href="{{asset('/frontend/css/breadcrumbs.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/frontend/css/consultation.min.css')}}">
 @endsection
 
 @section('content')
@@ -54,5 +54,5 @@
     @include('frontend.includes.consultation')
 @endsection
 @section('scripts')
-    <script src="/frontend/js/scroll_up.js"></script>
+    <script src="{{asset('/frontend/js/scroll_up.min.js')}}"></script>
 @endsection

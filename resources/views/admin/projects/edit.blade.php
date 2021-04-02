@@ -1,5 +1,12 @@
 @extends('admin.layouts')
-
+@section('links')
+    <style>
+        .project-images-item {
+            max-width: 150px;
+            max-height: 100px;
+        }
+    </style>
+@endsection
 @section('content')
 <div class="container col-12">
     <div class="row justify-content-center">
@@ -107,7 +114,8 @@
                 <div class="card-header">Галерея</div>
 
                 <div class="card-body">
-
+                    <form action="{{route('updateImg')}}">
+                        {!! csrf_field() !!}
                     <table class="table table-bordered table-hover dataTable dtr-inline">
                         <thead>
                             <tr>
@@ -119,12 +127,12 @@
                         <tbody>
                             @foreach($project->images as $item)
                             <tr>
-                                <td>{{$loop->iteration}}</td>
-                                <td><img src="{{$item->image}}"></td>
+                                <td> <input  style="max-width: 60px;" type="number" name="order-{{$item->id}}" value="{{$item->order_by}}"></td>
+                                <td><img class="project-images-item" src="{{$item->image}}"></td>
                                 <td>
                                     <div class="col-12">
                                         <div class="btn-group">
-                                            <div class="">
+                                            <div class="" style="display: flex">
                                                 <form action="{{ route('project_image.destroy',$item->id)}}" method="POST" onsubmit="return confirm('Удалить?') ? true : false;">
                                                     {!! csrf_field() !!}
                                                     {{ method_field('DELETE') }}
@@ -145,7 +153,8 @@
                             <a href="{{route('project_image.create',['id'=>$project->id] )}}" class="btn btn-primary"><i class="fa fa-fw fa-plus"></i>Загрузить</a>
                         </div>
                     </div>
-
+                        <button type="submit" class="btn btn-primary mt-3 mb-3">Сменить очередность</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -67,10 +67,15 @@ class ProjectController extends BaseController
      */
     public function edit($id)
     {
+
         $project = Project::find($id);
-        $project->images = $project->image()->get();
+        $project->images = ProjectImage::where('project_id', $id)
+            ->orderBy('order_by', 'asc')
+            ->get();
         return view('admin.projects.edit', compact('project'));
     }
+
+
 
     /**
      * Update the specified resource in storage.

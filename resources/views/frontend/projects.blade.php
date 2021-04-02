@@ -2,13 +2,11 @@
 
 
 @section('links')
-    <link rel="stylesheet" href="/frontend/css/projects.css">
-    <link rel="stylesheet" href="/frontend/css/page.css">
-    <link rel="stylesheet" href="/frontend/css/breadcrumbs.css">
-    <link rel="stylesheet" href="/frontend/css/consultation.css">
+    <link rel="stylesheet" href="{{asset('/frontend/css/projects.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/frontend/css/page.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/frontend/css/breadcrumbs.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/frontend/css/consultation.min.css')}}">
 @endsection
-
-
 
 @section('content')
 
@@ -17,13 +15,11 @@
     <div class="project__header">
         <h2 class="project__header-title">{{ $page->translate()->title }}</h2>
     </div>
-
     <div class="projects">
-
         @foreach($projects as $project)
         <div class="project">
             <a href='{{ LaravelLocalization::localizeUrl("/projects/"."$project->url") }}' title="{{$project->translate()->title}}" class="project__image">
-                <img src="{{$project->image}}" alt="{{$project->translate()->title}}">
+                <img src="{{$project->image}}" alt="{{$project->translate()->title}} {{$loop->iteration}}">
             </a>
             <a href='{{ LaravelLocalization::localizeUrl("/projects/"."$project->url") }}' class="project__title"><span class="project__title_text">{{$project->translate()->title}}</span></a>
         </div>
@@ -39,8 +35,6 @@
             </div>
         </div>
 
-
-
     </div>
 
     <div class="page__body">
@@ -51,7 +45,7 @@
     <div class="page__body">
         {!! $page->translate()->body !!}
         @if( $page->image !== null)
-            <img src="{{$page->image}}" alt="{{$page->image}}" class="page__body-img">
+            <img src="{{$page->image}}" alt="{{$page->image}} {{$page->id}}" class="page__body-img">
         @endif
 
         {!! $page->translate()->additional_body !!}
@@ -62,7 +56,6 @@
 @include('frontend.includes.consultation')
 
 @endsection
-
 
 @section('scripts')
 <script>
@@ -95,7 +88,5 @@
 	});
 
 </script>
-@endsection
-@section('scripts')
-    <script src="/frontend/js/scroll_up.js"></script>
+<script src="{{asset('/frontend/js/scroll_up.min.js')}}"></script>
 @endsection

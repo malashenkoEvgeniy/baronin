@@ -3,6 +3,7 @@
       <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
          <a href='{{ LaravelLocalization::localizeUrl("/") }}' itemprop="item" title="@lang('main.main')">
             <span class="breadcrumbs__home" itemprop="name">@include('frontend.svg.home')</span>
+             <span class="breadcrumbs__home" itemprop="name" style="display: none"> main</span>
          </a>
          <meta itemprop="position" content="1" />
       </li>

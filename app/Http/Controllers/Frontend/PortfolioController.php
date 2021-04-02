@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Portfolio;
 use App\Models\Project;
+use App\Models\ProjectImage;
 
 class PortfolioController extends BaseController
 {
@@ -46,7 +47,9 @@ class PortfolioController extends BaseController
             abort(404);
         }
 
-        $images = $page->image()->get();
+        $images = ProjectImage::where('project_id', $page->id)
+            ->orderBy('order_by', 'asc')
+            ->get();
 
         $seo = (object) [
             'title' => $page->translate()->seo_title,

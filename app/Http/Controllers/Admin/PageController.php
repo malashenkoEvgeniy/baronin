@@ -110,9 +110,9 @@ class PageController extends BaseController
      */
     public function update(Request $request, $id)
     {
-//        dd(request());
+        //dd($request);
         $page = Page::find($id);
-        $req = request()->only('url', 'sort_order', 'on_main_page', 'parent_id');
+        $req = request()->only('url', 'banner', 'image', 'sort_order', 'on_main_page', 'parent_id');
         $reqTranslation = request()->except('url', 'banner', 'image', 'sort_order', 'on_main_page', 'parent_id');
 
         if (isset($req['on_main_page']) && $req['on_main_page'] === 'on') {
@@ -135,7 +135,7 @@ class PageController extends BaseController
 
         $page->update($req);
 
-//        $page = $this->updateTranslation($page, $reqTranslation, $request);
+        $page = $this->updateTranslation($page, $reqTranslation, $request);
 
         return redirect()->back()->with('success', 'Запись успешно обновлена');
     }

@@ -2,9 +2,9 @@
 
 
 @section('links')
-    <link rel="stylesheet" href="/frontend/css/page.css">
-    <link rel="stylesheet" href="/frontend/css/breadcrumbs.css">
-    <link rel="stylesheet" href="/frontend/css/consultation.css">
+    <link rel="stylesheet" href="{{asset('/frontend/css/page.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/frontend/css/breadcrumbs.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/frontend/css/consultation.min.css')}}">
 @endsection
 
 
@@ -34,7 +34,7 @@
             <div class="page__body">
                 {!! $page->translate()->body !!}
                 @if( $page->image !== null)
-                    <img src="{{$page->image}}" alt="{{$page->image}}" class="page__body-img">
+                    <img src="{{$page->image}}" alt="{{$page->image}} {{$page->id}}" class="page__body-img">
                 @endif
 
                 {!! $page->translate()->additional_body !!}
@@ -46,5 +46,5 @@
 
 @endsection
 @section('scripts')
-    <script src="/frontend/js/scroll_up.js"></script>
+    <script src="{{asset('/frontend/js/scroll_up.min.js')}}"></script>
 @endsection

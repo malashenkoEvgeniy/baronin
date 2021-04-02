@@ -6,7 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>@if(isset($seo->title)){{$seo->title}}@endif </title>
-    <meta name="description" content="@if(isset($seo->description)){{$seo->description}}@endif">
+      <meta name="google-site-verification" content="HaC6hSz-uzSN-FfQ0q3AL-Uu1Q272TmmDPJJnWFI3WA" />
+      <meta name="yandex-verification" content="a93073ef56ca4599" />
+
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-193598615-1"></script>
+      <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-193598615-1');
+      </script>
+
+      <meta name="description" content="@if(isset($seo->description)){{$seo->description}}@endif">
     <meta name="keywords" content="@if(isset($seo->keywords)){{$seo->keywords}}@endif">
 
     <meta property="og:title" content='@if(isset($seo->title)){{$seo->title}}@endif'/>
@@ -18,17 +31,18 @@
     <link rel="icon" type="image/png" href="/frontend/images/icons/favicon.ico.png">
 
     <link rel="alternate" hreflang="ru" href="{{ LaravelLocalization::getLocalizedURL('ru') }}">
-    <link rel="alternate" hreflang="uk" href="{{ LaravelLocalization::getLocalizedURL('uk') }}">
+    <link rel="alternate" hreflang="uk" href="{{ LaravelLocalization::getLocalizedURL('ua') }}">
     <link rel="alternate" hreflang="en" href="{{ LaravelLocalization::getLocalizedURL('en') }}">
+      <meta name="robots" content="noindex,follow">
 
-
-
-    <meta name="robots" content="noindex, nofollow" />
+      @if (isset($_GET['page']))
+      <meta name="robots" content="noindex,nofollow">
+        @endif
 
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/frontend/css/layout.css">
-    <link rel="stylesheet" href="/frontend/css/social_buttons.css">
+      <link rel="stylesheet" href="{{asset('/frontend/css/layout.min.css')}}">
+      <link rel="stylesheet" href="{{asset('/frontend/css/social_buttons.min.css')}}">
 
 
     @yield('links')
@@ -52,7 +66,7 @@
     </div>
 
     <script  src="https://code.jquery.com/jquery-3.5.1.min.js"  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="   crossorigin="anonymous"></script>
-    <script  src="/frontend/js/layout.js"></script>
+    <script  src="/frontend/js/layout.min.js"></script>
     @yield('scripts')
 
     <script>
@@ -107,8 +121,6 @@
           toggleFormSuccessAlert();
         });
       });
-
-
 
     $('.call-contact-form, #contact-from-bg .close-form').click(function(){
       $('#contact-from-bg').fadeToggle();

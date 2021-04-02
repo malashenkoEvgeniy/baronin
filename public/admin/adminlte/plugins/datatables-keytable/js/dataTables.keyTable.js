@@ -7,8 +7,8 @@
  * @description Spreadsheet like keyboard navigation for DataTables
  * @version     2.5.1
  * @file        dataTables.keyTable.js
- * @author      SpryMedia Ltd (www.sprymedia.co.uk)
- * @contact     www.sprymedia.co.uk/contact
+ * @author      SpryMedia Ltd (www.sprymedia.co.ua)
+ * @contact     www.sprymedia.co.ua/contact
  * @copyright   Copyright 2009-2019 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
@@ -649,7 +649,7 @@ $.extend( KeyTable.prototype, {
 				.rows( { filter: 'applied', order: 'applied' } )
 				.indexes()
 				.indexOf( index.row );
-			
+
 			// Don't focus rows that were filtered out.
 			if ( row < 0 ) {
 				return;

@@ -30,14 +30,17 @@ class ProjectImageController extends BaseController
      */
     public function store(Request $request)
     {
-        $req = request()->only('images', 'project_id');
+        $req = request()->only('images', 'project_id', 'order_by');
+
 
         if (request()->file('images') !== null) {
             foreach (request()->file('images') as $item) {
                 $file = $this->storeFile($item, $this->storePath);
-                ProjectImage::create(['image' => $file['path'], 'project_id' => $req['project_id']]);
+                $r=count(ProjectImage::where('project_id',$req['project_id'])->get());
+                ProjectImage::create(['image' => $file['path'], 'project_id' => $req['project_id'], 'order_by'=>$r+1]);
             }
         }
+
 
         return redirect()->route('projects.edit', $req['project_id'])->with('success', 'Изображения успешно созданы');
     }
@@ -54,5 +57,28 @@ class ProjectImageController extends BaseController
         $this->deleteFile($image->image);
         $image->delete();
         return redirect()->route('projects.edit', $image->project_id)->with('success', 'Изображение успешно удалено');
+    }
+
+    public function up($id)
+    {
+
+        $img = ProjectImage::find($id);
+        $img->order_by --;
+        $img->update();
+        return redirect()->route('projects.edit', $img->project_id);
+    }
+
+    public function updateImg()
+    {
+        $req =  request()->except('_method', '_token');
+       foreach($req as $k=>$v){
+
+           $i = explode('-', $k)[1];
+           $img = ProjectImage::where('id',$i)->first();
+           $img->order_by = $v;
+           $img->save();
+       }
+
+        return redirect()->back()->with('success', 'Запись успешно обновлена');
     }
 }

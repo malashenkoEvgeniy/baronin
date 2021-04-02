@@ -1,13 +1,15 @@
 
 .consultation__block {
+    position: relative;
     width: 100%;
     margin: 0 0 0 auto;
+    background-image: url('../images/home/form_background.jpg');
+    background-size: cover;
 }
 
 .consultation__form {
     display: flex;
-    background-image: url('../images/home/form_background.jpg');
-    background-size: cover;
+
     padding: 5.2%;
     border-radius: 2px 0px 0px 2px;
 }
@@ -50,6 +52,32 @@
     align-self: center;
 }
 
+.social-share {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.share-title {
+    color: #fff;
+    margin: 0;
+}
+
+.share-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.share__button {
+    margin-right: 20px;
+}
+
+.share__button svg {
+    width: 20px;
+}
+
 @media all and (max-width: 1700px) {
     .consultation__form {
         align-items: center;
@@ -68,15 +96,26 @@
         height: 42px;
     }
 
+
+
 }
 
 @media all and (max-width: 1300px) {
+    .consultation__block{
+        padding-bottom: 20px;
+    }
+
     .consultation__form {
         flex-wrap: wrap;
     }
 }
 
 @media all and (max-width: 1024px) {
+
+    .consultation__block{
+        padding-bottom: 50px;
+    }
+
     .consultation__form {
         flex-wrap: wrap;
     }
@@ -94,6 +133,9 @@
 }
 
 @media all and (max-width: 568px) {
+    .consultation__block{
+        padding-bottom: 80px;
+    }
 
     .form__title {
         text-align: center;

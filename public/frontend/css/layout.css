@@ -79,7 +79,10 @@ p {
     padding: 0 2.6%;
     background-color: var(--main-color);
     transition: background-color .6s ease .4s, padding .6s;
+}
 
+.header__logo{
+    margin: 0 auto 0 0;
 }
 
 .header__content {
@@ -87,7 +90,7 @@ p {
     flex-grow: 1;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding-left: 30px
 }
 
@@ -162,7 +165,7 @@ p {
 }
 
 .header__phone {
-    flex-grow: 1;
+    /*flex-grow: 1;*/
     margin-right: 3.5%;
     fill: #ffffff;
     display: flex;
@@ -772,6 +775,9 @@ button:hover {
 }
 
 @media all and (max-width: 768px) {
+    .header__content .header__phone:nth-child(2){
+        display: none;
+    }
     .header {
         padding: 20px 2.6%;
     }
@@ -865,7 +871,7 @@ button:hover {
     }
 
     .lang {
-        display: none;
+        /*display: none;*/
     }
 
     .mobile-menu__items {

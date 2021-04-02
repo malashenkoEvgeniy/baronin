@@ -40,12 +40,12 @@ class PhotoController extends BaseController
      */
     public function store(Request $request)
     {
-        $req = request()->only('url', 'page_id');
-
-        $file = $this->storeFile(request()->file('url'), $this->storePath);
-        $req['url'] = $file['path'];
-
-        $img = DesignImage::create($req);
+        $req = request()->only('url', 'page_id', 'order_by');
+        foreach (request()->file('url') as $item) {
+            $file = $this->storeFile($item, $this->storePath);
+            $r=count(DesignImage::where('page_id',$req['page_id'])->get());
+            DesignImage::create(['url' => $file['path'], 'page_id' => $req['page_id'], 'order_by'=>$r+1]);
+        }
 
         return redirect()->back()->with('success', 'Запись успешно обновлена');
     }
@@ -58,20 +58,36 @@ class PhotoController extends BaseController
      */
     public function show($id)
     {
-        $page = Page::find($id)->images()->get();
+        $page = DesignImage::where('page_id', $id)
+            ->orderBy('order_by', 'asc')
+            ->get();
 
         return view('admin.photo.show' , compact('page', 'id'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function up($id)
     {
-        //
+
+        $img = DesignImage::find($id);
+        $img->order_by --;
+        $img->update();
+        return redirect()->route('photo.show', $img->page_id);
+    }
+
+
+    public function updatePhoto()
+    {
+
+        $req =  request()->except('_method', '_token');
+        foreach($req as $k=>$v){
+
+            $i = explode('-', $k)[1];
+            $img = DesignImage::where('id',$i)->first();
+            $img->order_by = $v;
+            $img->save();
+        }
+
+        return redirect()->back()->with('success', 'Запись успешно обновлена');
     }
 
     /**

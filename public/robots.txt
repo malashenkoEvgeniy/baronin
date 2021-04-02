@@ -1,2 +1,5 @@
 User-agent: *
-Disallow: /
+Disallow: /*=page
+
+Host: https://baronin-ds.com.ua/
+Sitemap: https://baronin-ds.com.ua/sitemap.xml

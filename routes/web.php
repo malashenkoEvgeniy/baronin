@@ -12,13 +12,16 @@
  */
 
 use App\Http\Controllers\Admin\PriceController;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Auth::routes();
 
 // Route::any('/register', function () {
 //     return redirect('/');
 // });
+
+Route::get('sitemap.xml','SitemapController@index');
+
+
 
 Route::group(
     [
@@ -41,7 +44,11 @@ Route::group(
             Route::resource('slider_images', 'Admin\SliderImageController');
             Route::resource('portfolio', 'Admin\PortfolioController');
             Route::resource('projects', 'Admin\ProjectController');
+            Route::get('project_image/up/{id}', 'Admin\ProjectImageController@up')->name('project_img_up');
+            Route::get('photo/up/{id}', 'Admin\PhotoController@up')->name('photo_up');
             Route::resource('project_image', 'Admin\ProjectImageController');
+            Route::get('project_image', 'Admin\ProjectImageController@updateImg')->name('updateImg');
+            Route::get('updatePhoto', 'Admin\PhotoController@updatePhoto')->name('updatePhoto');
             Route::resource('form_requests', 'Admin\FormRequestsController');
 
             Route::post('store-image', 'Admin\BaseController@storeImage')->name('store_image');
@@ -60,7 +67,6 @@ Route::group(
         Route::get('/projects', 'Frontend\PortfolioController@index');
         Route::get('/projects/{project}', 'Frontend\PortfolioController@show');
         Route::get('/{page}', 'Frontend\PageController@show');
-
         Route::post('/send-form', 'Frontend\BaseController@sendForm')->name('sendForm');
 
     });

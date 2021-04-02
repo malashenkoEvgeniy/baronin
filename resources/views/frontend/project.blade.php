@@ -2,12 +2,11 @@
 
 
 @section('links')
-    <link rel="stylesheet" href="/frontend/css/project.css">
-
-    <link rel="stylesheet" href="/frontend/css/page.css">
-    <link rel="stylesheet" href="/frontend/css/consultation.css">
+    <link rel="stylesheet" href="{{asset('/frontend/css/project.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/frontend/css/page.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/frontend/css/breadcrumbs.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/frontend/css/consultation.min.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-    <link rel="stylesheet" href="/frontend/css/breadcrumbs.css">
 
 @endsection
 
@@ -69,8 +68,37 @@
     @include('frontend.includes.consultation')
 
 @endsection
-
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-    <script src="/frontend/js/scroll_up.js"></script>
+<script src="{{asset('/frontend/js/scroll_up.min.js')}}"></script>
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "{{ $page->translate()->title }}",
+      "startDate": "2021-01-01T19:00-05:00",
+      "endDate": "2022-01-01T23:00-05:00",
+      "eventAttendanceMode": 		"https://schema.org/OfflineEventAttendanceMode",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "location": {
+        "@type": "Place",
+        "name": "Kropivnickiy",
+        "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Starocozackaiy St 25",
+        "addressLocality": "Dnepr",
+        "addressCountry": "UA"
+      },
+      },
+      "image": [
+        "https://baronin-ds.com.ua/frontend/images/icons/logo-baronin.png",
+       ],
+      "description": "{{ $page->translate()->body }}",
+      "organizer": {
+        "@type": "Organization",
+        "name": "Baronin ds",
+        "url": "https://baronin-ds.com.ua/"
+      }
+    }
+    </script>
 @endsection

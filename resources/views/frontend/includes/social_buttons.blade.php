@@ -9,48 +9,53 @@
 	<div class="social-items-wrapper">
 		<div class="social-items-menu">
 
-			<div class="social-item">
-				<a href="{{$contacts->telegram}}" class="target_telegram">
-					<div>
-						<div class="item-icon-telegram item-icon"></div>
-					</div>
-				</a>
-				<span class="social-item__description"><a href="{{$contacts->telegram}}">Telegram</a></span>
-			</div>
 
-			<div class="social-item">
-				<a href="viber://chat?number=%2B{{$contacts->viber}}" class="target_viber">
-					<div>
-						<div class="item-icon-viber item-icon"></div>
-					</div>
-				</a>
-				<span class="social-item__description"><a href="viber://chat?number=%2B{{$contacts->viber}}">Viber</a></span>
-			</div>
             <div class="social-item ">
-                <a href="tel:{{$contacts->phone_1}}">
+                <a href="tel:{{$contacts->phone_1}}" target="_blank">
                     <div>
                         <div class="item-icon-phone item-icon"></div>
                     </div>
                 </a>
-                <span class="social-item__description"><a href="tel:{{$contacts->phone_1}}">@lang('main.form.phone')</a></span>
+                <span class="social-item__description"><a target="_blank" href="tel:{{$contacts->phone_1}}">@lang('main.form.phone')</a></span>
             </div>
 
-            <div class="social-item">
+            <!-- <div class="social-item">
                 <a href="viber://chat?number=%2B{{$contacts->facebook}}" class="target_facebook">
                     <div>
                         <div class="item-icon-facebook item-icon"></div>
                     </div>
                 </a>
                 <span class="social-item__description"><a href="viber://chat?number=%2B{{$contacts->facebook}}">Facebook</a></span>
-            </div>
+            </div> -->
+
             <div class="social-item">
-                <a href="{{$contacts->instagram}}" class="target_instagram">
+                <a href="{{$contacts->instagram}}" target="_blank" class="target_instagram">
                     <div>
                         <div class="item-icon-instagram item-icon"></div>
                     </div>
                 </a>
-                <span class="social-item__description"><a href="{{$contacts->instagram}}">Instagram</a></span>
+                <span class="social-item__description"><a target="_blank" href="{{$contacts->instagram}}">Instagram</a></span>
             </div>
+
+
+            <div class="social-item">
+				<a href="{{$contacts->telegram}}" target="_blank" class="target_telegram">
+					<div>
+						<div class="item-icon-telegram item-icon"></div>
+					</div>
+				</a>
+				<span class="social-item__description"><a href="{{$contacts->telegram}}" target="_blank">Telegram</a></span>
+			</div>
+
+			<div class="social-item">
+				<a href="viber://chat?number=%2B38{{$contacts->viber}}" target="_blank" class="target_viber">
+
+					<div>
+						<div class="item-icon-viber item-icon"></div>
+					</div>
+				</a>
+				<span class="social-item__description"><a href="viber://chat?number=%2B38{{$contacts->viber}}" target="_blank">Viber</a></span>
+			</div>
 
 
 			<div class="social-item call-contact-form">

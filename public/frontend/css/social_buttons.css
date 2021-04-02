@@ -230,7 +230,7 @@
 
 
 @media (min-width: 990px) {
-    .social-items-menu .social-item:nth-child(3) {
+    .social-items-menu .social-item:nth-child(1) {
         display: none;
     }
 }

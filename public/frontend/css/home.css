@@ -1,9 +1,4 @@
 @font-face {
-    font-family: "Arial";
-    src: url("../fonts/arial/arial.ttf");
-    src: url('../fonts/arial/arial.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/arial/arial.woff') format('woff'),
-        url('../fonts/arial/arial.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -349,7 +344,7 @@
 
 .section_advantages {
     background-color: #FAFAFA;
-    padding-bottom: 0px;
+    padding-bottom: 0;
 }
 
 .advantages {
@@ -407,7 +402,6 @@
 }
 
 .advantage__description {
-    font-family: 'Arial', sans-serif;
     font-weight: 400;
     color: var(--main-color);
 }
@@ -485,7 +479,6 @@
 }
 
 .seo__text p {
-    font-family: 'Arial', sans-serif;
     font-weight: 400;
     font-size: 18px;
     color: var(--main-color);

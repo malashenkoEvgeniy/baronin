@@ -27,7 +27,7 @@
                             @foreach($projects as $item)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td><img src="{{$item->image}}"></td>
+                                <td><img src="{{$item->image}}" style="max-width:200px;"/></td>
                                 <th>{{ $item->translate()->title }}</th>
                                 <td>
                                     <div class="col-12">

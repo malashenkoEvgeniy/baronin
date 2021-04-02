@@ -1,6 +1,7 @@
 @extends('admin.layouts')
 @section('links')
     <link rel="stylesheet" href="/admin/css/index.css">
+    <link rel="stylesheet" href="{{asset('admin/libs/dropzone/dist/dropzone.css')}}">
 @endsection
 @section('content')
 <div class="container col-12">
@@ -13,7 +14,7 @@
 
                 <div class="card-body">
 
-                    <form action="{{route('photo.store')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('photo.store')}}" method="POST" class="dropzone" id="dropzone" enctype="multipart/form-data">
                         {!! csrf_field() !!}
 
                         <div class="on-main-page-image">
@@ -22,16 +23,16 @@
                                 <span class="input-group-text">Изображение страницы</span>
                                 </div>
                                 <div class="custom-file">
-                                    <input type="file"  name="url" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" required>
+                                    <input type="file" multiple  name="url" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" required>
                                     <input type="hidden" name="page_id" value="{{ $id }}">
                                     <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
                                 </div>
                             </div>
                         </div>
-
-                        <button type="submit" class="btn btn-primary">Создать</button>
+                        <input type="hidden"  name="id" value="{{$id}}" id="id">
 
                     </form>
+                    <button type="submit" class="btn btn-primary upload">Создать</button>
 
                 </div>
             </div>
@@ -44,6 +45,82 @@
 
 @section('scripts')
   <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script src="{{asset('admin/libs/dropzone/dist/dropzone.js')}}"></script>
+  <script>
+      Dropzone.autoDiscover = false;
+
+      $(document).ready(function () {
+          let myDropzone = new Dropzone(".dropzone",{
+              uploadMultiple: true,
+              autoProcessQueue: false,
+              paramName: "url",
+              maxFile: 99,
+              parallelUploads: 100,
+              url:"{{route('photo.store')}}",
+              acceptedFiles: ".png, .jpeg, .jpg, .gif",
+              headers: {'X-CSRF-Token': $('input[name="_token"]').attr('value') },
+              params:{
+                  'id': {{$id}}
+              },
+          });
+
+
+
+          myDropzone.on("sending", function(file, xhr, formData) {
+              formData.append('id', $('#id').val());
+              debugger;
+          });
+
+          /* Add Files Script*/
+
+
+          myDropzone.on("success", function(file, message){
+              $("#msg").html(message);
+              setTimeout(function(){window.location.reload();},200);
+          });
+
+          myDropzone.on("error", function (data) {
+              // debugger;
+          });
+
+          myDropzone.on("queuecomplete", function(file) {
+              myDropzone.autoProcessQueue = false;
+          });
+
+          $(".upload").on("click",function (){
+              myDropzone.autoProcessQueue = true;
+              myDropzone.processQueue();
+          });
+
+          $("form#dropzone").sortable({
+              items: '.dz-preview',
+              cursor: 'move',
+              opacity: 0.5,
+              containment: 'form#dropzone',
+              distance: 20,
+              tolerance: 'pointer',
+              stop: function () {
+
+                  let queue = myDropzone.files;
+                  let newQueue = [];
+                  $('form#dropzone .dz-preview .dz-filename [data-dz-name]').each(function (count, el){
+                      var name = el.innerHTML;
+                      queue.forEach(function(file) {
+                          if (file.name === name) {
+                              newQueue.push(file);
+                          }
+                      });
+                  });
+                  if(newQueue.length > 1){
+                      myDropzone.files = newQueue;
+                  }
+              }
+          });
+
+          $("form#dropzone").disableSelection();
+
+      });
+  </script>
 
   <script>
     tinymce.init({

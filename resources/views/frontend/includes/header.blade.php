@@ -12,6 +12,10 @@
                 <img src="/frontend/images/icons/logo-baronin.png" alt="logo WKS">
             </a>
         </div>
+        <a href="tel:{{$contacts->phone_2}}" class="header__phone">
+            @include('frontend.svg.phone')
+            <span>{{$contacts->phone_2}}</span>
+        </a>
         <a href="tel:{{$contacts->phone_1}}" class="header__phone">
             @include('frontend.svg.phone')
             <span>{{$contacts->phone_1}}</span>

@@ -46,3 +46,29 @@
  		</div>
  	</div>
 </footer>
+
+<html>
+<head>
+    <title>Dave's Steak House</title>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HomeAndConstructionBusiness",
+      "image": [
+        "https://baronin-ds.com.ua/frontend/images/icons/logo-baronin.png"
+       ],
+      "@id": "https://baronin-ds.com.ua/",
+      "name": "Baronin development",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Starocozackaiy St 25",
+        "addressLocality": "Dnepr",
+        "addressCountry": "UA"
+      },
+      "telephone": "+380989577600"
+    }
+    </script>
+</head>
+<body>
+</body>
+</html>

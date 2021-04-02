@@ -3,9 +3,9 @@
 
 @section('links')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-    <link rel="stylesheet" href="/frontend/css/page.css">
-    <link rel="stylesheet" href="/frontend/css/breadcrumbs.css">
-    <link rel="stylesheet" href="/frontend/css/consultation.css">
+
+    <link rel="stylesheet" href="{{asset('/frontend/css/breadcrumbs.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/frontend/css/consultation.min.css')}}">
 @endsection
 
 
@@ -35,7 +35,7 @@
             @foreach($portfolio as $item)
                 <div class="about-us__img">
                     <a data-fancybox="gallery" href="{{$item->image}}">
-                        <img src="{{$item->image}}" alt="{{$item->image}}">
+                        <img src="{{$item->image}}" alt="{{$item->image}} {{$item->id}}">
                     </a>
                 </div>
             @endforeach
@@ -55,5 +55,5 @@
 
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-    <script src="/frontend/js/scroll_up.js"></script>
+    <script src="{{asset('/frontend/js/scroll_up.min.js')}}></script>
 @endsection

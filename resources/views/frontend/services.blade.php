@@ -1,11 +1,8 @@
 @extends('frontend.layout')
-
-
 @section('links')
-    <link rel="stylesheet" href="/frontend/css/page.css">
-    <link rel="stylesheet" href="/frontend/css/breadcrumbs.css">
+    <link rel="stylesheet" href="{{asset('/frontend/css/page.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/frontend/css/breadcrumbs.min.css')}}">
 @endsection
-
 
 @section('content')
 
@@ -38,5 +35,5 @@
 
 @endsection
 @section('scripts')
-    <script src="/frontend/js/scroll_up.js"></script>
+    <script src="{{asset('/frontend/js/scroll_up.min.js')}}"></script>
 @endsection

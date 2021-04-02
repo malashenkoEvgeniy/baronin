@@ -2,9 +2,9 @@
 
 
 @section('links')
-    <link rel="stylesheet" href="/frontend/css/page.css">
-    <link rel="stylesheet" href="/frontend/css/breadcrumbs.css">
-    <link rel="stylesheet" href="/frontend/css/consultation.css">
+    <link rel="stylesheet" href="{{asset('/frontend/css/page.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/frontend/css/breadcrumbs.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/frontend/css/consultation.min.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
 @endsection
@@ -35,7 +35,7 @@
                             <div class="category">
                                 <a href='{{ LaravelLocalization::localizeUrl("$item->url") }}' class="category__title">{{$item->translate()->title}}</a>
                                 <a href='{{ LaravelLocalization::localizeUrl("$item->url") }}' title="{{$item->translate()->title}}" class="category__link">
-                                    <img src="{{$item->image}}" alt="{{$item->translate()->title}}">
+                                    <img src="{{$item->image}}" alt="{{$item->translate()->title}} {{$img->id}}">
                                 </a>
                             </div>
                         @endforeach
@@ -51,7 +51,7 @@
                 @if($item->page_id ===7)
                     <div class="page__img ">
                         <a data-fancybox="gallery" href="{{$item->url}}">
-                            <img src="{{$item->url}}" alt="{{ $page->translate()->title }}">
+                            <img src="{{$item->url}}" alt="{{ $page->translate()->title }} {{$item->id}}">
                         </a>
                     </div>
                 @endif
@@ -79,7 +79,7 @@
                 <div class="design__body">
                     <ul class="portfolio__wrapper">
                         @foreach($images as $img)
-                            <li class="page__img "><a  data-fancybox="gallery" href='{{$img->url}}'><img src="{{$img->url}}" alt="desgn-img" width="382" height="323"></a></li>
+                            <li class="page__img "><a  data-fancybox="gallery" href='{{$img->url}}'><img src="{{$img->url}}"  alt="{{$img->url}} {{$img->id}}" width="382" height="323"></a></li>
                         @endforeach
                     </ul>
                     <div class="button_show-more-wrap">
@@ -116,7 +116,7 @@
                 @if($item->page_id ===1)
                 <div class="page__img ">
                     <a data-fancybox="gallery" href="{{$item->url}}">
-                        <img src="{{$item->url}}" alt="{{ $page->translate()->title }}">
+                        <img src="{{$item->url}}" alt="{{ $page->translate()->title }}  {{$page->id}}">
                     </a>
                 </div>
                 @endif
@@ -126,7 +126,7 @@
     <div class="page__footer">
         <h3 class="page__additional-title">{{ $page->translate()->additional_title }}</h3>
         @if( $page->image !== null)
-            <img src="{{$page->image}}" alt="{{$page->image}}" class="page__body-img">
+            <img src="{{$page->image}}" alt="{{$page->image}} {{$page->id}}" class="page__body-img">
         @endif
 
         {!! $page->translate()->additional_body !!}
@@ -137,36 +137,36 @@
     @include('frontend.includes.consultation')
 @endsection
 @section('scripts')
-    <script src="/frontend/js/scroll_up.js"></script>
-            <script>
-                $('.button_show-more').click(function(){
+    <script src="{{asset('/frontend/js/scroll_up.min.js')}}"></script>
+    <script>
+        $('.button_show-more').click(function(){
 
-                    let page = $(this).attr('data-page');
+            let page = $(this).attr('data-page');
 
-                    $.ajax({
-                        method: 'GET',
-                        url: page,
-                        data: {
-                            _token: '{{csrf_token()}}',
-                        }
-                    }).done(function(data){
-                        let page = $(data);
-                        let items = page.find('.desgn-img');
-                        if (page.find('.button_show-more').length == 1) {
-                            let nextPage = page.find('.button_show-more').attr('data-page');
-                            $('.button_show-more').attr('data-page', nextPage);
-                        }else{
-                            $('.button_show-more').remove();
-                        }
+            $.ajax({
+                method: 'GET',
+                url: page,
+                data: {
+                    _token: '{{csrf_token()}}',
+                }
+            }).done(function(data){
+                let page = $(data);
+                let items = page.find('.desgn-img');
+                if (page.find('.button_show-more').length == 1) {
+                    let nextPage = page.find('.button_show-more').attr('data-page');
+                    $('.button_show-more').attr('data-page', nextPage);
+                }else{
+                    $('.button_show-more').remove();
+                }
 
-                        $('.design-img-list').append(items);
+                $('.design-img-list').append(items);
 
-                        let next = $('.page-item.active').next();
-                        $('.page-item.active').removeClass('active');
-                        next.addClass("active");
-                    });
-                });
+                let next = $('.page-item.active').next();
+                $('.page-item.active').removeClass('active');
+                next.addClass("active");
+            });
+        });
 
-            </script>
-            <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 @endsection

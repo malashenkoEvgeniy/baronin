@@ -22,10 +22,12 @@
     align-items: center;
 }
 
+
 .error-title {
     font-size: 400%;
     margin: 0;
 }
+
 
 .error-404 p {
     margin: 10px 0 30px 0;

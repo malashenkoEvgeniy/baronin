@@ -29,21 +29,22 @@ class PageController extends BaseController
     public function index()
     {
         $page = MainPage::first();
+        $default_seo_title = "Заказать монтажно-строительные работы высокого качества по низкой цене в Кропивницком";
+        $default_seo_description = "Компания \"Baronin-ds\" качественно и недорого выполнит монтажно-строительные работы в многоэтажных и частных домах по Кропивницкому и области. Современные материалы. Соблюдение сроков.";
         $seo = (object) [
-            'title' => $page->translate()->seo_title,
-            'description' => $page->translate()->seo_description,
+            'title' => $page->translate()->seo_title !== null ? $page->translate()->seo_title : $default_seo_title,
+            'description' => $page->translate()->seo_description !== null ? $page->translate()->seo_description : $default_seo_description,
             'keywords' => $page->translate()->seo_keywords,
         ];
-//        dd(Page::onMainPage()->get());
         $catalogPages = Page::onMainPage()->paginate(4);
 
         $other_page = Page::all();
         $slider = SliderImage::orderby('is_video', 'desc')->get();
 
-
         return view('frontend.home', compact('page', 'seo', 'catalogPages', 'slider', 'other_page' ));
-
     }
+
+
 
     /**
      * Display the specified resource.
@@ -59,13 +60,11 @@ class PageController extends BaseController
         }
         $page->images = $page->images()->get();
         $page->childrens= $page->children()->get();
-
-
-
-
+        $default_seo_title = "Заказать " . mb_strtolower($page->translate()->title)." высокого качества по низкой цене в Кропивницком";
+        $default_seo_description = "Компания \"Baronin-ds\" качественно и недорого выполнит ". mb_strtolower($page->translate()->title)." в многоэтажных и частных домах по Кропивницкому и области. Современные материалы. Соблюдение сроков.";
         $seo = (object) [
-            'title' => $page->translate()->seo_title,
-            'description' => $page->translate()->seo_description,
+            'title' => $page->translate()->seo_title !== null ? $page->translate()->seo_title : $default_seo_title,
+            'description' => $page->translate()->seo_description !== null ? $page->translate()->seo_description : $default_seo_description,
             'keywords' => $page->translate()->seo_keywords,
         ];
 
@@ -84,7 +83,7 @@ class PageController extends BaseController
 
         if ($page->id == 3 or $page->parent_id == 3) {
             $links = $page->where(['parent_id'=>3])->get();
-            $images = DB::table('design_images')->where(['page_id'=>$page->id])->paginate(6);
+            $images = DB::table('design_images')->where(['page_id'=>$page->id])->orderBy('order_by', 'asc')->paginate(6);
 
 
             return view('frontend.page', compact('page', 'seo', 'breadcrumbs', 'links', 'images'));
