@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\FormRequest;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class BaseController extends Controller
 {
@@ -39,9 +41,24 @@ class BaseController extends Controller
     {
         $fileNewName = time() . $file->getClientOriginalName();
         $fileNewName = $this->translit($fileNewName);
+
         $file->move(public_path() . $storePath, $fileNewName);
         $data = ['name' => $fileNewName, 'format' => $file->getClientOriginalExtension(), 'path' => $storePath . $fileNewName];
 
+        return $data;
+    }
+
+    public function storeFileForResize( $file, $storePath = '/uploads/')
+    {
+        $fileNewName = time() . $file->getClientOriginalName();
+        $fileNewName = $this->translit($fileNewName);
+
+        $image = Image::make($file->getRealPath());
+        $image->resize(200, 200);
+        $file->move(public_path() . $storePath, $fileNewName);
+        $data = ['name' => $fileNewName, 'format' => $file->getClientOriginalExtension(), 'path' => $storePath . $fileNewName];
+//        $img= Image::make($data['path']);
+//        $img->resize(300, 200);
         return $data;
     }
 

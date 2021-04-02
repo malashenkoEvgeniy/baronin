@@ -6,6 +6,7 @@ use App\Models\Portfolio;
 use App\Models\Project;
 use App\Models\ProjectImage;
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManager;
 
 class ProjectController extends BaseController
 {
@@ -21,7 +22,7 @@ class ProjectController extends BaseController
      */
     public function index()
     {
-        $projects = Project::orderBy('position')->get();
+        $projects = Project::orderBy('id','desc')->get();
         return view('admin.projects.index', compact('projects'));
     }
 
@@ -49,9 +50,25 @@ class ProjectController extends BaseController
         $reqTranslation = request()->except('portfolio_id', 'image', 'url', 'position');
         $req['portfolio_id'] = $page->id;
 
+//        $fileNewName = time() . $file->getClientOriginalName();
+//        $fileNewName = $this->translit($fileNewName);
+//
+//        $file->move(public_path() . $storePath, $fileNewName);
+//        $data = ['name' => $fileNewName, 'format' => $file->getClientOriginalExtension(), 'path' => $storePath . $fileNewName];
+
+
         if (request()->file('image') !== null) {
-            $file = $this->storeFile(request()->file('image'), $this->storePath);
-            $req['image'] = $file['path'];
+
+            $data = request()->file('image');
+           // dd($data);
+            $manager= new ImageManager(['driver'=>'gd']);
+            $image = $manager->make($data);
+            $image->resize(750,300);
+            $str = public_path() .$this->storePath;
+            //.data->getClientOriginalName();
+            dd($str);
+          $image->save($str,70);
+           $req['image'] = $this->storePath.$data->getClientOriginalName();
         }
 
         $page = $this->storeWithTranslation(new Project, $req, $reqTranslation);

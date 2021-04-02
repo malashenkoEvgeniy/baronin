@@ -13,7 +13,7 @@
     <div class="contacts__banner">
         <h1 class="contacts__title">{{$page->translate()->title}}</h1>
         <div class="contacts__links">
-            <a href="{{$contacts->viber}}" class="contacts__link" title="Мы в Viber">
+            <a href="viber://chat?number=%2B38{{$contacts->viber}}" class="contacts__link" title="Мы в Viber">
                 @include('frontend.svg.viber')
             </a>
             <a href="{{$contacts->telegram}}" class="contacts__link" title="Мы в Telegram">
