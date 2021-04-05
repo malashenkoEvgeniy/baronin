@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\DesignImage;
 use App\Models\Page;
+use App\Models\Project;
+use App\Models\ProjectImage;
 use App\Models\SliderImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -43,7 +45,7 @@ class PhotoController extends BaseController
 
         $req = request()->only('url', 'page_id', 'order_by');
         foreach (request()->file('url') as $item) {
-            $file = $this->storeFile($item, $this->storePath);
+            $file = $this->storeFileForResize($item, $this->storePath);
             $r=count(DesignImage::where('page_id',$req['page_id'])->get());
             DesignImage::create(['url' => $file['path'], 'page_id' => $req['page_id'], 'order_by'=>$r+1]);
         }
@@ -83,7 +85,7 @@ class PhotoController extends BaseController
         foreach($req as $k=>$v){
 
             $i = explode('-', $k)[1];
-            $img = DesignImage::where('id',$i)->first();
+            $img = Project::where('id',$i)->first();
             $img->order_by = $v;
             $img->save();
         }
@@ -114,6 +116,10 @@ class PhotoController extends BaseController
         $image = DesignImage::find($id);
 
         $this -> deleteFile($image->url);
+        $copyImage = ProjectImage::where('image', $image->url)->get();
+        foreach ($copyImage as $item){
+            $item->delete();
+        }
         $image->delete();
         return redirect()->back()->with('success', 'Запись успешно обновлена');
     }

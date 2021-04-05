@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\DesignImage;
+use App\Models\Page;
+use App\Models\Project;
 use App\Models\ProjectImage;
 use Illuminate\Http\Request;
 
@@ -36,7 +38,7 @@ class ProjectImageController extends BaseController
 
         if (request()->file('images') !== null) {
             foreach (request()->file('images') as $item) {
-                $file = $this->storeFile($item, $this->storePath);
+                $file = $this->storeFileForResize($item, $this->storePath);
                 $r=count(ProjectImage::where('project_id',$req['project_id'])->get());
                 ProjectImage::create(['image' => $file['path'], 'project_id' => $req['project_id'], 'order_by'=>$r+1]);
             }
@@ -56,6 +58,10 @@ class ProjectImageController extends BaseController
     {
         $image = ProjectImage::find($id);
         $this->deleteFile($image->image);
+        $copyImage = DesignImage::where('url', $image->image)->get();
+        foreach ($copyImage as $item){
+            $item->delete();
+        }
         $image->delete();
         return redirect()->route('projects.edit', $image->project_id)->with('success', 'Изображение успешно удалено');
     }
@@ -84,12 +90,9 @@ class ProjectImageController extends BaseController
     }
 
     public function movingPhoto(){
-
-
-        $project_img = ProjectImage::where('project_id', \request()->project_id)->get();
-        foreach ($project_img as $img){
-            DesignImage::create(['page_id'=>\request()->services,'url'=> $img->image]);
-        }
+        $page = Page::where('id', \request()->services)->first();
+        $project = Project::where('id',  \request()->project_id)->first();
+        $page->project()->attach($project);
         return redirect()->back()->with('success', 'Запись успешно обновлена');
 
     }

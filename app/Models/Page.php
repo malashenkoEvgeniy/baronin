@@ -49,4 +49,10 @@ class Page extends BaseModel
         return $this->hasMany(DesignImage::class);
     }
 
+    public function project()
+    {
+        return $this->belongsToMany(Project::class)->withPivot('page_project');
+//            ->orderBy('product_asset.order_column'));
+    }
+
 }

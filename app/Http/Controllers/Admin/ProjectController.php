@@ -50,28 +50,9 @@ class ProjectController extends BaseController
         $req = request()->only('portfolio_id', 'image', 'url', 'position');
         $reqTranslation = request()->except('portfolio_id', 'image', 'url', 'position');
         $req['portfolio_id'] = $page->id;
-
-//        $fileNewName = time() . $file->getClientOriginalName();
-//        $fileNewName = $this->translit($fileNewName);
-//
-//        $file->move(public_path() . $storePath, $fileNewName);
-//        $data = ['name' => $fileNewName, 'format' => $file->getClientOriginalExtension(), 'path' => $storePath . $fileNewName];
-
-
         if (request()->file('image') !== null) {
-
-            $data = request()->file('image');
-           // dd($data);
-            $manager= new ImageManager(['driver'=>'gd']);
-            $image = $manager->make($data);
-            $image->resize(450,300, function ($img){
-                $img->aspectRatio();
-            });
-            $str = public_path() .$this->storePath
-           .$data->getClientOriginalName();
-            //dd($str);
-          $image->save($str,70);
-           $req['image'] = $this->storePath.$data->getClientOriginalName();
+            $file = $this->storeFileForResize(request()->file('image'), $this->storePath);
+           $req['image'] = $file['path'];
         }
 
         $page = $this->storeWithTranslation(new Project, $req, $reqTranslation);
@@ -92,25 +73,8 @@ class ProjectController extends BaseController
         $project->images = ProjectImage::where('project_id', $id)
             ->orderBy('order_by', 'asc')
             ->get();
-        $services = [];
-        $pages = Page::where('parent_id', '!=', null)->get();
-        $i = 0;
-        $unset = 0;
-        foreach($pages as $page){
-            foreach ($pages as $el){
-                if($page->id == $el->parent_id){
-                    $unset = -1;
-                }
-            }
-               $services[$i]=[
-                   'id'=>$page->id,
-                   'parent_id'=>$page->parent_id,
-                   'title'=>$page->translate()->title,
-                   'unset'=>$unset
-               ];
-            $i++;
-            $unset = 0;
-         }
+        $services = Page::where('parent_id', '!=', null)->get();
+
 
         return view('admin.projects.edit', compact('project', 'services'));
     }

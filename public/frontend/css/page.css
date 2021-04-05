@@ -342,7 +342,7 @@
 
 .services-wrapper {
     display: flex;
-    width: 64%;
+    /*width: 64%;*/
     margin: 0 auto;
     flex-wrap: wrap;
     margin-bottom: 25px;

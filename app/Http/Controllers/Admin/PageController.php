@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\DesignImage;
 use App\Models\Page;
+use App\Models\Project;
+use App\Models\ProjectPage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PageController extends BaseController
 {
@@ -21,7 +24,6 @@ class PageController extends BaseController
      */
     public function index()
     {
-
         $pages = $this->getMenu();
         return view('admin.pages.index', compact('pages'));
     }
@@ -57,7 +59,7 @@ class PageController extends BaseController
         }
 
         if (request()->file('banner') !== null) {
-            $file = $this->storeFile(request()->file('banner'), $this->storePath);
+            $file = $this->storeFileForResize(request()->file('banner'), $this->storePath);
             $req['banner'] = $file['path'];
         }
 
@@ -97,10 +99,13 @@ class PageController extends BaseController
         if ($page->id == 6) {
             $prices = $page->price()->get();
         }
-        $photo = DesignImage::where('page_id', $page->id)
-        ->orderBy('order_by', 'asc')
-        ->get();
-        return view('admin.pages.edit', compact('pages', 'page', 'prices', 'photo'));
+        $projects =  ProjectPage::where('page_id', $id)
+            ->join('project', 'project.id', '=', 'page_project.project_id')
+           ->with('project')
+            ->orderBy('project.order_by', 'asc')
+            ->get();
+
+        return view('admin.pages.edit', compact('pages', 'page', 'prices', 'projects'));
     }
 
     /**
@@ -160,5 +165,13 @@ class PageController extends BaseController
         $this->deleteFile($page->image);
         $page->delete();
         return redirect()->route('pages.index')->with('success', 'Запись успешно удалена');
+    }
+
+    public function  deleteProject($id,$pid)
+    {
+        $page = Page::where('id', $pid)->first();
+        $project = Project::where('id',  $id)->first();
+        $page->project()-> detach($project);
+        return redirect()->back()->with('success', 'Запись успешно обновлена');
     }
 }

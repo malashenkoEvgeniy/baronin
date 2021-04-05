@@ -8,6 +8,7 @@ use App\Models\MainPage;
 use App\Models\Page;
 use App\Models\Portfolio;
 use App\Models\Price;
+use App\Models\ProjectPage;
 use App\Models\SliderImage;
 use App\Models\TablePrice;
 use App\Models\TableServices;
@@ -74,30 +75,34 @@ class PageController extends BaseController
             'parent' => $this->findParents($page),
         ];
         $portfolio = DesignImage::all();
-        if ($page->id == 7) {
-            $links = $page->children()->get();
+        $projects =  ProjectPage::where('page_id', $page->id)
+            ->join('project', 'project.id', '=', 'page_project.project_id')
+            ->with('project')
+            ->orderBy('project.order_by', 'asc')
+            ->paginate(10);
+        $links = $page->children()->get();
 
-            $catalogPages = Page::onMainPage()->paginate(4);
-            return view('frontend.page', compact('page', 'portfolio', 'seo', 'breadcrumbs', 'links', 'catalogPages'));
-        }
-
-
-        if ($page->id == 3 or $page->parent_id == 3) {
-            $links = $page->where(['parent_id'=>3])->get();
-            $images = DB::table('design_images')->where(['page_id'=>$page->id])->orderBy('order_by', 'asc')->paginate(6);
+        $catalogPages = Page::onMainPage()->paginate(4);
+        return view('frontend.page', compact('page', 'projects', 'photo', 'portfolio', 'seo', 'breadcrumbs', 'links', 'catalogPages'));
 
 
-            return view('frontend.page', compact('page', 'seo', 'breadcrumbs', 'links', 'images'));
-        }
-
-        if ($page->id == 1) {
-            $links = $page->where(['parent_id'=>7])->get();
-
-
-            return view('frontend.page', compact('page', 'seo', 'breadcrumbs', 'links', 'portfolio'));
-        }
-
-        return view('frontend.page', compact('page','photo', 'portfolio', 'seo', 'breadcrumbs'));
+//
+//        if ($page->id == 3 or $page->parent_id == 3) {
+//            $links = $page->where(['parent_id'=>3])->get();
+//            $images = DB::table('design_images')->where(['page_id'=>$page->id])->orderBy('order_by', 'asc')->paginate(6);
+//
+//
+//            return view('frontend.page', compact('page','photo', 'seo', 'breadcrumbs', 'links', 'images'));
+//        }
+//
+//        if ($page->id == 1) {
+//            $links = $page->where(['parent_id'=>7])->get();
+//
+//
+//            return view('frontend.page', compact('page', 'photo','seo', 'breadcrumbs', 'links', 'portfolio'));
+//        }
+//
+//        return view('frontend.page', compact('page','photo', 'portfolio', 'seo', 'breadcrumbs'));
     }
 
     public function contacts()

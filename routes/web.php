@@ -50,6 +50,7 @@ Route::group(
             Route::get('project_image', 'Admin\ProjectImageController@updateImg')->name('updateImg');
             Route::get('updatePhoto', 'Admin\PhotoController@updatePhoto')->name('updatePhoto');
             Route::get('movingPhoto', 'Admin\ProjectImageController@movingPhoto')->name('movingPhoto');
+            Route::get('deleteProject/{id}/{pid}', 'Admin\PageController@deleteProject')->name('deleteProject');
             Route::resource('form_requests', 'Admin\FormRequestsController');
 
             Route::post('store-image', 'Admin\BaseController@storeImage')->name('store_image');

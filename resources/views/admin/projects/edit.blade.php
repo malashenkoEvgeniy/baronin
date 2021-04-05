@@ -160,12 +160,10 @@
                 <div class="card-footer">
                     <form action="{{ route('movingPhoto')}}" >
                     {!! csrf_field() !!}
-                        <button class="btn btn-primary" type="submit">Копировать фотографии в услугу</button>
+                        <button class="btn btn-primary" type="submit">Добавить проект на страницу</button>
                         <select name="services" id="">
                             @foreach($services as $service) {
-                                @if($service['unset']==0)
-                                    <option value="{{$service['id']}}">{{$service['title']}}</option>
-                                @endif
+                              <option value="{{$service->id}}">{{$service->translate()->title}}</option>
                             @endforeach
                         </select>
                         <input type="hidden" name="project_id"  value="{{$project->id}}">

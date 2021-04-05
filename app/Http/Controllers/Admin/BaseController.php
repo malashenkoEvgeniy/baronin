@@ -7,6 +7,8 @@ use App\Models\FormRequest;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Http\Request;
+use Intervention\Image\ImageManager;
 
 class BaseController extends Controller
 {
@@ -53,12 +55,18 @@ class BaseController extends Controller
         $fileNewName = time() . $file->getClientOriginalName();
         $fileNewName = $this->translit($fileNewName);
 
-        $image = Image::make($file->getRealPath());
-        $image->resize(200, 200);
-        $file->move(public_path() . $storePath, $fileNewName);
+
+        $manager= new ImageManager(['driver'=>'gd']);
+        $image = $manager->make($file);
+        $image->resize(450,300, function ($img){
+            $img->aspectRatio();
+        });
+        $str = public_path() . $storePath. $fileNewName;
+        $image->save($str,70);
+
+
         $data = ['name' => $fileNewName, 'format' => $file->getClientOriginalExtension(), 'path' => $storePath . $fileNewName];
-//        $img= Image::make($data['path']);
-//        $img->resize(300, 200);
+
         return $data;
     }
 

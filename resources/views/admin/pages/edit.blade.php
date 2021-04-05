@@ -216,28 +216,26 @@
                             <thead>
                             <tr>
                                 <th scope="col"><h5>#</h5></th>
-                                <th scope="col"><h5>Изображение</h5></th>
+                                <th scope="col"><h5>Project</h5></th>
                                 <th scope="col"><h5>Опции</h5></th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($photo as $item)
+                            @foreach($projects as $item)
                                 <tr>
                                     <td> <input  style="max-width: 60px;" type="number" name="order-{{$item->id}}" value="{{$item->order_by}}"></td>
-                                    <td><img class="project-images-item" src="{{$item->url}}"></td>
-{{--                                    @if(file_exists($item->url) )--}}
-{{--                                    <td><img class="project-images-item" src="{{$item->url}}"></td>--}}
-{{--                                    @else <td><img class="project-images-item" src="http://via.placeholder.com/200x150"></td>--}}
-{{--                                    @endif--}}
+                                    <td><a href="{{route('projects.edit',$item->id)}}" class="btn btn-warning" title="Редактировать">
+                                        <img class="project-images-item" src="{{$item->image}}"></a></td>
                                     <td>
                                         <div class="col-12">
                                             <div class="btn-group">
                                                 <div class="" style="display: flex">
-                                                    <form action="{{route('photo.destroy',$item->id)}}" method="POST" onsubmit="return confirm('Удалить?') ? true : false;">
-                                                        {!! csrf_field() !!}
-                                                        {{ method_field('DELETE') }}
-                                                        <button type="submit" class="btn btn-danger btn-delete" title="Удалить"><i class="fas fa-trash-alt"></i></button>
-                                                    </form>
+                                                    <a class="btn btn-danger btn-delete" href="{{route('deleteProject',['id'=>$item->id,'pid'=>$page->id] )}}">Удалить</a>
+{{--                                                    <form action="{{route('deleteProject',$item->id)}}" method="GET" onsubmit="return confirm('Удалить?') ? true : false;">--}}
+{{--                                                        {!! csrf_field() !!}--}}
+{{--                                                        <input type="hidden" name="page" value="{{$page->id}}">--}}
+{{--                                                        <button type="submit" class="btn btn-danger btn-delete" title="Удалить"><i class="fas fa-trash-alt"></i></button>--}}
+{{--                                                    </form>--}}
                                                 </div>
                                             </div>
                                         </div>

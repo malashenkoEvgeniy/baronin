@@ -17,4 +17,15 @@ class Project extends BaseModel
     {
         return $this->belongsTo('App\Models\Portfolio');
     }
+
+    public function page()
+    {
+        return $this->belongsToMany('Page');
+    }
+
+    public function project_translate()
+    {
+        return $this->hasMany('App\Models\ProjectTranslation');
+    }
+
 }
