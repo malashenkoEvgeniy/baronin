@@ -30,9 +30,9 @@
                             </div>
                         </div>
                         <input type="hidden"  name="id" value="{{$id}}" id="id">
-
+                        <button type="submit" class="btn btn-primary upload">Создать</button>
                     </form>
-                    <button type="submit" class="btn btn-primary upload">Создать</button>
+
 
                 </div>
             </div>
@@ -68,7 +68,7 @@
 
           myDropzone.on("sending", function(file, xhr, formData) {
               formData.append('id', $('#id').val());
-              debugger;
+             // debugger;
           });
 
           /* Add Files Script*/

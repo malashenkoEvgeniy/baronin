@@ -1,5 +1,6 @@
 @extends('admin.layouts')
 @section('links')
+    <link href="{{asset('/admin/libs/dropzone-5.7.0/dist/dropzone.css')}}"></link>
     <style>
         .project-images-item {
             max-width: 150px;
@@ -156,6 +157,21 @@
                         <button type="submit" class="btn btn-primary mt-3 mb-3">Сменить очередность</button>
                     </form>
                 </div>
+                <div class="card-footer">
+                    <form action="{{ route('movingPhoto')}}" >
+                    {!! csrf_field() !!}
+                        <button class="btn btn-primary" type="submit">Копировать фотографии в услугу</button>
+                        <select name="services" id="">
+                            @foreach($services as $service) {
+                                @if($service['unset']==0)
+                                    <option value="{{$service['id']}}">{{$service['title']}}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                        <input type="hidden" name="project_id"  value="{{$project->id}}">
+
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -165,6 +181,7 @@
 
 @section('scripts')
   <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script src="{{asset('/admin/libs/dropzone-5.7.0/dist/dropzone.js')}}"></script>
 
   <script>
     tinymce.init({

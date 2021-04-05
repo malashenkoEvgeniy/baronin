@@ -35,7 +35,7 @@
                             <div class="category">
                                 <a href='{{ LaravelLocalization::localizeUrl("$item->url") }}' class="category__title">{{$item->translate()->title}}</a>
                                 <a href='{{ LaravelLocalization::localizeUrl("$item->url") }}' title="{{$item->translate()->title}}" class="category__link">
-                                    <img src="{{$item->image}}" alt="{{$item->translate()->title}} {{$img->id}}">
+                                    <img src="{{$item->image}}" alt="{{$item->translate()->title}} {{$item->id}}">
                                 </a>
                             </div>
                         @endforeach
@@ -122,6 +122,20 @@
                 @endif
             @endforeach
         </div>
+        @else
+            <div class="portfolio__wrapper">
+                <h3 class="page__additional-title">{{$page->translate()->additional_title}}</h3>
+            </div>
+            <div class="portfolio__wrapper">
+                @foreach($photo as $item)
+                <div class="page__img ">
+                    <a data-fancybox="gallery" href="{{$item->url}}">
+                        <img src="{{$item->url}}" alt="{{ $page->translate()->title }}  {{$item->id}}">
+                    </a>
+                </div>
+                @endforeach
+            </div>
+
     @endif
     <div class="page__footer">
         <h3 class="page__additional-title">{{ $page->translate()->additional_title }}</h3>

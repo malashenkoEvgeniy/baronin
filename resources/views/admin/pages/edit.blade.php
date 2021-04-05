@@ -1,7 +1,11 @@
 @extends('admin.layouts')
 @section('links')
     <link rel="stylesheet" href="/admin/css/index.css">
-
+    <style>
+        .project-images-item {
+            max-width: 250px;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -61,12 +65,7 @@
                           </div>
                           <input type="text" class="form-control" name="title" value="{{$page->translate()->title}}" >
                         </div>
-                        <div class="input-group mb-3">
-                            <a class="btn btn-success" href="{{route('photo.create', ['id'=>$page->id])}}">Загрузить изображение</a>
-                        </div>
-                        <div class="input-group mb-3">
-                            <a class="btn btn-success" href="{{route('photo.show', ['id'=>$page->id])}}">Изображения страницы</a>
-                        </div>
+
 
                         <div class="form-group">
                             <label>Описание</label>
@@ -118,34 +117,6 @@
                             </div>
                             <span class="input-group-text"><input type="checkbox" name="on_main_page" class="on-main-page" @if($page->on_main_page) checked @endif></span>
                         </div>
-
-{{--                        <div class="on-main-page-image @if(!$page->on_main_page) hidden @endif">--}}
-{{--                            <div class=" input-group mb-3 ">--}}
-{{--                            <div class="input-group-prepend">--}}
-{{--                                <span class="input-group-text">Изображение страницы</span>--}}
-{{--                                <div class="btn btn-outline-secondary" data-toggle="collapse" data-target="#image" aria-expanded="false" aria-controls="banner">Посмотреть</div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="custom-file">--}}
-{{--                                    <input type="file" name="image" class="custom-file-input " id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">--}}
-{{--                                    <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-
-
-{{--                        <div class="collapse mb-3" id="image">--}}
-{{--                            <div class="card card-body">--}}
-{{--                                <div class="col-6"><img src="{{$page->image}}" alt=""></div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-
-
-
-
-
-
-
                         <div class="card card-secondary">
                             <div class="card-header"> <h3 class="card-title">Seo</h3></div>
 
@@ -235,9 +206,63 @@
                     @endif
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header">Галерея</div>
+
+                <div class="card-body">
+                    <form action="{{route('updatePhoto')}}">
+                        {!! csrf_field() !!}
+                        <table class="table table-bordered table-hover dataTable dtr-inline">
+                            <thead>
+                            <tr>
+                                <th scope="col"><h5>#</h5></th>
+                                <th scope="col"><h5>Изображение</h5></th>
+                                <th scope="col"><h5>Опции</h5></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($photo as $item)
+                                <tr>
+                                    <td> <input  style="max-width: 60px;" type="number" name="order-{{$item->id}}" value="{{$item->order_by}}"></td>
+                                    <td><img class="project-images-item" src="{{$item->url}}"></td>
+{{--                                    @if(file_exists($item->url) )--}}
+{{--                                    <td><img class="project-images-item" src="{{$item->url}}"></td>--}}
+{{--                                    @else <td><img class="project-images-item" src="http://via.placeholder.com/200x150"></td>--}}
+{{--                                    @endif--}}
+                                    <td>
+                                        <div class="col-12">
+                                            <div class="btn-group">
+                                                <div class="" style="display: flex">
+                                                    <form action="{{route('photo.destroy',$item->id)}}" method="POST" onsubmit="return confirm('Удалить?') ? true : false;">
+                                                        {!! csrf_field() !!}
+                                                        {{ method_field('DELETE') }}
+                                                        <button type="submit" class="btn btn-danger btn-delete" title="Удалить"><i class="fas fa-trash-alt"></i></button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+
+                        <div class="col-12 mt-4">
+                            <div class="input-group mb-3">
+                                <a class="btn btn-success" href="{{route('photo.create', ['id'=>$page->id])}}">Загрузить изображение</a>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3 mb-3">Сменить очередность</button>
+                    </form>
+                </div>
+                <div class="card-footer">
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 @endsection
 
 

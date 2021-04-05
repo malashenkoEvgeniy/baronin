@@ -65,7 +65,6 @@
 
             myDropzone.on("sending", function(file, xhr, formData) {
                 formData.append('project_id', $('#project_id').val());
-                debugger;
             });
 
             /* Add Files Script*/

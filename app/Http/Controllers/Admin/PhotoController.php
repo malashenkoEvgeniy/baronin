@@ -40,6 +40,7 @@ class PhotoController extends BaseController
      */
     public function store(Request $request)
     {
+
         $req = request()->only('url', 'page_id', 'order_by');
         foreach (request()->file('url') as $item) {
             $file = $this->storeFile($item, $this->storePath);
@@ -47,7 +48,7 @@ class PhotoController extends BaseController
             DesignImage::create(['url' => $file['path'], 'page_id' => $req['page_id'], 'order_by'=>$r+1]);
         }
 
-        return redirect()->back()->with('success', 'Запись успешно обновлена');
+        return redirect()->route('pages.edit', ['id'=>$req['page_id']])->with('success', 'Запись успешно обновлена');
     }
 
     /**
@@ -110,13 +111,10 @@ class PhotoController extends BaseController
      */
     public function destroy($id)
     {
-        //dd($id);
-
-
         $image = DesignImage::find($id);
 
         $this -> deleteFile($image->url);
         $image->delete();
-        return redirect(route('photo.index'))->with('success', 'Запись успешно удалена');
+        return redirect()->back()->with('success', 'Запись успешно обновлена');
     }
 }

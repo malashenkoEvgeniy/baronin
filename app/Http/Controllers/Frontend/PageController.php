@@ -55,6 +55,7 @@ class PageController extends BaseController
     public function show($url)
     {
         $page = Page::where('url', $url)->first();
+        $photo = DesignImage::where('page_id', $page->id)->get();
         if ($page === null) {
             abort(404);
         }
@@ -96,11 +97,7 @@ class PageController extends BaseController
             return view('frontend.page', compact('page', 'seo', 'breadcrumbs', 'links', 'portfolio'));
         }
 
-
-
-
-
-        return view('frontend.page', compact('page', 'portfolio', 'seo', 'breadcrumbs'));
+        return view('frontend.page', compact('page','photo', 'portfolio', 'seo', 'breadcrumbs'));
     }
 
     public function contacts()

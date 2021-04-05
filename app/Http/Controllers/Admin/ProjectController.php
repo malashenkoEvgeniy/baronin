@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Page;
 use App\Models\Portfolio;
 use App\Models\Project;
 use App\Models\ProjectImage;
@@ -63,10 +64,12 @@ class ProjectController extends BaseController
            // dd($data);
             $manager= new ImageManager(['driver'=>'gd']);
             $image = $manager->make($data);
-            $image->resize(750,300);
-            $str = public_path() .$this->storePath;
-            //.data->getClientOriginalName();
-            dd($str);
+            $image->resize(450,300, function ($img){
+                $img->aspectRatio();
+            });
+            $str = public_path() .$this->storePath
+           .$data->getClientOriginalName();
+            //dd($str);
           $image->save($str,70);
            $req['image'] = $this->storePath.$data->getClientOriginalName();
         }
@@ -89,7 +92,27 @@ class ProjectController extends BaseController
         $project->images = ProjectImage::where('project_id', $id)
             ->orderBy('order_by', 'asc')
             ->get();
-        return view('admin.projects.edit', compact('project'));
+        $services = [];
+        $pages = Page::where('parent_id', '!=', null)->get();
+        $i = 0;
+        $unset = 0;
+        foreach($pages as $page){
+            foreach ($pages as $el){
+                if($page->id == $el->parent_id){
+                    $unset = -1;
+                }
+            }
+               $services[$i]=[
+                   'id'=>$page->id,
+                   'parent_id'=>$page->parent_id,
+                   'title'=>$page->translate()->title,
+                   'unset'=>$unset
+               ];
+            $i++;
+            $unset = 0;
+         }
+
+        return view('admin.projects.edit', compact('project', 'services'));
     }
 
 

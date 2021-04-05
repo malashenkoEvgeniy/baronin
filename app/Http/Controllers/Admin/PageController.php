@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\DesignImage;
 use App\Models\Page;
 use Illuminate\Http\Request;
 
@@ -90,15 +91,16 @@ class PageController extends BaseController
     public function edit($id)
     {
         $page = Page::find($id);
-//        $pages = $this->getMenu();
         $pages = Page::all();
 
         $prices = null;
-//       dd($page->translate());
         if ($page->id == 6) {
             $prices = $page->price()->get();
         }
-        return view('admin.pages.edit', compact('pages', 'page', 'prices'));
+        $photo = DesignImage::where('page_id', $page->id)
+        ->orderBy('order_by', 'asc')
+        ->get();
+        return view('admin.pages.edit', compact('pages', 'page', 'prices', 'photo'));
     }
 
     /**

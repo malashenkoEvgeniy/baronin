@@ -1,0 +1,3 @@
+.breadcrumbs{display:flex;align-items:center;flex-wrap:wrap;list-style-type:none;padding:0;margin:40px auto;width:89.58%}.breadcrumbs__home svg{max-height:22px;width:auto}.breadcrumbs__separator{margin:0 5px;font-size:12px}
+@media all and(max-width:1700px){.breadcrumbs{margin:20px auto}}
+@media all and(max-width:768px){.breadcrumbs a{font-size:14px;line-height:17px}}

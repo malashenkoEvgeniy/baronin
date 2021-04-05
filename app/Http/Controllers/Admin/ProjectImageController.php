@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\DesignImage;
 use App\Models\ProjectImage;
 use Illuminate\Http\Request;
 
@@ -80,5 +81,16 @@ class ProjectImageController extends BaseController
        }
 
         return redirect()->back()->with('success', 'Запись успешно обновлена');
+    }
+
+    public function movingPhoto(){
+
+
+        $project_img = ProjectImage::where('project_id', \request()->project_id)->get();
+        foreach ($project_img as $img){
+            DesignImage::create(['page_id'=>\request()->services,'url'=> $img->image]);
+        }
+        return redirect()->back()->with('success', 'Запись успешно обновлена');
+
     }
 }
