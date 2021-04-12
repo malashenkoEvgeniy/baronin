@@ -30,7 +30,7 @@
                         <div class="collapse mb-3" id="banner">
                             <div class="card card-body">
                                 <div class="col-6">
-                                    <img src="{{$page->image}}" alt="">
+                                    <img src="{{$page->image}}" alt="" style="width: 250px">
                                 </div>
                             </div>
                         </div>

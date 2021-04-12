@@ -27,7 +27,7 @@
                     </form>
 
 
-                    <form class="mt-4" action="{{route('price.destroy',$table->id)}}" method="POST" onsubmit="return confirm('Удалить?') ? true : false;">
+                    <form class="mt-4" action="{{route('price_service.destroy',$table->id)}}" method="POST" onsubmit="return confirm('Удалить?') ? true : false;">
                         {!! csrf_field() !!}
                         {{ method_field('DELETE') }}
                         <button type="submit" class="btn btn-danger btn-delete">Удалить</button>

@@ -32,7 +32,7 @@
                     </form>
                     <button type="submit" class="btn btn-primary mt-4 upload">Загрузить</button>
                     <hr>
-                    <a href="{{url()->previous()}}" class="btn btn-primary">back</a>
+                    <a href="{{route('projects.edit',$project_id)}}" class="btn btn-primary">back</a>
                 </div>
             </div>
         </div>

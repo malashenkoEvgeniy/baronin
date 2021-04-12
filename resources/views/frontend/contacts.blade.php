@@ -46,7 +46,7 @@
 
 
 
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2645.6716642935244!2d35.038421915660315!3d48.46282897925076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40dbe2e0c4a111dd%3A0xa3e993a12deffa66!2z0YPQu9C40YbQsCDQodGC0LDRgNC-0LrQvtC30LDRhtC60LDRjywgMjUsINCU0L3QuNC_0YDQviwg0JTQvdC10L_RgNC-0L_QtdGC0YDQvtCy0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwsIDQ5MDAw!5e0!3m2!1sru!2sua!4v1606981253321!5m2!1sru!2sua" frameborder="0" allowfullscreen="" aria-hidden="false" class="google-map"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2643.2096484131334!2d32.26824961584426!3d48.510045633124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d042aec4b866c9%3A0x6a3be7da5a2d7b02!2z0J_QsNGI0YPRgtC40L3RgdC60LDRjyDRg9C7LiwgMzEsINCa0YDQvtC_0LjQstC90LjMgdGG0LrQuNC5LCDQmtC40YDQvtCy0L7Qs9GA0LDQtNGB0LrQsNGPINC-0LHQu9Cw0YHRgtGMLCAyNTAwMA!5e0!3m2!1sru!2sua!4v1618221742176!5m2!1sru!2sua" width="1920" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 
 
 

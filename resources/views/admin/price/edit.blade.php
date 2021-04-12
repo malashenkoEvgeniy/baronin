@@ -5,9 +5,19 @@
     <div class="row justify-content-center">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">Редактирование </div>
+                <div class="card-header">Редактирование</div>
 
                 <div class="card-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                {{--                                {{dd($errors)}}--}}
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     @include('admin.includes.alerts')
 
                     <form action="{{route('price.update',$table->id)}}" method="POST" enctype="multipart/form-data">
@@ -25,7 +35,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Стоимость</span>
                             </div>
-                            <input type="text" class="form-control" name="cost"  value="{{$table->translate()->cost}}">
+                            <input type="text" class="form-control" name="cost" required  value="{{$table->translate()->cost}}">
                         </div>
                         <div class="input-group mb-5">
                             <div class="input-group-prepend">

@@ -79,7 +79,7 @@ class PriceController extends BaseController
         $service = $this->storeWithTranslation(
             new TablePrice(),
             ['table_services_id' =>$request['table_services_id'], 'order_by'=>count($table) ],
-            [ 'title'=> $title,
+            [ 'title'=> $request['title'],
             'language'=> $request['language'],
             'cost'=> $cost,
             'units'=> $units]
@@ -121,8 +121,16 @@ class PriceController extends BaseController
      */
     public function update(Request $request, $id)
     {
+
         $price = TablePrice::find($id);
-        $price = $this->updateTranslation($price, [
+        $this->validate($request, [
+            'title' => 'string|max:255',
+            'cost' => 'min:1|max:100',
+            'units' => 'min:1|max:100',
+        ]);
+        $request['cost'] ? $cost = $request['cost'] : $cost = ' ';
+        $request['units'] ? $units = $request['units'] : $units = ' ';
+        $this->updateTranslation($price, [
                                                     'title'=> $request['title'],
                                                     'language'=> $request['language'],
                                                     'cost'=> $request['cost'],
@@ -142,7 +150,8 @@ class PriceController extends BaseController
     public function destroy($id)
     {
         $price = TablePrice::destroy($id);
-        return redirect(route('price.index'))->with('success', 'Запись успешно удалена');
+        return redirect()->back()->with('success', 'Запись успешно обновлена');
+        //return redirect(route('price.index'))->with('success', 'Запись успешно удалена');
     }
 
     public function up($id)

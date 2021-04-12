@@ -57,11 +57,8 @@ class ProjectImageController extends BaseController
     public function destroy($id)
     {
         $image = ProjectImage::find($id);
+
         $this->deleteFile($image->image);
-        $copyImage = DesignImage::where('url', $image->image)->get();
-        foreach ($copyImage as $item){
-            $item->delete();
-        }
         $image->delete();
         return redirect()->route('projects.edit', $image->project_id)->with('success', 'Изображение успешно удалено');
     }

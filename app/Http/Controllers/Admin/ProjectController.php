@@ -6,6 +6,7 @@ use App\Models\Page;
 use App\Models\Portfolio;
 use App\Models\Project;
 use App\Models\ProjectImage;
+use App\Models\ProjectPage;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManager;
 
@@ -74,9 +75,10 @@ class ProjectController extends BaseController
             ->orderBy('order_by', 'asc')
             ->get();
         $services = Page::where('parent_id', '!=', null)->get();
+        $projects =  ProjectPage::where('project_id', $project->id)->get();
 
 
-        return view('admin.projects.edit', compact('project', 'services'));
+        return view('admin.projects.edit', compact('project', 'services', 'projects'));
     }
 
 

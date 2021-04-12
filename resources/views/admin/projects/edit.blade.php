@@ -1,6 +1,6 @@
 @extends('admin.layouts')
 @section('links')
-    <link href="{{asset('/admin/libs/dropzone-5.7.0/dist/dropzone.css')}}"></link>
+    <link href="{{asset('/admin/libs/dropzone/dist/dropzone.css')}}"></link>
     <style>
         .project-images-item {
             max-width: 150px;
@@ -134,11 +134,9 @@
                                     <div class="col-12">
                                         <div class="btn-group">
                                             <div class="" style="display: flex">
-                                                <form action="{{ route('project_image.destroy',$item->id)}}" method="POST" onsubmit="return confirm('Удалить?') ? true : false;">
-                                                    {!! csrf_field() !!}
-                                                    {{ method_field('DELETE') }}
-                                                    <button type="submit" class="btn btn-danger btn-delete" title="Удалить"><i class="fas fa-trash-alt"></i></button>
-                                                </form>
+
+                                                    <button type="submit" form="delete" data-id="$item->id" class="btn btn-danger btn-delete" title="Удалить"><i class="fas fa-trash-alt"></i></button>
+
                                             </div>
                                         </div>
                                     </div>
@@ -156,14 +154,26 @@
                     </div>
                         <button type="submit" class="btn btn-primary mt-3 mb-3">Сменить очередность</button>
                     </form>
+                    <form id="delete" action="{{ route('project_image.destroy',$item->id)}}" method="POST" onsubmit="return confirm('Удалить?') ? true : false;">
+                        {!! csrf_field() !!}
+                        {{ method_field('DELETE') }}
+{{--                        <button type="submit" form="delete" class="btn btn-danger btn-delete" title="Удалить"><i class="fas fa-trash-alt"></i></button>--}}
+                    </form>
                 </div>
                 <div class="card-footer">
                     <form action="{{ route('movingPhoto')}}" >
                     {!! csrf_field() !!}
                         <button class="btn btn-primary" type="submit">Добавить проект на страницу</button>
                         <select name="services" id="">
+                            {{$flag = 0}}
                             @foreach($services as $service) {
-                              <option value="{{$service->id}}">{{$service->translate()->title}}</option>
+                                @foreach($projects as $item)
+                                    @if($service->id == $item->page_id)
+                                        {{$flag = 1}}
+                                    @endif
+                                @endforeach
+                              <option @if($flag>0)style="background: blue; color: #fff" disabled="true"@endif value="{{$service->id}}">{{$service->translate()->title}}</option>
+                            {{$flag = 0}}
                             @endforeach
                         </select>
                         <input type="hidden" name="project_id"  value="{{$project->id}}">
@@ -179,7 +189,7 @@
 
 @section('scripts')
   <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-  <script src="{{asset('/admin/libs/dropzone-5.7.0/dist/dropzone.js')}}"></script>
+  <script src="{{asset('/admin/libs/dropzone/dist/dropzone.js')}}"></script>
 
   <script>
     tinymce.init({

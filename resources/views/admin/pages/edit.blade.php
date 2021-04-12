@@ -216,6 +216,7 @@
                             <thead>
                             <tr>
                                 <th scope="col"><h5>#</h5></th>
+                                <th scope="col"><h5>Название проекта</h5></th>
                                 <th scope="col"><h5>Project</h5></th>
                                 <th scope="col"><h5>Опции</h5></th>
                             </tr>
@@ -224,6 +225,7 @@
                             @foreach($projects as $item)
                                 <tr>
                                     <td> <input  style="max-width: 60px;" type="number" name="order-{{$item->id}}" value="{{$item->order_by}}"></td>
+                                    <td> {{$item->project->translate()->title}}</td>
                                     <td><a href="{{route('projects.edit',$item->id)}}" class="btn btn-warning" title="Редактировать">
                                         <img class="project-images-item" src="{{$item->image}}"></a></td>
                                     <td>
@@ -246,11 +248,6 @@
                             </tbody>
                         </table>
 
-                        <div class="col-12 mt-4">
-                            <div class="input-group mb-3">
-                                <a class="btn btn-success" href="{{route('photo.create', ['id'=>$page->id])}}">Загрузить изображение</a>
-                            </div>
-                        </div>
                         <button type="submit" class="btn btn-primary mt-3 mb-3">Сменить очередность</button>
                     </form>
                 </div>

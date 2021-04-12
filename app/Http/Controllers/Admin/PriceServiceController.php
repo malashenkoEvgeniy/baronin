@@ -117,7 +117,8 @@ class PriceServiceController extends BaseController
     public function destroy($id)
     {
         $price = TableServices::destroy($id);
-        return redirect(route('price_service.index'))->with('success', 'Запись успешно удалена');
+        return redirect()->back()->with('success', 'Запись успешно обновлена');
+        //return redirect(route('price_service.index'))->with('success', 'Запись успешно удалена');
     }
 
     public function up($id)

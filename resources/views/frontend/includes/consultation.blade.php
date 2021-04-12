@@ -10,7 +10,7 @@
         <button type="submit" class="button btn_consultation">@lang('main.form.send')</button>
     </form>
     <div class="social-share">
-        <h6 class="share-title">Поделитесь ссылкой в социальных сетях</h6>
+        <h6 class="share-title">@lang('main.form.share')</h6>
         <div class="share-buttons">
             @if($contacts->instagram)
                 <a class="share__button" target="_blank" href="{{$contacts->instagram}}">
