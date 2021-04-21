@@ -8,6 +8,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">Создание</div>
+                <p style="color: red">ВНИМАНИЕ!!! За один раз вы можете загрузить не более 20 фотографий!!!</p>
 
                 <div class="card-body">
 

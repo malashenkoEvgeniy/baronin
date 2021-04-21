@@ -69,6 +69,12 @@ class ProjectController extends BaseController
      */
     public function edit($id)
     {
+//
+//        $r = ProjectImage::all();
+//        foreach ($r as $el){
+//            $el->img_max = '/uploads/projects/max_'.preg_replace('#/uploads/projects/#','',$el->image);
+//            $el->update();
+//        }
 
         $project = Project::find($id);
         $project->images = ProjectImage::where('project_id', $id)

@@ -153,10 +153,9 @@ class PageController extends BaseController
         $parent = $page->parent()->first();
 
         while ($parent !== null) {
-            $parents->push($parent);
+            $parents->prepend($parent);
             $parent = $parent->parent()->first();
         }
-
         return $parents;
     }
 

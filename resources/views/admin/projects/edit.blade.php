@@ -115,8 +115,7 @@
                 <div class="card-header">Галерея</div>
 
                 <div class="card-body">
-                    <form action="{{route('updateImg')}}">
-                        {!! csrf_field() !!}
+
                     <table class="table table-bordered table-hover dataTable dtr-inline">
                         <thead>
                             <tr>
@@ -135,8 +134,11 @@
                                         <div class="btn-group">
                                             <div class="" style="display: flex">
 
-                                                    <button type="submit" form="delete" data-id="$item->id" class="btn btn-danger btn-delete" title="Удалить"><i class="fas fa-trash-alt"></i></button>
-
+                                                <form id="delete" action="{{ route('project_image.destroy',$item->id)}}" method="POST" onsubmit="return confirm('Удалить?') ? true : false;">
+                                                    {!! csrf_field() !!}
+                                                    {{ method_field('DELETE') }}
+                                                                            <button type="submit" form="delete" class="btn btn-danger btn-delete" title="Удалить"><i class="fas fa-trash-alt"></i></button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -152,13 +154,15 @@
                             <a href="{{route('project_image.create',['id'=>$project->id] )}}" class="btn btn-primary"><i class="fa fa-fw fa-plus"></i>Загрузить</a>
                         </div>
                     </div>
+                    <form action="{{route('updateImg')}}">
+                        {!! csrf_field() !!}
                         <button type="submit" class="btn btn-primary mt-3 mb-3">Сменить очередность</button>
                     </form>
-                    <form id="delete" action="{{ route('project_image.destroy',$item->id)}}" method="POST" onsubmit="return confirm('Удалить?') ? true : false;">
-                        {!! csrf_field() !!}
-                        {{ method_field('DELETE') }}
+{{--                    <form id="delete" action="{{ route('project_image.destroy',$item->id)}}" method="POST" onsubmit="return confirm('Удалить?') ? true : false;">--}}
+{{--                        {!! csrf_field() !!}--}}
+{{--                        {{ method_field('DELETE') }}--}}
 {{--                        <button type="submit" form="delete" class="btn btn-danger btn-delete" title="Удалить"><i class="fas fa-trash-alt"></i></button>--}}
-                    </form>
+{{--                    </form>--}}
                 </div>
                 <div class="card-footer">
                     <form action="{{ route('movingPhoto')}}" >

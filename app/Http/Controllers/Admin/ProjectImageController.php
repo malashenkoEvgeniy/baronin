@@ -40,7 +40,7 @@ class ProjectImageController extends BaseController
             foreach (request()->file('images') as $item) {
                 $file = $this->storeFileForResize($item, $this->storePath);
                 $r=count(ProjectImage::where('project_id',$req['project_id'])->get());
-                ProjectImage::create(['image' => $file['path'], 'project_id' => $req['project_id'], 'order_by'=>$r+1]);
+                ProjectImage::create(['image' => $file['path'], 'img_max' => $file['path_max'], 'project_id' => $req['project_id'], 'order_by'=>$r+1]);
             }
         }
 
@@ -59,6 +59,7 @@ class ProjectImageController extends BaseController
         $image = ProjectImage::find($id);
 
         $this->deleteFile($image->image);
+        $this->deleteFile($image->img_max);
         $image->delete();
         return redirect()->route('projects.edit', $image->project_id)->with('success', 'Изображение успешно удалено');
     }

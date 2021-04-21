@@ -12,6 +12,7 @@
  */
 
 use App\Http\Controllers\Admin\PriceController;
+use Spatie\Sitemap\SitemapGenerator;
 
 Auth::routes();
 
@@ -60,7 +61,7 @@ Route::group(
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
+        'middleware' => [ 'localizationRedirect', 'localeViewPath'],
     ], function () {
 
         Route::get('/', 'Frontend\PageController@index');
@@ -71,4 +72,9 @@ Route::group(
         Route::get('/{page}', 'Frontend\PageController@show');
         Route::post('/send-form', 'Frontend\BaseController@sendForm')->name('sendForm');
 
+
     });
+Route::get('sitemap', function () {
+    SitemapGenerator::create('https://baronin-ds.com.ua/')->writeToFile('sitemap.xml');
+    return "Sitemap generated";
+});

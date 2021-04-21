@@ -52,12 +52,15 @@ class BaseController extends Controller
 
     public function storeFileForResize( $file, $storePath = '/uploads/')
     {
+//        $fileNewName = $file->getClientOriginalName();
         $fileNewName = time() . $file->getClientOriginalName();
         $fileNewName = $this->translit($fileNewName);
 
 
         $manager= new ImageManager(['driver'=>'gd']);
         $image = $manager->make($file);
+        $str = public_path() . $storePath .'max_'. $fileNewName;
+        $image->save($str,70);
         $image->resize(450,300, function ($img){
             $img->aspectRatio();
         });
@@ -65,7 +68,7 @@ class BaseController extends Controller
         $image->save($str,70);
 
 
-        $data = ['name' => $fileNewName, 'format' => $file->getClientOriginalExtension(), 'path' => $storePath . $fileNewName];
+        $data = ['name' => $fileNewName, 'format' => $file->getClientOriginalExtension(), 'path' => $storePath . $fileNewName, 'path_max' => $storePath .'max_'. $fileNewName];
 
         return $data;
     }

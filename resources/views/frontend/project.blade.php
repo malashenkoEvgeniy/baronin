@@ -24,7 +24,7 @@
 
         <div class="gallery project__gallery">
             @foreach($images as $item)
-            <a data-fancybox="gallery" href="{{$item->image}}" class="gallery__item">
+            <a data-fancybox="gallery" href="{{$item->img_max}}" class="gallery__item">
                 <img src="{{$item->image}}" alt="{{$page->translate()->title}} {{$loop->iteration}}">
             </a>
             @endforeach
