@@ -15,6 +15,7 @@
             <div class="variable slider">
                 @foreach($slider as $elem)
                     @if($elem->is_video == 1)
+
                         <div>
                             <video loop="loop" autoplay="autoplay" muted="muted" playsinline preload="auto">
                                 <source src="{{$elem->url}}" type="video/mp4">
@@ -22,7 +23,10 @@
                         </div>
                     @else
                         <div>
-                            <img src="{{$elem->url}}" alt="slider">
+                            <img src="{{asset('/frontend/images/zaglushka.png')}}" class="lazy" data-src="{{$elem->url}}"  alt="Laziness" />
+                            <noscript>
+                                <img src="{{$elem->url}}" alt="slider">
+                            </noscript>
                         </div>
                     @endif
                 @endforeach
@@ -40,7 +44,10 @@
 
 
             <div class="about-us__img">
-                <img src="{{$about_us->image}}" alt="about us">
+                <img src="{{asset('/frontend/images/zaglushka.png')}}" class="lazy" data-src="{{$about_us->image}}"  alt="Laziness" width="800" height="550" />
+                <noscript>
+                    <img src="{{$about_us->image}}" alt="slider" width="800" height="550">
+                </noscript>
             </div>
 
             <div class="about-us__right">
@@ -65,7 +72,7 @@
                 <div class="category">
                     <a href='{{ LaravelLocalization::localizeUrl("$item->url") }}' class="category__title">{{$item->translate()->title}}</a>
                     <a href='{{ LaravelLocalization::localizeUrl("$item->url") }}' title="{{$item->translate()->title}}" class="category__link">
-                        <img src="{{$item->image}}" alt="{{$item->translate()->title}}">
+                        <img src="{{$item->image}}" alt="{{$item->translate()->title}}" width="500" height="400">
                     </a>
                     <div class="button_show-more-wrap">
 
@@ -119,7 +126,10 @@
         <section class="section section_seo">
             <div class="seo">
                 <div class="seo__image">
-                    <img src="{{$page->image}}" alt="seo image">
+                    <img src="{{asset('/frontend/images/zaglushka.png')}}" class="lazy" data-src="{{$page->image}}"  alt="Laziness" />
+                    <noscript>
+                        <img src="{{$page->image}}" alt="slider">
+                    </noscript>
                 </div>
                 <div class="seo__form">
                     <form action="{{route('sendForm')}}" method="post" class="form form_consultation">

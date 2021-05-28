@@ -1,3 +1,5 @@
+
+
 <header class="header">
 
     <div class="burger open-mobile-menu">
@@ -9,9 +11,10 @@
     <div class="header__content">
         <div class="logo header__logo">
             <a href='{{ LaravelLocalization::localizeUrl("/") }}'>
-                <img src="/frontend/images/icons/logo-baronin.png" alt="logo WKS">
+                <img src="/frontend/images/icons/logo-baronin.png" alt="logo WKS" width="90" height="70">
             </a>
         </div>
+
         <a href="tel:{{$contacts->phone_2}}" class="header__phone">
             @include('frontend.svg.phone')
             <span>{{$contacts->phone_2}}</span>

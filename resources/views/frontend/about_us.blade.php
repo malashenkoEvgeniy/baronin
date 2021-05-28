@@ -35,7 +35,10 @@
             @foreach($portfolio as $item)
                 <div class="about-us__img">
                     <a data-fancybox="gallery" href="{{$item->image}}">
-                        <img src="{{$item->image}}" alt="{{$item->image}} {{$item->id}}">
+                        <img src="{{asset('/frontend/images/zaglushka.png')}}" class="lazy" data-src="{{$item->image}}" alt="{{$item->image}} {{$item->id}}">
+                        <noscript>
+                            <img src="{{$item->image}}" alt="slider">
+                        </noscript>
                     </a>
                 </div>
             @endforeach

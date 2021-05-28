@@ -9,6 +9,7 @@
       <meta name="google-site-verification" content="HaC6hSz-uzSN-FfQ0q3AL-Uu1Q272TmmDPJJnWFI3WA" />
       <meta name="yandex-verification" content="a93073ef56ca4599" />
 
+
       <!-- Global site tag (gtag.js) - Google Analytics -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-193598615-1"></script>
       <script>
@@ -32,7 +33,7 @@
 
     <link rel="alternate" hreflang="ru" href="{{ LaravelLocalization::getLocalizedURL('ru') }}">
     <link rel="alternate" hreflang="uk" href="{{ LaravelLocalization::getLocalizedURL('ua') }}">
-    <link rel="alternate" hreflang="en" href="{{ LaravelLocalization::getLocalizedURL('en') }}">
+{{--    <link rel="alternate" hreflang="en" href="{{ LaravelLocalization::getLocalizedURL('en') }}">--}}
       <meta name="robots" content="noindex,follow">
 
       @if (isset($_GET['page']))
@@ -67,6 +68,7 @@
 
     <script  src="https://code.jquery.com/jquery-3.5.1.min.js"  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="   crossorigin="anonymous"></script>
     <script  src="/frontend/js/layout.min.js"></script>
+    <script  src="{{asset('/frontend/js/lazy.js')}}"></script>
     @yield('scripts')
 
     <script>

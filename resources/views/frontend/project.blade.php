@@ -25,7 +25,11 @@
         <div class="gallery project__gallery">
             @foreach($images as $item)
             <a data-fancybox="gallery" href="{{$item->img_max}}" class="gallery__item">
-                <img src="{{$item->image}}" alt="{{$page->translate()->title}} {{$loop->iteration}}">
+                <img src="{{asset('/frontend/images/zaglushka.png')}}" class="lazy" data-src="{{$item->image}}" alt="{{$page->translate()->title}} {{$loop->iteration}}" width="380" height="290">
+                <noscript>
+                    <img src="{{$item->image}}"alt="{{$page->translate()->title}} {{$loop->iteration}}">
+                </noscript>
+
             </a>
             @endforeach
         </div>

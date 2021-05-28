@@ -7,8 +7,8 @@
  * @description Freeze columns in place on a scrolling DataTable
  * @version     3.8.0
  * @file        dataTables.fixedColumns.js
- * @author      SpryMedia Ltd (www.sprymedia.co.ua)
- * @contact     www.sprymedia.co.ua/contact
+ * @author      SpryMedia Ltd (www.sprymedia.co.uk)
+ * @contact     www.sprymedia.co.uk/contact
  * @copyright   Copyright 2010-2018 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
@@ -413,7 +413,7 @@ $.extend( FixedColumns.prototype , {
 	 * table, so you can pass in nodes from the master table, or the cloned
 	 * tables and get the index position for the data in the main table.
 	 *  @param {node} node TR, TH or TD element to get the information about
-	 *  @returns {int} If nNode is given as a TR, then a single index is
+	 *  @returns {int} If nNode is given as a TR, then a single index is 
 	 *    returned, or if given as a cell, an array of [row index, column index
 	 *    (visible), column index (all)] is given.
 	 */

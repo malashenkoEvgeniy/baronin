@@ -24,7 +24,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if (preg_match("/^\/public/", \Request::getBaseUrl()) ) {
+            $newUrl = str_replace(\Request::getBaseUrl(), '', \Request::getUri());
+            header('Location: '.$newUrl, true, 301);
+            exit();
+        }
 
         parent::boot();
     }
@@ -46,6 +50,7 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function removeIndexPhpFromUrl()
     {
+
         if (Str::contains(request()->getRequestUri(), '/index.php/')) {
             $url = str_replace('index.php/', '', request()->getRequestUri());
             if (strlen($url) > 0) {

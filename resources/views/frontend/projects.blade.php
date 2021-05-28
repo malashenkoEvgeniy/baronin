@@ -19,7 +19,10 @@
         @foreach($projects as $project)
         <div class="project">
             <a href='{{ LaravelLocalization::localizeUrl("/projects/"."$project->url") }}' title="{{$project->translate()->title}}" class="project__image">
-                <img src="{{$project->image}}" alt="{{$project->translate()->title}} {{$loop->iteration}}">
+                <img src="{{asset('/frontend/images/zaglushka.png')}}" class="lazy" data-src="{{$project->image}}"  alt="{{$project->translate()->title}} {{$loop->iteration}}"/>
+                <noscript>
+                    <img src="{{$project->image}}" alt="{{$project->translate()->title}} {{$loop->iteration}}">
+                </noscript>
             </a>
             <a href='{{ LaravelLocalization::localizeUrl("/projects/"."$project->url") }}' class="project__title"><span class="project__title_text">{{$project->translate()->title}}</span></a>
         </div>
@@ -45,7 +48,10 @@
     <div class="page__body">
         {!! $page->translate()->body !!}
         @if( $page->image !== null)
-            <img src="{{$page->image}}" alt="{{$page->image}} {{$page->id}}" class="page__body-img">
+            <img src="{{asset('/frontend/images/zaglushka.png')}}" class="page__body-img lazy" data-src="{{$page->image}}"  alt="{{$page->image}} {{$page->id}}" />
+            <noscript>
+                <img src="{{$page->image}}" alt="slider">
+            </noscript>
         @endif
 
         {!! $page->translate()->additional_body !!}

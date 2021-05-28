@@ -1,6 +1,6 @@
 @extends('admin.layouts')
 @section('links')
-    <link href="{{asset('/admin/libs/dropzone/dist/dropzone.css')}}"></link>
+    <link href="{{asset('/admin/libs/dropzone-5.7.0/dist/dropzone.css')}}"></link>
     <style>
         .project-images-item {
             max-width: 150px;
@@ -115,7 +115,8 @@
                 <div class="card-header">Галерея</div>
 
                 <div class="card-body">
-
+                    <form action="{{route('updateImg')}}">
+                        {!! csrf_field() !!}
                     <table class="table table-bordered table-hover dataTable dtr-inline">
                         <thead>
                             <tr>
@@ -133,12 +134,9 @@
                                     <div class="col-12">
                                         <div class="btn-group">
                                             <div class="" style="display: flex">
+                                                <input type="hidden" name="id" value="{{$item->id}}" form="distriy_form">
+                                                    <button type="submit" name="{{$item->id}}" class="btn btn-danger btn-delete" form="distriy_form" title="Удалить"><i class="fas fa-trash-alt"></i></button>
 
-                                                <form id="delete" action="{{ route('project_image.destroy',$item->id)}}" method="POST" onsubmit="return confirm('Удалить?') ? true : false;">
-                                                    {!! csrf_field() !!}
-                                                    {{ method_field('DELETE') }}
-                                                                            <button type="submit" form="delete" class="btn btn-danger btn-delete" title="Удалить"><i class="fas fa-trash-alt"></i></button>
-                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -154,15 +152,11 @@
                             <a href="{{route('project_image.create',['id'=>$project->id] )}}" class="btn btn-primary"><i class="fa fa-fw fa-plus"></i>Загрузить</a>
                         </div>
                     </div>
-                    <form action="{{route('updateImg')}}">
-                        {!! csrf_field() !!}
                         <button type="submit" class="btn btn-primary mt-3 mb-3">Сменить очередность</button>
                     </form>
-{{--                    <form id="delete" action="{{ route('project_image.destroy',$item->id)}}" method="POST" onsubmit="return confirm('Удалить?') ? true : false;">--}}
-{{--                        {!! csrf_field() !!}--}}
-{{--                        {{ method_field('DELETE') }}--}}
-{{--                        <button type="submit" form="delete" class="btn btn-danger btn-delete" title="Удалить"><i class="fas fa-trash-alt"></i></button>--}}
-{{--                    </form>--}}
+        <form action="{{ route('project_image.destroy',1)}}" id="distriy_form" method="POST" onsubmit="return confirm('Удалить?') ? true : false;">
+        {!! csrf_field() !!}
+        {{ method_field('DELETE') }} </form>
                 </div>
                 <div class="card-footer">
                     <form action="{{ route('movingPhoto')}}" >
@@ -193,7 +187,7 @@
 
 @section('scripts')
   <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-  <script src="{{asset('/admin/libs/dropzone/dist/dropzone.js')}}"></script>
+  <script src="{{asset('/admin/libs/dropzone-5.7.0/dist/dropzone.js')}}"></script>
 
   <script>
     tinymce.init({

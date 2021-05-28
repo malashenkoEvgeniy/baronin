@@ -52,14 +52,20 @@ class BaseController extends Controller
 
     public function storeFileForResize( $file, $storePath = '/uploads/')
     {
-//        $fileNewName = $file->getClientOriginalName();
+
         $fileNewName = time() . $file->getClientOriginalName();
         $fileNewName = $this->translit($fileNewName);
-
-
         $manager= new ImageManager(['driver'=>'gd']);
         $image = $manager->make($file);
+        $width = Image::make($image)->width();
+        $height = Image::make($image)->height();
+        $water = $manager->make('img/logo.png');
         $str = public_path() . $storePath .'max_'. $fileNewName;
+        $water->resize( $width*0.3,$height*0.3, function ($img){
+            $img->aspectRatio();
+        });
+        $image->insert($water, 'center', 10, 10);
+
         $image->save($str,70);
         $image->resize(450,300, function ($img){
             $img->aspectRatio();
@@ -71,6 +77,29 @@ class BaseController extends Controller
         $data = ['name' => $fileNewName, 'format' => $file->getClientOriginalExtension(), 'path' => $storePath . $fileNewName, 'path_max' => $storePath .'max_'. $fileNewName];
 
         return $data;
+    }
+
+    public static function getWaterMark(){
+        ini_set('max_execution_time', 1800);
+        $dir = "uploads/projects1/*";
+        foreach(glob($dir) as $file)
+        {
+            if(!is_dir($file)) {
+                $fileNewName = basename($file);
+                $manager= new ImageManager(['driver'=>'gd']);
+                $image = $manager->make($file);
+                $water = $manager->make('img/logo.png');
+                $width = Image::make($image)->width();
+                $height = Image::make($image)->height();
+                $water->resize( $width*0.3,$height*0.3, function ($img){
+                    $img->aspectRatio();
+                });
+                $image->insert($water, 'center', 10, 10);
+                $str = public_path() .'/uploads/projects/'. $fileNewName;
+                $image->save($str,75);
+            }
+        }
+        return 'fff';
     }
 
     public function deleteFile($path)

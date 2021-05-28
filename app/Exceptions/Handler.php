@@ -2,8 +2,11 @@
 
 namespace App\Exceptions;
 
+use App\Models\Contact;
+use App\Models\Page;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +49,27 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if($this->isHttpException($exception)){
+            switch ($exception->getStatusCode()) {
+                case 400:
+                    return redirect('/');
+                case 404:
+                    $contacts = Contact::first();
+                    $pages = Page::get();
+                    return response()->make(view('errors.404', compact('contacts', 'pages')), 404);
+                case 500:
+                    return response()->make(view('errors.404'), 404);
+                case 505:
+                    return response()->make(view('errors.404'), 404);
+
+            }
+        }
+        if($exception instanceof NotFoundHttpException)
+        {
+
+            return response()->make(view('errors.404'), 404);
+        }
+
         return parent::render($request, $exception);
     }
 }

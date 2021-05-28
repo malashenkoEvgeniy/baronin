@@ -13,6 +13,7 @@ use App\Models\SliderImage;
 use App\Models\TablePrice;
 use App\Models\TableServices;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class PageController extends BaseController
@@ -30,6 +31,9 @@ class PageController extends BaseController
     public function index()
     {
         $page = MainPage::first();
+        if ($page === null) {
+            abort(404);
+        }
         $default_seo_title = "Заказать монтажно-строительные работы высокого качества по низкой цене в Кропивницком";
         $default_seo_description = "Компания \"Baronin-ds\" качественно и недорого выполнит монтажно-строительные работы в многоэтажных и частных домах по Кропивницкому и области. Современные материалы. Соблюдение сроков.";
         $seo = (object) [
@@ -41,6 +45,11 @@ class PageController extends BaseController
 
         $other_page = Page::all();
         $slider = SliderImage::orderby('is_video', 'desc')->get();
+        $slider = Cache::get('slider', function () {
+            $slider_orig = SliderImage::orderby('is_video', 'desc')->get();
+            Cache::add('slider', $slider_orig, 3600);
+            return $slider_orig;
+        });
 
         return view('frontend.home', compact('page', 'seo', 'catalogPages', 'slider', 'other_page' ));
     }
@@ -56,10 +65,11 @@ class PageController extends BaseController
     public function show($url)
     {
         $page = Page::where('url', $url)->first();
-        $photo = DesignImage::where('page_id', $page->id)->get();
+
         if ($page === null) {
             abort(404);
         }
+        $photo = DesignImage::where('page_id', $page->id)->get();
         $page->images = $page->images()->get();
         $page->childrens= $page->children()->get();
         $default_seo_title = "Заказать " . mb_strtolower($page->translate()->title)." высокого качества по низкой цене в Кропивницком";
@@ -108,6 +118,9 @@ class PageController extends BaseController
     public function contacts()
     {
         $page = Contact::first();
+        if ($page === null) {
+            abort(404);
+        }
         $seo = (object) [
             'title' => $page->translate()->seo_title,
             'description' => $page->translate()->seo_description,
@@ -125,6 +138,9 @@ class PageController extends BaseController
     {
 
         $page = Page::find(6);
+        if ($page === null) {
+            abort(404);
+        }
         $seo = (object) [
             'title' => $page->translate()->seo_title,
             'description' => $page->translate()->seo_description,

@@ -21,14 +21,20 @@
 
             <div class="services">
                 <a href='{{ LaravelLocalization::localizeUrl("$item->url") }}' title="{{$item->translate()->title}}" class="services_link">
-                    <img src="{{$item->image}}" alt="{{$item->translate()->title}}">
+                    <img src="{{asset('/frontend/images/zaglushka.png')}}" class="lazy" data-src="{{$item->image}}" alt="{{$item->translate()->title}}"/>
+                    <noscript>
+                        <img src="{{$item->image}}" alt="{{$item->translate()->title}}">
+                    </noscript>
                 </a>
             </div>
         @endforeach
     </div>
     <div class="page__body">
         {!! $page->translate()->body !!}
-        <img src="{{$page->image}}" alt="{{$page->image}}" class="page__body-img">
+        <img src="{{asset('/frontend/images/zaglushka.png')}}" class="page__body-img lazy" data-src="{{$page->image}}"  alt="{{$page->image}}" />
+        <noscript>
+            <img src="{{$page->image}}" alt="{{$page->image}}">
+        </noscript>
         {!! $page->translate()->additional_body !!}
     </div>
 </div>

@@ -24,6 +24,7 @@ Route::get('sitemap.xml','SitemapController@index');
 
 
 
+
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
@@ -78,3 +79,12 @@ Route::get('sitemap', function () {
     SitemapGenerator::create('https://baronin-ds.com.ua/')->writeToFile('sitemap.xml');
     return "Sitemap generated";
 });
+
+//App::before(function($request){
+//    //Remove the 'www.' from all domains
+//    if (substr($request->header('host'), 0, 4) === 'www.') {
+//        $request->headers->set('host', 'baronin');
+//        return Redirect::to($request->path());
+//    }
+//});
+

@@ -31,7 +31,7 @@
         @foreach($projects as $project)
             <div class="project">
                 <a href='{{ LaravelLocalization::localizeUrl("/projects/"."{$project->project->url}") }}' title="{{$project->project->translate()->title}}" class="project__image">
-                    <img src="{{$project->project->image}}" alt="{{$project->project->translate()->title}} {{$loop->iteration}}">
+                    <img src="{{$project->project->image}}" alt="{{$project->project->translate()->title}} {{$loop->iteration}}" width="380" height="290">
                 </a>
                 <a href='{{ LaravelLocalization::localizeUrl("/projects/"."$project->project->url") }}' class="project__title"><span class="project__title_text">{{$project->project->translate()->title}}</span></a>
             </div>

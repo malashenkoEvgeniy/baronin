@@ -24,6 +24,7 @@ class ProjectController extends BaseController
      */
     public function index()
     {
+
         $projects = Project::orderBy('id','desc')->get();
         return view('admin.projects.index', compact('projects'));
     }
@@ -61,6 +62,7 @@ class ProjectController extends BaseController
         return redirect()->route('projects.index')->with('success', 'Запись успешно создана');
     }
 
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -75,6 +77,8 @@ class ProjectController extends BaseController
 //            $el->img_max = '/uploads/projects/max_'.preg_replace('#/uploads/projects/#','',$el->image);
 //            $el->update();
 //        }
+
+//        self::getWaterMark();
 
         $project = Project::find($id);
         $project->images = ProjectImage::where('project_id', $id)
@@ -107,6 +111,11 @@ class ProjectController extends BaseController
             $file = $this->storeFile(request()->file('image'), $this->storePath);
             $req['image'] = $file['path'];
         }
+//        if (request()->file('image') !== null) {
+//            $this->deleteFile($project->image);
+//            $file = $this->storeFileForResize(request()->file('image'), $this->storePath);
+//            $req['image'] = $file['path'];
+//        }
 
         $project->update($req);
 

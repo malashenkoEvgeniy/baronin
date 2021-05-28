@@ -16,7 +16,9 @@ class PortfolioController extends BaseController
     public function index()
     {
         $page = Portfolio::first();
-
+        if ($page === null) {
+            abort(404);
+        }
         $projects = $page->project()->orderBy('position')->paginate(8);
 
         $seo = (object) [

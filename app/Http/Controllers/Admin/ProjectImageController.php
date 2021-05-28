@@ -22,6 +22,7 @@ class ProjectImageController extends BaseController
      */
     public function create(Request $request)
     {
+
         return view('admin.project_images.create', ['project_id' => $request->id]);
     }
 
@@ -35,7 +36,6 @@ class ProjectImageController extends BaseController
     {
         $req = request()->only('images', 'project_id', 'order_by');
 
-
         if (request()->file('images') !== null) {
             foreach (request()->file('images') as $item) {
                 $file = $this->storeFileForResize($item, $this->storePath);
@@ -43,7 +43,6 @@ class ProjectImageController extends BaseController
                 ProjectImage::create(['image' => $file['path'], 'img_max' => $file['path_max'], 'project_id' => $req['project_id'], 'order_by'=>$r+1]);
             }
         }
-
 
         return redirect()->route('projects.edit', $req['project_id'])->with('success', 'Изображения успешно созданы');
     }
@@ -56,7 +55,8 @@ class ProjectImageController extends BaseController
      */
     public function destroy($id)
     {
-        $image = ProjectImage::find($id);
+
+        $image = ProjectImage::find(\request()->id);
 
         $this->deleteFile($image->image);
         $this->deleteFile($image->img_max);

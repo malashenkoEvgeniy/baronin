@@ -12,10 +12,15 @@ class BaseController extends Controller
     public function __construct()
     {
         $pages = $this->getMenu();
+        if ($pages === null) {
+            abort(404);
+        }
         $pages = $pages->reject(function ($value, $key) {
             return $value->id === 6;
         });
+
         $contacts = Contact::first();
+
         view()->share(compact('pages', 'contacts'));
     }
 

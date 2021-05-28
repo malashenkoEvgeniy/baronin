@@ -19,15 +19,6 @@
                 <span class="social-item__description"><a target="_blank" href="tel:{{$contacts->phone_1}}">@lang('main.form.phone')</a></span>
             </div>
 
-            <!-- <div class="social-item">
-                <a href="viber://chat?number=%2B{{$contacts->facebook}}" class="target_facebook">
-                    <div>
-                        <div class="item-icon-facebook item-icon"></div>
-                    </div>
-                </a>
-                <span class="social-item__description"><a href="viber://chat?number=%2B{{$contacts->facebook}}">Facebook</a></span>
-            </div> -->
-
             <div class="social-item">
                 <a href="{{$contacts->instagram}}" target="_blank" class="target_instagram">
                     <div>

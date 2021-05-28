@@ -30,6 +30,7 @@ class PhotoController extends BaseController
      */
     public function create()
     {
+
         $id = request()->id;
          return view('admin.photo.create' , compact('id'));
     }
